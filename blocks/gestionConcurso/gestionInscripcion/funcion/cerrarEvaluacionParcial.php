@@ -1,0 +1,258 @@
+<?php
+
+namespace gestionConcurso\gestionInscripcion\funcion;
+
+use gestionConcurso\gestionInscripcion\funcion\redireccion;
+
+include_once('redireccionar.php');
+
+if (!isset($GLOBALS ["autorizado"])) {
+    include("../index.php");
+    exit();
+}
+
+class cerrarEvaluacion
+{
+
+    var $miConfigurador;
+    var $lenguaje;
+    var $miFormulario;
+    var $miFuncion;
+    var $miSql;
+    var $conexion;
+    var $miLogger;
+
+    function __construct($lenguaje, $sql, $funcion, $miLogger)
+    {
+        $this->miConfigurador = \Configurador::singleton();
+        $this->miConfigurador->fabricaConexiones->setRecursoDB('principal');
+        $this->lenguaje = $lenguaje;
+        $this->miSql = $sql;
+        $this->miFuncion = $funcion;
+        $this->miLogger = $miLogger;
+    }
+
+    function procesarFormulario()
+    {
+        $SQLs = [];
+
+        $conexion = "estructura";
+        $esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
+        $esteBloque = $this->miConfigurador->getVariableConfiguracion("esteBloque");
+        //busca inscritos a la etapa
+
+
+        $parametro = array('consecutivo_concurso' => $_REQUEST['consecutivo_concurso'],
+            'consecutivo_calendario' => $_REQUEST['consecutivo_calendario'],
+            'faseAct' => $_REQUEST['consecutivo_calendario'],
+            'fecha_registro' => date("Y-m-d H:m:s"),
+            'nombre_concurso' => $_REQUEST['nombre_concurso'],
+            'nombre' => $_REQUEST['nombre'],
+            'faseNueva' => isset($_REQUEST['etapaPasa']) ? $_REQUEST['etapaPasa'] : 0,
+            'faseDesc' => '',
+            'hoy' => date("Y-m-d"),);
+        //$cadena_sql = $this->miSql->getCadenaSql("consultarCalculoEvaluacionParcial", $parametro);
+        $cadena_sql = $this->miSql->getCadenaSql("consultarInscritoEtapa", $parametro);
+        $SQLs[] = $cadena_sql;
+        $resultadoListaInscrito = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+        //var_dump($resultadoListaInscrito);
+        //consulta datos de puntaje de criterios
+        $cadena_sql = $this->miSql->getCadenaSql("consultarCriteriosEtapa", $parametro);
+        $SQLs[] = $cadena_sql;
+        $resultadoCriterio = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+
+        //exit;
+        if ($resultadoListaInscrito) {   //llama imagen progreso
+            $this->progreso($esteBloque);
+            //recorre los registros de los que se validaron
+            foreach ($resultadoListaInscrito as $key => $value) {
+                $parametro['consecutivo_inscrito'] = $resultadoListaInscrito[$key]['consecutivo_inscrito'];
+                $cadena_sql = $this->miSql->getCadenaSql("consultarDetalleEvaluacionParcial", $parametro);
+                $SQLs[] = $cadena_sql;
+                $resultadoParcial = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+                //var_dump($resultadoParcial);
+                //exit;
+                if ($resultadoParcial) {
+                    $evaluar = array();
+                    $puntaje = array();
+                    foreach ($resultadoParcial as $parc => $value) {   //recorre las evaluaciones de criterios, registradas por inscrito y calcula el puntaje final
+                        if (in_array($resultadoParcial[$parc]['id_evaluar'], $evaluar)) {
+                            $pos = array_search($resultadoParcial[$parc]['id_evaluar'], $evaluar);
+                            $puntaje[$pos]['puntos'] += round((double)$resultadoParcial[$parc]['puntaje_parcial'], 2);
+                        } else {
+                            array_push($evaluar, $resultadoParcial[$parc]['id_evaluar']);
+                            $pos = array_search($resultadoParcial[$parc]['id_evaluar'], $evaluar);
+                            $puntaje[$pos]['evaluar'] = $resultadoParcial[$parc]['id_evaluar'];
+                            $puntaje[$pos]['puntos'] = round((double)$resultadoParcial[$parc]['puntaje_parcial'], 2);
+                            $puntaje[$pos]['aprueba'] = $resultadoParcial[$parc]['puntos_aprueba'];
+                            $puntaje[$pos]['jurados'] = $resultadoParcial[$parc]['jurados'];
+                            $puntaje[$pos]['id_inscrito'] = $resultadoParcial[$parc]['id_inscrito'];
+                        }
+                    }
+
+                    //var_dump($puntaje);
+                    //exit;
+                    $fase = array('puntos' => 0, 'Paprueba' => 0, 'aprobo' => array());
+                    $evaluacion = array();
+                    $promedio = 0;
+                    foreach ($puntaje as $eval => $value) {
+                        $final = round(($puntaje[$eval]['puntos'] / $puntaje[$eval]['jurados']), 2);
+                        //se calcula los puntajes final de la fase y de aprobación
+                        $fase['puntos'] += $final;
+                        $fase['Paprueba'] += $puntaje[$eval]['aprueba'];
+                        $puntosFinal = array('id_inscrito' => $puntaje[$eval]['id_inscrito'],
+                            'id_evaluar' => $puntaje[$eval]['evaluar'],
+                            'puntaje_final' => $final,
+                            'observacion' => "Cálculo de puntaje final de evaluación, con puntaje minimo de aprobación de " . $puntaje[$eval]['aprueba'],
+                            'fecha_registro' => $parametro['fecha_registro'],
+                            'aprobo' => ($final >= $puntaje[$eval]['aprueba']) ? 'SI' : 'NO',
+                        );
+                        array_push($fase['aprobo'], $puntosFinal['aprobo']);
+                        //registra puntaje final
+                        $this->cadena_sql = $this->miSql->getCadenaSql("registroEvaluacionFinal", $puntosFinal);
+                        $SQLs[] = $this->cadena_sql;
+                        $resultadofinal = $esteRecursoDB->ejecutarAcceso($this->cadena_sql, "registro", $puntosFinal, "registroCalculoEvaluacionFinal");
+                        $puntosParcial = array('id_inscrito' => $puntosFinal['id_inscrito'],
+                            'id_evaluar' => $puntosFinal['id_evaluar'],
+                            'id_evaluacion_final' => $resultadofinal,
+                            'puntaje_final' => $final,
+                        );
+                        array_push($evaluacion, $puntosParcial);
+                        $promedio += $final;
+                        //registra relacion de evaluacion final con evaluación parcial
+                        $this->cadena_sql = $this->miSql->getCadenaSql("actualizarEvaluacionParcial", $puntosParcial);
+                        $SQLs[] = $this->cadena_sql;
+                        $resultadoParcial = $esteRecursoDB->ejecutarAcceso($this->cadena_sql, "actualiza", $puntosParcial, "actualizarEvaluacionParcial");
+                        unset($final);
+                        unset($puntosFinal);
+                    }
+
+
+                    unset($evaluar);
+                    unset($puntaje);
+
+                }
+                //se valida si pasa todos las evaluaciones y alcanza el porcentaje de aprobacion
+                if (isset($fase)) {
+                    $parametroProm = array('id_inscrito' => $resultadoListaInscrito[$key]['consecutivo_inscrito'],
+                        'id_calendario' => $parametro['consecutivo_calendario'],
+                        'puntaje_promedio' => $promedio,
+                        'evaluaciones' => json_encode($evaluacion),
+                        'fecha_registro' => $parametro['fecha_registro'],
+                        'id_reclamacion' => 0,
+                    );
+                    $this->cadena_sql = $this->miSql->getCadenaSql("registroEvaluacionPromedio", $parametroProm);
+                    $SQLs[] = $this->cadena_sql;
+                    $resultadoPromedio = $esteRecursoDB->ejecutarAcceso($this->cadena_sql, "registro", $parametroProm, "registroEvaluacionPromedio");
+                    unset($evaluacion);
+                    unset($promedio);
+                }
+
+
+                //se valida si pasa todos las evaluaciones y alcanza el porcentaje de aprobacion
+                if (isset($fase)) {
+                    $porcetaje_fase = ($fase['puntos'] * 100) / $resultadoCriterio[0]['maximo_fase'];
+                    $puntos_aprueba = ($resultadoCriterio[0]['maximo_fase'] * $_REQUEST['porcentaje_aprueba']) / 100;
+                    if (!in_array("NO", $fase['aprobo']) && $porcetaje_fase >= $_REQUEST['porcentaje_aprueba']) {
+                        $parametro['faseDesc'] = ',con ' . $fase['puntos'] . ' puntos y un minimo para aprobar de ' . $puntos_aprueba . ' puntos';
+                        $parametro['faseDesc'] .= 'Porcentaje total de  ' . number_format($porcetaje_fase, 2) . '%';
+                        $parametro['inscripcion'] = $resultadoListaInscrito[$key]['consecutivo_inscrito'];
+                        $this->pasaFase($parametro, $esteRecursoDB);
+                    }
+                    unset($fase);
+                }
+            }
+            $this->cerrarFase($parametro, $esteRecursoDB);
+            redireccion::redireccionar('CerroFase', $parametro);
+            exit();
+        } else {
+            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                $ip = $_SERVER['HTTP_CLIENT_IP'];
+            } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            } else {
+                $ip = $_SERVER['REMOTE_ADDR'];
+            }
+            $c = 0;
+            while ($c < count($SQLs)) {
+                $SQLsDec[$c] = $this->miConfigurador->fabricaConexiones->crypto->codificar($SQLs[$c]);
+                $c++;
+            }
+
+            $query = json_encode($SQLsDec);
+            $error = json_encode(error_get_last());
+
+            $datosLog = array(
+                'id_usuario' => $_REQUEST['id_usuario'],
+                'fecha_log' => date("Y-m-d H:i:s"),
+                'host' => $ip,
+                'query' => $query,
+                'error' => $error,
+            );
+
+            $cadenaSQL = $this->miSql->getCadenaSql("insertarLogError", $datosLog);
+            $esteRecursoDB->ejecutarAcceso($cadenaSQL, 'busqueda');
+
+            redireccion::redireccionar('noCerroFase', $parametro);
+            exit();
+        }
+    }
+
+    function resetForm()
+    {
+        foreach ($_REQUEST as $clave => $valor) {
+
+            if ($clave != 'pagina' && $clave != 'development' && $clave != 'jquery' && $clave != 'tiempo') {
+                unset($_REQUEST [$clave]);
+            }
+        }
+    }
+
+    function progreso($esteBloque)
+    {
+        // ------------------Inicio Division para progreso-------------------------
+        $url = $this->miConfigurador->getVariableConfiguracion("host");
+        $url .= $this->miConfigurador->getVariableConfiguracion("site");
+        $directorioImg = $url . "/blocks/" . $esteBloque ["grupo"] . "" . $esteBloque ["nombre"] . "/images/";
+        echo '<div id="divcarga" style="color:#000;margin-top:20px; font-size:20px;font-weight:bold;text-align:center;height:300px;" >
+                  <span >Procesando la información, Espere por favor ...  </span>
+                  <img  src="' . $directorioImg . 'load.gif">
+              </div>';
+        // ------------------Fin Division para progreso-------------------------
+        //llama funcion para visualizar al div cuando termina de cargar
+        //echo "<script language='javascript'> setTimeout(function(){desbloquea('divcarga','tabs')},1000)  </script>";
+    }
+
+    function pasaFase($parametro, $esteRecursoDB)
+    {
+        //registra los aspirantes que pasan la fase
+        $arregloDatos = array('consecutivo_inscrito' => $parametro['inscripcion'],
+            'consecutivo_calendario' => $parametro['faseNueva'],
+            'observacion' => 'Cierre automatico fase ' . $parametro['nombre'] . $parametro['faseDesc'],
+            'fecha_registro' => $parametro['fecha_registro'],
+            'consecutivo_calendario_ant' => $parametro['consecutivo_calendario'],
+        );
+        $this->cadena_sql = $this->miSql->getCadenaSql("registroEtapaInscrito", $arregloDatos);
+        $SQLs[] = $this->cadena_sql;
+        $resultadoCierre = $esteRecursoDB->ejecutarAcceso($this->cadena_sql, "registro", $arregloDatos, "registroCierreEtapaInscrito");
+    }
+
+    function cerrarFase($parametro, $esteRecursoDB)
+    {
+        //actualiza tipo de cierre
+        $arregloCierre = array('consecutivo_inscrito' => $parametro['inscripcion'],
+            'consecutivo_calendario' => $parametro['faseAct'],
+            'cierre' => 'parcial',
+        );
+        $this->cadena_sql = $this->miSql->getCadenaSql("actualizaCierreCalendario", $arregloCierre);
+        $SQLs[] = $this->cadena_sql;
+        $resultadoCierre = $esteRecursoDB->ejecutarAcceso($this->cadena_sql, "actualiza", $arregloCierre, "actualizaCierreCalendarioRequisito");
+    }
+
+
+}
+
+$miRegistrador = new cerrarEvaluacion($this->lenguaje, $this->sql, $this->funcion, $this->miLogger);
+
+$resultado = $miRegistrador->procesarFormulario();
+?>
