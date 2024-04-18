@@ -514,9 +514,12 @@ $(function() {
 
 // Asociar el widget tabs a la división cuyo id es tabs
 $(function() {
+        $("#tabs0").tabs();
         $("#tabs").tabs();
+        $("#tabs2").tabs();
 });
 
+ 
 $(function() {
     $("button").button().click(function(event) {
             event.preventDefault();

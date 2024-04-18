@@ -24,11 +24,88 @@ $valorCodificado = $cripto->codificar ( $valorCodificado );
 $host = $this->miConfigurador->getVariableConfiguracion("host");
 $host .= $this->miConfigurador->getVariableConfiguracion("site") . "/index.php?";
 $host .= $this->miConfigurador->getVariableConfiguracion("enlace");
-
+$atributosGlobales ['campoSeguro'] = 'true';
     //llama funcion para visualizar al div cuando termina de cargar
     //echo "<script language='javascript'> setTimeout(function(){visible(\"divcarga\")},500)  </script>";
     //echo "<script language='javascript'> $('#divcarga').hide(); </script>";
     //var_dump($_REQUEST);
+    $esteCampo = "marcoInformacionBasica";
+    $atributos ['id'] = $esteCampo;
+    $atributos ["estilo"] = "jqueryui";
+    $atributos ['tipoEtiqueta'] = 'inicio';
+    $atributos ["leyenda"] = $this->lenguaje->getCadena ( $esteCampo );
+    echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
+    unset ( $atributos );
+
+    $atributos ["id"] = "tabs0";
+    $atributos ["estilo"] = "";
+    $atributos ["estiloEnLinea"] = "display:none;"; 
+    echo $this->miFormulario->division ( "inicio", $atributos );
+    unset ( $atributos );
+    {
+       $items0 = array (
+              "tabBasicos"   => $this->lenguaje->getCadena ( "tabBasicos" ),            
+              "tabContacto"  => $this->lenguaje->getCadena ( "tabContacto" ) 
+       );
+       $_REQUEST['pestanna']=0;
+       count($items0);
+       $atributos ["items"] = $items0;
+       $atributos ["estilo"] = "";
+       $atributos ["pestañas"] = "true";
+       //$atributos ["menu"] = "true";
+       //$atributos ["enlacePestaña"] = "true";
+       echo $this->miFormulario->listaNoOrdenada ( $atributos );
+       unset ( $atributos );
+
+       // ------------------Division para la pestaña 1-------------------------
+       $atributos ["id"] = "tabBasicos";
+       $atributos ["estilo"] = "";
+       echo $this->miFormulario->division ( "inicio", $atributos );
+           {//echo '<iframe src="'.$enlaceBasico.'" style="width: 100%; height: 100% " frameborder="0"></iframe> '; 
+            include_once ($this->ruta . "formulario/tabs/datosBasicos.php");
+           }
+       echo $this->miFormulario->division ( "fin" );
+       unset ( $atributos );
+       flush();
+       ob_flush();
+       // -----------------Fin Division para la pestaña 1-------------------------
+
+       // ------------------Division para la pestaña 2-------------------------
+       $atributos ["id"] = "tabContacto";
+       $atributos ["estilo"] = "";
+       echo $this->miFormulario->division ( "inicio", $atributos );
+              include_once ($this->ruta . "formulario/tabs/datosContacto.php"); 
+       echo $this->miFormulario->division ( "fin" );
+       unset ( $atributos );
+       flush();
+       ob_flush();
+       // -----------------Fin Division para la pestaña 2-------------------------       
+    }
+    echo $this->miFormulario->division ( "fin" );
+    echo $this->miFormulario->marcoAgrupacion ( 'fin' );
+    unset ( $atributos );
+    flush();
+    ob_flush();
+    //echo $_REQUEST['pestanna'];
+    echo "<br><br><br>";
+
+    $esteCampo = "marcoHabilitantes";
+    $atributos ['id'] = $esteCampo;
+    $atributos ["estilo"] = "jqueryui";
+    $atributos ['tipoEtiqueta'] = 'inicio';
+    $atributos ["leyenda"] = $this->lenguaje->getCadena ( $esteCampo );
+    echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
+    unset ( $atributos );
+    $esteCampo = 'avisosHabilitantes';
+    $atributos ['id'] = $esteCampo;
+    $atributos ['tipo'] = 'warning';
+    //$atributos ['estilo'] = 'textoCentrar';
+    $atributos ['mensaje'] = $this->lenguaje->getCadena ( $esteCampo );
+    //$tab ++;
+    // Aplica atributos globales al control
+    $atributos = array_merge ( $atributos, $atributosGlobales );
+    echo $this->miFormulario->cuadroMensaje ( $atributos );	   
+    unset ( $atributos );
     // ------------------Division para las pestañas-------------------------
     $atributos ["id"] = "tabs";
     $atributos ["estilo"] = "";
@@ -39,15 +116,10 @@ $host .= $this->miConfigurador->getVariableConfiguracion("enlace");
             // -------------------- Listado de Pestañas (Como lista No Ordenada) -------------------------------
 
             $items = array (
-                            "tabBasicos"   => $this->lenguaje->getCadena ( "tabBasicos" ),            
-                            "tabContacto"  => $this->lenguaje->getCadena ( "tabContacto" ),
                             "tabFormacion"  => $this->lenguaje->getCadena ( "tabFormacion" ),
                             "tabProfesional"  => $this->lenguaje->getCadena ( "tabProfesional" ),
                             "tabDocencia"  => $this->lenguaje->getCadena ( "tabDocencia" ),
                             "tabInvestigacion"  => $this->lenguaje->getCadena ( "tabInvestigacion" ),
-                            "tabProduccion"  => $this->lenguaje->getCadena ( "tabProduccion" ),
-                            "tabActividad"  => $this->lenguaje->getCadena ( "tabActividad" ),
-                            "tabIdiomas"  => $this->lenguaje->getCadena ( "tabIdiomas" ),
                             //"tabRegistrarMasivo" => $this->lenguaje->getCadena ( "tabRegistrarMasivo" ) 
             );
             $_REQUEST['pestanna']=0;
@@ -62,29 +134,7 @@ $host .= $this->miConfigurador->getVariableConfiguracion("enlace");
 
 
 
-       // ------------------Division para la pestaña 1-------------------------
-            $atributos ["id"] = "tabBasicos";
-            $atributos ["estilo"] = "";
-            echo $this->miFormulario->division ( "inicio", $atributos );
-                {//echo '<iframe src="'.$enlaceBasico.'" style="width: 100%; height: 100% " frameborder="0"></iframe> '; 
-                 include_once ($this->ruta . "formulario/tabs/datosBasicos.php");
-                }
-            echo $this->miFormulario->division ( "fin" );
-            unset ( $atributos );
-            flush();
-            ob_flush();
-            // -----------------Fin Division para la pestaña 1-------------------------
 
-            // ------------------Division para la pestaña 2-------------------------
-            $atributos ["id"] = "tabContacto";
-            $atributos ["estilo"] = "";
-            echo $this->miFormulario->division ( "inicio", $atributos );
-                   include_once ($this->ruta . "formulario/tabs/datosContacto.php"); 
-            echo $this->miFormulario->division ( "fin" );
-            unset ( $atributos );
-            flush();
-            ob_flush();
-            // -----------------Fin Division para la pestaña 2-------------------------
             // ------------------Division para la pestaña 3-------------------------
             $atributos ["id"] = "tabFormacion";
             $atributos ["estilo"] = "";
@@ -124,8 +174,6 @@ $host .= $this->miConfigurador->getVariableConfiguracion("enlace");
             flush();
             ob_flush();
             // -----------------Fin Division para la pestaña 5-------------------------
-
-
             // ------------------Division para la pestaña 6-------------------------
             $atributos ["id"] = "tabInvestigacion";
             $atributos ["estilo"] = "";
@@ -139,6 +187,57 @@ $host .= $this->miConfigurador->getVariableConfiguracion("enlace");
             flush();
             ob_flush();
             // -----------------Fin Division para la pestaña 6-------------------------
+    }
+
+    echo $this->miFormulario->division ( "fin" );
+    echo $this->miFormulario->marcoAgrupacion ( 'fin' );
+    unset ( $atributos );
+    flush();
+    ob_flush();
+    //echo $_REQUEST['pestanna'];
+    echo "<br><br><br>";
+    $esteCampo = "marcoFactoresEvaluacion";
+    $atributos ['id'] = $esteCampo;
+    $atributos ["estilo"] = "jqueryui";
+    $atributos ['tipoEtiqueta'] = 'inicio';
+    $atributos ["leyenda"] = $this->lenguaje->getCadena ( $esteCampo );
+    echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
+    unset ( $atributos );
+    $esteCampo = 'avisosFactoresEvaluacion';
+    $atributos ['id'] = $esteCampo;
+    $atributos ['tipo'] = 'warning';
+    //$atributos ['estilo'] = 'textoCentrar';
+    $atributos ['mensaje'] = $this->lenguaje->getCadena ( $esteCampo );
+    //$tab ++;
+    // Aplica atributos globales al control
+    $atributos = array_merge ( $atributos, $atributosGlobales );
+    echo $this->miFormulario->cuadroMensaje ( $atributos );	   
+    unset ( $atributos );
+    // ------------------Division para las pestañas-------------------------
+    $atributos ["id"] = "tabs2";
+    $atributos ["estilo"] = "";
+    $atributos ["estiloEnLinea"] = "display:none;"; 
+    echo $this->miFormulario->division ( "inicio", $atributos );
+    unset ( $atributos );
+    {
+            // -------------------- Listado de Pestañas (Como lista No Ordenada) -------------------------------
+
+            $items = array (
+                            "tabProduccion"  => $this->lenguaje->getCadena ( "tabProduccion" ),
+                            "tabActividad"  => $this->lenguaje->getCadena ( "tabActividad" ),
+                            "tabIdiomas"  => $this->lenguaje->getCadena ( "tabIdiomas" ),
+                            //"tabRegistrarMasivo" => $this->lenguaje->getCadena ( "tabRegistrarMasivo" ) 
+            );
+            $_REQUEST['pestanna']=0;
+            count($items);
+            $atributos ["items"] = $items;
+            $atributos ["estilo"] = "";
+            $atributos ["pestañas"] = "true";
+            //$atributos ["menu"] = "true";
+            //$atributos ["enlacePestaña"] = "true";
+            echo $this->miFormulario->listaNoOrdenada ( $atributos );
+            unset ( $atributos );
+
             // ------------------Division para la pestaña 7-------------------------
             $atributos ["id"] = "tabProduccion";
             $atributos ["estilo"] = "";
@@ -183,12 +282,14 @@ $host .= $this->miConfigurador->getVariableConfiguracion("enlace");
     }
 
     echo $this->miFormulario->division ( "fin" );
+    echo $this->miFormulario->marcoAgrupacion ( 'fin' );
     unset ( $atributos );
     flush();
     ob_flush();
     //echo $_REQUEST['pestanna'];
+
     
-    
+
 // ------------------Inicio Division para progreso-------------------------
 $url = $this->miConfigurador->getVariableConfiguracion ( "host" );
 $url .= $this->miConfigurador->getVariableConfiguracion ( "site" );
@@ -216,7 +317,10 @@ include_once 'my_scriptjs.php';
     ob_flush();
     // ------------------Fin Division para progreso-------------------------  
 //llama funcion para visualizar al div cuando termina de cargar
+echo "<script language='javascript'> setTimeout(function(){desbloquea('divcarga','tabs0')},500)  </script>";
 echo "<script language='javascript'> setTimeout(function(){desbloquea('divcarga','tabs')},500)  </script>";
+echo "<script language='javascript'> setTimeout(function(){desbloquea('divcarga','tabs2')},500)  </script>";
 flush();
 ob_flush();
+
 ?>
