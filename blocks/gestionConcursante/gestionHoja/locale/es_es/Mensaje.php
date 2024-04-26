@@ -4,10 +4,10 @@
 $this->idioma["tabBasicos"]="Datos Básicos";
 $this->idioma["tabContacto"]="Datos de Contacto";
 $this->idioma["tabFormacion"]="Formación Académica";
-$this->idioma["tabProfesional"]="Equivalencias Experiencia Profesional";
+$this->idioma["tabProfesional"]="Experiencia Profesional Equivalante";
 $this->idioma["tabDocencia"]="Experiencia Docente";
 $this->idioma["tabActividad"]="Otras Actividades Académicas";
-$this->idioma["tabInvestigacion"]="Experiencia Investigación / Creación";
+$this->idioma["tabInvestigacion"]="Grupo de Investigación";
 $this->idioma["tabProduccion"]="Producción Académica";
 $this->idioma["tabIdiomas"]="Lengua Extranjera";
 
@@ -20,17 +20,18 @@ $this->idioma["marcoInformacionBasica"]="Datos Aspirante";
 $this->idioma["avisosHabilitantes"]="<strong>Atención!</strong> Estos requisitos son obligatorios para participar en el concurso";
 $this->idioma["avisosFactoresEvaluacion"]="<strong>Atención!</strong> Estos son requisitos puntuables";
 $this->idioma["marcoListaFormacion"]="Formación Académica Formal e Informal";
-$this->idioma["marcoProfesional"]="Registro Equivalencias Experiencia Profesional";
+$this->idioma["marcoProfesional"]="Registro Experiencia Profesional";
 $this->idioma["avisosAclaratoriosExProf"]="<strong>Antes de cargar los soportes requeridos por favor tener en cuenta las siguientes observaciones:</strong> <br> <ol type=”A”><li>Adjuntar únicamente experiencia profesional a partir del título de pregrado.</li><li>Para los docentes de la Facultad de Artes, es válida la producción Artística reconocida con intensidad horaria.</li></ol>";
-$this->idioma["marcoListaProfesional"]="Equivalencias Experiencia Profesional";
+$this->idioma["marcoListaProfesional"]="Experiencia Profesional";
 $this->idioma["avisosAclaratoriosExProf2"]="<strong>Atencion!</strong> Registrar experiencia profesional solo si es equivalente";
+$this->idioma["avisosAclaratoriosSegundaLengua"]="<strong>Atención!</strong>Tenga en cuenta que la segunda lengua es un requisito habilitante obligatorio para los perfiles relacionados a lengua extranjera";
 $this->idioma["marcoDocencia"]="Registro Experiencia Docente Universitaria";
 $this->idioma["avisosAclaratoriosDoc"]="Adjuntar únicamente experiencia docente <strong>universitaria</strong>; si es hora cátedra especificar intensidad horaria.";
 $this->idioma["marcoListaDocencia"]="Experiencia Docente Universitaria";
 $this->idioma["marcoActividad"]="Registro Actividades Académicas";
 $this->idioma["marcoListaActividad"]="Actividades Académicas";
-$this->idioma["marcoInvestigacion"]="Registro Experiencia en Investigación / Creación";
-$this->idioma["marcoListaInvestigacion"]="Experiencia en Investigación / Creación ";
+$this->idioma["marcoInvestigacion"]="pertenencia a un grupo de investigación";
+$this->idioma["marcoListaInvestigacion"]="pertenencia a un grupo de investigación ";
 $this->idioma["marcoProduccion"]="Registro Producción Académica";
 $this->idioma["avisosAclaratoriosProdAc"]="<strong>Antes de cargar los soportes requeridos por favor tener en cuenta las siguientes observaciones:</strong> <br> <ol type=”A”><li>Adjuntar por lo menos una publicación (libros, artículos, revistas indexadas; se debe evidenciar la autoría ISSN o ISBN).</li><li>Para los docentes de la facultad de artes, es válido obras artísticas reconocidas.</li><li>Adjuntar enlace del producto si se tiene.</li></ol>";
 $this->idioma["marcoListaProduccion"]="Producción Académica";
@@ -38,7 +39,7 @@ $this->idioma["marcoIdioma"]="Registro Lengua Extranjera ";
 $this->idioma["marcoListaIdioma"]="Lengua Extranjera ";
 
 $this->idioma ["mensajeFormacion"] = "Mediante este formulario puede registrar formación formal e informal";
-$this->idioma ["avisosAclaratoriosFa"] = "<strong>Antes de cargar los soportes requeridos por favor tener en cuenta las siguientes observaciones:</strong> <br> <ol type=”A”><li>Cuando el certificado o diploma corresponda a un título extranjero debe anexar la convalidación respectiva.</li><li>Para los docentes de la Facultad de Artes, es válido adjuntar cursos y diplomas realizados especificando la intensidad horaria.</li><li>Adjuntar Tarjeta profesional únicamente cuando el título corresponda a pregrado.</li></ol>";
+$this->idioma ["avisosAclaratoriosFa"] = "<strong>Antes de cargar los soportes requeridos por favor tener en cuenta las siguientes observaciones:</strong> <br> <ol type=”A”><li>Cuando el certificado o diploma corresponda a un título extranjero debe anexar la convalidación respectiva.</li><li>Para los docentes de la Facultad de Artes, es válido adjuntar cursos y diplomas realizados especificando la intensidad horaria.</li> <li>Si su profesión requiere tarjeta profesional deberá adjuntarla.</li></ol>";
 $this->idioma ["mensajeActividad"] = "Mediante este formulario puede registrar certamenes, consejos, grupos de trabajo, monitorias en las que haya participado y distinciones que haya recibido";
 
 $this->idioma ["noDefinido"] = "Etiqueta no esta definida en locale/es_es/Mensaje.php";
@@ -231,7 +232,7 @@ $this->idioma["soporteActividadTitulo"]="Adjuntar Documento en Formato PDF menor
 $this->idioma["soporteActividad"]="Soporte actividad académica  "; 
 
 
-$this->idioma["nuevoInvestigacion"]="Registrar Experiencia en Investigación / Creación";
+$this->idioma["nuevoInvestigacion"]=" Registrar pertenencia a un grupo de investigación";
 $this->idioma["pais_investigacionTitulo"]="Seleccione el país";
 $this->idioma["pais_investigacion"]="País  ";
 $this->idioma["codigo_institucion_investigacionTitulo"]="Selecciona La institución donde se realiza la investigación / creación";

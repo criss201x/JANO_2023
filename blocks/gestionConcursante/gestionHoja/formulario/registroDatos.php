@@ -117,9 +117,9 @@ $atributosGlobales ['campoSeguro'] = 'true';
 
             $items = array (
                             "tabFormacion"  => $this->lenguaje->getCadena ( "tabFormacion" ),
-                            "tabProfesional"  => $this->lenguaje->getCadena ( "tabProfesional" ),
                             "tabDocencia"  => $this->lenguaje->getCadena ( "tabDocencia" ),
-                            "tabInvestigacion"  => $this->lenguaje->getCadena ( "tabInvestigacion" ),
+                            "tabProfesional"  => $this->lenguaje->getCadena ( "tabProfesional" ),
+                            "tabInvestigacion"  => $this->lenguaje->getCadena ( "tabInvestigacion" )
                             //"tabRegistrarMasivo" => $this->lenguaje->getCadena ( "tabRegistrarMasivo" ) 
             );
             $_REQUEST['pestanna']=0;
@@ -148,19 +148,6 @@ $atributosGlobales ['campoSeguro'] = 'true';
             flush();
             ob_flush();
             // -----------------Fin Division para la pestaña 3-------------------------
-            // ------------------Division para la pestaña 4-------------------------
-            $atributos ["id"] = "tabProfesional";
-            $atributos ["estilo"] = "";
-            echo $this->miFormulario->division ( "inicio", $atributos );
-
-            if(!isset($_REQUEST['consecutivo_experiencia']))
-                   {include_once ($this->ruta . "formulario/tabs/consultarProfesional.php"); }
-                   include_once ($this->ruta . "formulario/tabs/datosProfesional.php"); 
-            echo $this->miFormulario->division ( "fin" );
-            unset ( $atributos );
-            flush();
-            ob_flush();
-            // -----------------Fin Division para la pestaña 4-------------------------
             // ------------------Division para la pestaña 5-------------------------
             $atributos ["id"] = "tabDocencia";
             $atributos ["estilo"] = "";
@@ -173,7 +160,20 @@ $atributosGlobales ['campoSeguro'] = 'true';
             unset ( $atributos );
             flush();
             ob_flush();
-            // -----------------Fin Division para la pestaña 5-------------------------
+            // -----------------Fin Division para la pestaña 5-------------------------           
+            // ------------------Division para la pestaña 4-------------------------
+            $atributos ["id"] = "tabProfesional";
+            $atributos ["estilo"] = "";
+            echo $this->miFormulario->division ( "inicio", $atributos );
+
+            if(!isset($_REQUEST['consecutivo_experiencia']))
+                   {include_once ($this->ruta . "formulario/tabs/consultarProfesional.php"); }
+                   include_once ($this->ruta . "formulario/tabs/datosProfesional.php"); 
+            echo $this->miFormulario->division ( "fin" );
+            unset ( $atributos );
+            flush();
+            ob_flush();
+            // -----------------Fin Division para la pestaña 4-------------------------             
             // ------------------Division para la pestaña 6-------------------------
             $atributos ["id"] = "tabInvestigacion";
             $atributos ["estilo"] = "";
@@ -223,6 +223,7 @@ $atributosGlobales ['campoSeguro'] = 'true';
             // -------------------- Listado de Pestañas (Como lista No Ordenada) -------------------------------
 
             $items = array (
+                            
                             "tabProduccion"  => $this->lenguaje->getCadena ( "tabProduccion" ),
                             "tabActividad"  => $this->lenguaje->getCadena ( "tabActividad" ),
                             "tabIdiomas"  => $this->lenguaje->getCadena ( "tabIdiomas" ),

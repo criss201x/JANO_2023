@@ -68,6 +68,16 @@ class consultarIdioma {
             echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
             unset ( $atributos );
                 {
+                    $esteCampo = 'avisosAclaratoriosSegundaLengua';
+                    $atributos ['id'] = $esteCampo;
+                    $atributos ['tipo'] = 'warning';
+                    //$atributos ['estilo'] = 'textoCentrar';
+                    $atributos ['mensaje'] = $this->lenguaje->getCadena ( $esteCampo );
+                    //$tab ++;
+                    // Aplica atributos globales al control
+                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                    echo $this->miFormulario->cuadroMensaje ( $atributos );	   
+                    unset ( $atributos );
 
                 echo "<div ><table width='100%' align='center'>
                         <tr align='center'>
