@@ -457,6 +457,37 @@ class Sql extends \Sql {
                                 else {$cadenaSql.=" ORDER BY nombre ";  }
 
                             break;
+                            case "consultarRolInvestigador":
+                                $cadenaSql=" SELECT DISTINCT";
+                                $cadenaSql.=" nombre nombre_mostrar, ";
+                                $cadenaSql.=" nombre nombre_form, ";
+                                $cadenaSql.=" tipo_nivel,";
+                                $cadenaSql.=" descripcion,";
+                                $cadenaSql.=" estado";
+                                $cadenaSql.=" FROM general.nivel";
+                                $cadenaSql.=" WHERE ";
+                                $cadenaSql.=" estado='A'";
+                                if(isset($variable['tipo_nivel']) && $variable['tipo_nivel']!='')
+                                    {$cadenaSql.=" AND tipo_nivel='".$variable['tipo_nivel']."' ";}
+                                if(isset($variable['codigo_nivel']) && $variable['codigo_nivel']>0)
+                                    {$cadenaSql.=" AND codigo_nivel='".$variable['codigo_nivel']."' ";}
+                                if(isset($variable['nombre']) && $variable['nombre']!='')
+                                    {$cadenaSql.=" AND lower(nombre) LIKE lower('".$variable['nombre']."') ";}
+                                if(isset($variable['add_otro']) && $variable['add_otro']=='SI')
+                                    {   $cadenaSql.=" UNION ";
+                                        $cadenaSql.=" SELECT DISTINCT ";
+                                        $cadenaSql.=" 0 codigo_nivel, ";
+                                        $cadenaSql.=" 'OTRO' nombre, ";
+                                        $cadenaSql.=" 'OTRO' tipo_nivel, ";
+                                        $cadenaSql.=" 'OTRO' descripcion, ";
+                                        $cadenaSql.=" 'A' estado";
+                                        $cadenaSql.=" FROM general.nivel";
+                                    }
+                                if(isset($variable['order']) && $variable['order']=='codigo')
+                                     {$cadenaSql.=" ORDER BY codigo_nivel ";  }
+                                else {$cadenaSql.=" ORDER BY nombre ";  }
+
+                            break;                            
                         case "consultarInstitucion":
                                 $cadenaSql=" SELECT DISTINCT ";
                                 $cadenaSql.=" codigo_ies,";

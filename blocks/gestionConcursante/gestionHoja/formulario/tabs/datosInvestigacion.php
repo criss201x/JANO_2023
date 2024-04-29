@@ -284,31 +284,32 @@ class investigacionForm {
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------   
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'rol_investigacion';
-                                    $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
-                                    $atributos ['tipo'] = 'text';
-                                    $atributos ['estilo'] = 'jqueryui';
-                                    $atributos ['marco'] = true;
-                                    $atributos ['estiloMarco'] = '';
-                                    $atributos ["etiquetaObligatorio"] = true;
-                                    $atributos ['columnas'] = 1;
-                                    $atributos ['dobleLinea'] = 0;
-                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['id'] = $esteCampo;
                                     $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-                                    $atributos ['validar']="required,minSize[1],maxSize[50]";
-                                    if (isset ( $resultadoInvestigacion[0]['rol_investigacion'] )) 
-                                         {   $atributos ['valor'] = $resultadoInvestigacion[0]['rol_investigacion'];}
-                                    else {   $atributos ['valor'] = ''; }
-                                    $atributos ['deshabilitado'] = false;                                         
-                                    $atributos ['titulo'] = '';//$this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-                                    $atributos ['textoFondo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-                                    $atributos ['tamanno'] = 60;
-                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
                                     $atributos ['anchoEtiqueta'] = 170;
-                                    $tab ++;
+                                    $atributos ['evento'] = ' ';
+                                    if (isset ( $resultadoInvestigacion[0]['rol_investigacion'] ))
+                                         {  $atributos ['seleccion'] = $resultadoInvestigacion[0]['rol_investigacion'];}
+                                    else {	$atributos ['seleccion'] = -1;}
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['columnas'] = 1;
+                                    $atributos ['tamanno'] = 1;
+                                    $atributos ['estilo'] = "jqueryui";
+                                    $atributos ['validar'] = "required";
+                                    $atributos ['limitar'] = true;
+                                    $atributos ['anchoCaja'] = 400;
+                                    $atributos ['evento'] = '';
+                                    $parametronivel=array('tipo_nivel'=> 'RolInvestigador');
+                                    $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "consultarRolInvestigador",$parametronivel );
+                                    $matrizItems = array (array (0,' '));
+                                    $matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
+                                    $atributos ['matrizItems'] = $matrizItems;
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    echo $this->miFormulario->campoCuadroTexto ( $atributos );
+                                    echo $this->miFormulario->campoCuadroLista ( $atributos );
                                     unset ( $atributos );
+
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                      
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'titulo_investigacion';
