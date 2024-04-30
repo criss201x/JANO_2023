@@ -652,6 +652,8 @@ class cerrarSoporteConcurso
                     'certificacion' => $resultadoIdioma[$key]['certificacion'],
                     'institucion_certificacion' => $resultadoIdioma[$key]['institucion_certificacion'],
                     'idioma_concurso' => $resultadoIdioma[$key]['idioma_concurso'],
+                    'tipo_examen' => $resultadoIdioma[$key]['tipo_examen'],
+                    'nivel_certificado' => $resultadoIdioma[$key]['nivel_certificado']                    
                 );
                 //busca soportes cargados
                 $consecutivo_persona = $resultadoIdioma[$key]['consecutivo_persona'];
