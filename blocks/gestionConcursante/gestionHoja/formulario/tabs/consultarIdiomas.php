@@ -107,7 +107,9 @@ class consultarIdioma {
                                                 $this->lenguaje->getCadena ("codigo_idioma"),
                                                 $this->lenguaje->getCadena ("idioma_concurso"),
                                                 $this->lenguaje->getCadena ("certificacion"),
-                                                $this->lenguaje->getCadena ("institucion_certificacion"),);
+                                                $this->lenguaje->getCadena ("institucion_certificacion"),
+                                                $this->lenguaje->getCadena ("tipo_examen"),
+                                                $this->lenguaje->getCadena ("nivel_certificado"),);
                             
                             foreach ($resultadoTiposop as $tipokey => $value) 
                                 {array_push($columnas, $resultadoTiposop[$tipokey]['alias']);}
@@ -165,7 +167,9 @@ class consultarIdioma {
                                                 <td align='left'>".$resultadoListaIdioma[$key]['idioma']."</td>
                                                 <td align='left'>".$idiomaConcurso[$key]."</td>
                                                 <td align='left'>".$resultadoListaIdioma[$key]['certificacion']."</td>
-                                                <td align='left'>".$resultadoListaIdioma[$key]['institucion_certificacion']."</td>";
+                                                <td align='left'>".$resultadoListaIdioma[$key]['institucion_certificacion']."</td>
+                                                <td align='left'>".$resultadoListaIdioma[$key]['tipo_examen']."</td>
+                                                <td align='left'>".$resultadoListaIdioma[$key]['nivel_certificado']."</td>"                                                ;
                                             // --------------- INICIO CONTROLES : Visualizar SOPORTES SEGUN LOS RELACIONADOS --------------------------------------------------
                                                 foreach ($resultadoTiposop as $tipokey => $value) 
                                                     {//valida si existen soportes para el tipo

@@ -50,6 +50,8 @@ class RegistradorIdioma
             'nivel_habla' => (isset($_REQUEST['nivel_habla']) ? $_REQUEST['nivel_habla'] : ''),
             'certificacion' => (isset($_REQUEST['certificacion']) ? $_REQUEST['certificacion'] : ''),
             'institucion_certificacion' => (isset($_REQUEST['institucion_certificacion']) ? $_REQUEST['institucion_certificacion'] : ''),
+            'tipo_examen' => (isset($_REQUEST['tipo_examen']) ? $_REQUEST['tipo_examen'] : ''),
+            'nivel_certificado' => (isset($_REQUEST['nivel_certificado']) ? $_REQUEST['nivel_certificado'] : ''),
             'idioma_concurso' => (isset($_REQUEST['idioma_concurso']) ? $_REQUEST['idioma_concurso'] : ''),
             'nombre' => $_REQUEST['nombre'],
             'apellido' => $_REQUEST['apellido'],

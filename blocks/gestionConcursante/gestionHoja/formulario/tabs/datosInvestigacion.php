@@ -302,7 +302,7 @@ class investigacionForm {
                                     $atributos ['anchoCaja'] = 400;
                                     $atributos ['evento'] = '';
                                     $parametronivel=array('tipo_nivel'=> 'RolInvestigador');
-                                    $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "consultarRolInvestigador",$parametronivel );
+                                    $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "MostrarNivel",$parametronivel );
                                     $matrizItems = array (array (0,' '));
                                     $matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
                                     $atributos ['matrizItems'] = $matrizItems;

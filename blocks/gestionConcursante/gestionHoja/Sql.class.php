@@ -397,7 +397,7 @@ class Sql extends \Sql {
                                 $cadenaSql.=" conidm.institucion_certificacion, ";
                                 $cadenaSql.=" conidm.idioma_concurso, ";
                                 $cadenaSql.=" conidm.tipo_examen, ";
-                                $cadenaSql.=" conidm.nivel_certificado, ";
+                                $cadenaSql.=" conidm.nivel_certificado ";
                                 $cadenaSql.=" FROM concurso.persona bas ";
                                 $cadenaSql.=" INNER JOIN ".$prefijo."usuario usu ON trim(usu.tipo_identificacion)=trim(bas.tipo_identificacion) AND bas.identificacion=usu.identificacion";
                                 $cadenaSql.=" INNER JOIN concurso.conocimiento_idioma conidm ON conidm.consecutivo_persona=bas.consecutivo";
@@ -459,7 +459,7 @@ class Sql extends \Sql {
                                 else {$cadenaSql.=" ORDER BY nombre ";  }
 
                             break;
-                            case "consultarRolInvestigador":
+                            case "MostrarNivel":
                                 $cadenaSql=" SELECT DISTINCT";
                                 $cadenaSql.=" nombre nombre_mostrar, ";
                                 $cadenaSql.=" nombre nombre_form, ";
