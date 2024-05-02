@@ -169,7 +169,7 @@ class consultarIdioma {
                                                 <td align='left'>".$resultadoListaIdioma[$key]['certificacion']."</td>
                                                 <td align='left'>".$resultadoListaIdioma[$key]['institucion_certificacion']."</td>
                                                 <td align='left'>".$resultadoListaIdioma[$key]['tipo_examen']."</td>
-                                                <td align='left'>".$resultadoListaIdioma[$key]['nivel_certificado']."</td>"                                                ;
+                                                <td align='left'>".$resultadoListaIdioma[$key]['nivel_certificado']."</td>";                                                ;
                                             // --------------- INICIO CONTROLES : Visualizar SOPORTES SEGUN LOS RELACIONADOS --------------------------------------------------
                                                 foreach ($resultadoTiposop as $tipokey => $value) 
                                                     {//valida si existen soportes para el tipo
