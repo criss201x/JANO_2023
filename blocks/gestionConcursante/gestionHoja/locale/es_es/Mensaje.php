@@ -8,7 +8,7 @@ $this->idioma["tabProfesional"]="Experiencia Profesional Equivalante";
 $this->idioma["tabDocencia"]="Experiencia Docente";
 $this->idioma["tabActividad"]="Otras Actividades Académicas";
 $this->idioma["tabInvestigacion"]="Grupo de Investigación";
-$this->idioma["tabProduccion"]="Producción Académica";
+$this->idioma["tabProduccion"]="Productos de Investigación y/o Investigación - Creación";
 $this->idioma["tabIdiomas"]="Lengua Extranjera";
 
 $this->idioma["marcoBasicos"]="Registro Datos Básicos";
