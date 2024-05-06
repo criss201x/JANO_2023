@@ -175,7 +175,7 @@ class formacionForm {
                                     $atributos ['limitar'] = true;
                                     $atributos ['anchoCaja'] = 60;
                                     $atributos ['evento'] = '';
-                                    $parametronivel=array('tipo_nivel'=> 'Formacion');
+                                    $parametronivel=array('tipo_nivel'=> 'Formacion', 'order'=> 'codigo');
                                     $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "consultarNivel",$parametronivel );
                                     $matrizItems = array (array (0,' '));
                                     $matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );

@@ -381,28 +381,6 @@ $(function () {
             }
           });     
           
-   $("#<?php echo $this->campoSeguro('investigacion_actual')?>").change(function(){
-            if($("#<?php echo $this->campoSeguro('investigacion_actual')?>").val()=='S'){
-                 $("#<?php echo $this->campoSeguro('fecha_fin_investigacion')?>").val('');
-                 $("#<?php echo $this->campoSeguro('fecha_fin_investigacion')?>").removeClass("validate[required]");
-                 $("#<?php echo $this->campoSeguro('fecha_fin_investigacion')?>").attr('disabled','');
-                 $("#<?php echo $this->campoSeguro('fecha_fin_investigacion')?>").hide();
-                 
-            }else{
-                  $("#<?php echo $this->campoSeguro('fecha_inicio_investigacion')?>").val('');
-                  $("#<?php echo $this->campoSeguro('fecha_fin_investigacion')?>").val('');
-                  $("#<?php echo $this->campoSeguro('fecha_fin_investigacion')?>").addClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('fecha_fin_investigacion')?>").removeAttr('disabled');
-                  $("#<?php echo $this->campoSeguro('fecha_fin_investigacion')?>").hide().slideDown("slow");
-                 }
-          }); 
-          
-    if($("#<?php echo $this->campoSeguro('investigacion_actual')?>").val()=='S'){
-                 $("#<?php echo $this->campoSeguro('fecha_fin_investigacion')?>").val('');
-                 $("#<?php echo $this->campoSeguro('fecha_fin_investigacion')?>").removeClass("validate[required]");
-                 $("#<?php echo $this->campoSeguro('fecha_fin_investigacion')?>").attr('disabled','');
-                 $("#<?php echo $this->campoSeguro('fecha_fin_investigacion')?>").hide();
-            }               
           
 // Controles experiencia Produccion          
           

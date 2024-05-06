@@ -336,7 +336,7 @@ class investigacionForm {
                                     $atributos ['anchoEtiqueta'] = 170;
                                     $tab ++;
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    echo $this->miFormulario->campoCuadroTexto ( $atributos );
+                                    //echo $this->miFormulario->campoCuadroTexto ( $atributos );//se quitan estos campos debido a que para el concurso 2024 no aplican 
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                      
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
@@ -364,7 +364,7 @@ class investigacionForm {
                                     $atributos ['anchoEtiqueta'] = 170;
                                     $tab ++;
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    echo $this->miFormulario->campoCuadroTexto ( $atributos );
+                                    //echo $this->miFormulario->campoCuadroTexto ( $atributos );//se quitan estos campos debido a que para el concurso 2024 no aplican 
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                      
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
@@ -397,7 +397,7 @@ class investigacionForm {
 
                                     // Aplica atributos globales al control
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    echo $this->miFormulario->campoTextArea ( $atributos );
+                                    //echo $this->miFormulario->campoTextArea ( $atributos );//se quitan estos campos debido a que para el concurso 2024 no aplican 
                                     unset ( $atributos );                                                   
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------  
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
@@ -430,31 +430,32 @@ class investigacionForm {
                                     // ---------------- FIN CONTROL: Cuadro de Texto -------------------------------------------------------- 
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'categoria_grupo';
-                                    $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
-                                    $atributos ['tipo'] = 'text';
-                                    $atributos ['estilo'] = 'jqueryui';
-                                    $atributos ['marco'] = true;
-                                    $atributos ['estiloMarco'] = '';
-                                    $atributos ["etiquetaObligatorio"] = false;
-                                    $atributos ['columnas'] = 1;
-                                    $atributos ['dobleLinea'] = 0;
-                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['id'] = $esteCampo;
                                     $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-                                    $atributos ['validar']="maxSize[8]";
-                                    if (isset ( $resultadoInvestigacion[0]['categoria_grupo'] )) 
-                                         {   $atributos ['valor'] = $resultadoInvestigacion[0]['categoria_grupo'];}
-                                    else {   $atributos ['valor'] = ''; }
-                                    $atributos ['deshabilitado'] = false;                                         
-                                    $atributos ['titulo'] = '';//$this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-                                    $atributos ['textoFondo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-                                    $atributos ['tamanno'] = 60;
-                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
                                     $atributos ['anchoEtiqueta'] = 170;
-                                    $tab ++;
+                                    $atributos ['evento'] = ' ';
+                                    if (isset ( $resultadoInvestigacion[0]['categoria_grupo'] ))
+                                         {  $atributos ['seleccion'] = $resultadoInvestigacion[0]['categoria_grupo'];}
+                                    else {	$atributos ['seleccion'] = -1;}
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['columnas'] = 1;
+                                    $atributos ['tamanno'] = 1;
+                                    $atributos ['estilo'] = "jqueryui";
+                                    $atributos ['validar'] = "required";
+                                    $atributos ['limitar'] = true;
+                                    $atributos ['anchoCaja'] = 400;
+                                    $atributos ['evento'] = '';
+                                    $parametronivel=array('tipo_nivel'=> 'CategoriaGrupoInvestigacion');
+                                    $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "MostrarNivel",$parametronivel );
+                                    $matrizItems = array (array (0,' '));
+                                    $matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
+                                    $atributos ['matrizItems'] = $matrizItems;
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    echo $this->miFormulario->campoCuadroTexto ( $atributos );
+                                    echo $this->miFormulario->campoCuadroLista ( $atributos );
                                     unset ( $atributos );
+
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                                                                                            
                                     // ---------------- CONTROL: Cuadro de Lista --------------------------------------------------------
                                     $esteCampo = 'investigacion_actual';
@@ -480,7 +481,7 @@ class investigacionForm {
                                                           array ('S','En curso'));
                                     $atributos ['matrizItems'] = $matrizItems;
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    echo $this->miFormulario->campoCuadroLista ( $atributos );
+                                    //echo $this->miFormulario->campoCuadroLista ( $atributos );//se quitan estos campos debido a que para el concurso 2024 no aplican 
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Lista --------------------------------------------------------                                    
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
@@ -523,13 +524,13 @@ class investigacionForm {
                                     $atributos ['dobleLinea'] = 0;
                                     $atributos ['tabIndex'] = $tab;
                                     $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-                                    $atributos ['validar']="required,custom[date]";
+                                    $atributos ['validar']=false;
                                     if (isset ( $resultadoInvestigacion[0]['fecha_fin'] )) 
                                         {   $atributos ['valor'] = $resultadoInvestigacion[0]['fecha_fin'];}
                                     else {  $atributos ['valor'] = '';}
                                     $atributos ['titulo'] = '';//$this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
                                     $atributos ['textoFondo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-                                    $atributos ['deshabilitado'] = true;
+                                    $atributos ['deshabilitado'] = false;
                                     $atributos ['tamanno'] = 60;
                                     $atributos ['maximoTamanno'] = '';
                                     $atributos ['anchoEtiqueta'] = 170;
@@ -562,7 +563,7 @@ class investigacionForm {
                                     $atributos ['dobleLinea'] = 0;
                                     $atributos ['tabIndex'] = $tab;
                                     $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-                                    $atributos ['validar']="custom[url]";
+                                    $atributos ['validar']="required, custom[url]";
                                     if (isset ( $resultadoInvestigacion[0]['direccion_investigacion'] )) 
                                          {   $atributos ['valor'] = str_replace('\\','', $resultadoInvestigacion[0]['direccion_investigacion']);}
                                     else {   $atributos ['valor'] = ''; }
@@ -580,7 +581,7 @@ class investigacionForm {
                                 
                                 
                                     // ---------------- CONTROL: Cuadro de division --------------------------------------------------------
-                                        $atributos ["id"]="Investigacion";
+/*                                        $atributos ["id"]="Investigacion";
                                         $atributos ["estiloEnLinea"] = "border-width: 0";//display:block";
                                         $atributos = array_merge ( $atributos, $atributosGlobales );
                                         echo $this->miFormulario->division ( "inicio", $atributos );
@@ -737,7 +738,7 @@ class investigacionForm {
                                                 // --------------- FIN CONTROLES  : CARGA SOPORTES --------------------------------------------------
                                             }
                                         echo $this->miFormulario->division( 'fin' );
-                                        unset ( $atributos );
+                                        unset ( $atributos );*/
                                         // --------------- FIN CONTROL : Cuadro de Soporte Diploma --------------------------------------------------
 
                             }

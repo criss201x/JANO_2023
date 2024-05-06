@@ -53,7 +53,7 @@ $this->idioma["borrar"]="Borrar Registro";
 
 $this->idioma["cuadroIdentificacion"]="Identificación "; 
 $this->idioma["cuadroNacimiento"]="Lugar y Fecha de Nacimiento"; 
-$this->idioma["cuadroSoportesBasicos"]="Archivos de Soporte"; 
+$this->idioma["cuadroSoportesBasicos"]="GrupLAC"; 
 
 
 $this->idioma["fotoTitulo"]="Adjuntar Documento en Formato JPG,JPEG o PGN menor a 1 Mb";
@@ -257,8 +257,8 @@ $this->idioma["grupo_investigacionTitulo"]="Ingrese el nombre del grupo con que 
 $this->idioma["grupo_investigacion"]="Grupo ";
 $this->idioma["categoria_grupoTitulo"]="Ingrese la categoría asignada al grupo de investigación / creación";
 $this->idioma["categoria_grupo"]="Categoría grupo   ";
-$this->idioma["direccion_investigacionTitulo"]="Ingrese la dirección URL de la página producto de la investigación / creación";
-$this->idioma["direccion_investigacion"]="Enlace a sitio  ";
+$this->idioma["direccion_investigacionTitulo"]="Ingrese la dirección URL GrupLAC del grupo de investigacion";
+$this->idioma["direccion_investigacion"]="Enlace a GrupLAC  ";
 $this->idioma["investigacion_actualTitulo"]="Indique si ya actualmente adelanta la investigación / creación";
 $this->idioma["investigacion_actual"]="Estado ";
 $this->idioma["fecha_inicio_investigacionTitulo"]="Indique la fecha de inicio";

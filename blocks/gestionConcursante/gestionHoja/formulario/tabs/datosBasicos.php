@@ -369,7 +369,8 @@ class registrarForm {
                                             //$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "buscarCiudad" );
                                             //$matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
                                             $matrizItems=array( array('F','Femenino'), 
-                                                                array('M','Masculino')                                               
+                                                                array('M','Masculino'),
+                                                                array('O','Otro')
                                                               );
                                             $atributos ['matrizItems'] = $matrizItems;
                                             // Aplica atributos globales al control
