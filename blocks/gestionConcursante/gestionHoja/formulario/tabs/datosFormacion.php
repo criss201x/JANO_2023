@@ -494,6 +494,9 @@ class formacionForm {
                               $atributos = array_merge ( $atributos, $atributosGlobales );
                               echo $this->miFormulario->cuadroMensaje ( $atributos );	
                                 // --------------- INICIO CONTROLES : CARGA SOPORTES SEGUN LOS RELACIONADOS --------------------------------------------------
+                                
+                                unset($resultadoTiposop[1]);//elimina tarjeta profesional 
+                                
                                 foreach ($resultadoTiposop as $tipokey => $value) 
                                     {
                                     //valida si existen soportes para el tipo

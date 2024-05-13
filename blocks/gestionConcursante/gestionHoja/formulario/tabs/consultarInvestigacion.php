@@ -98,7 +98,7 @@ class consultarInvestigacion {
                                                 $this->lenguaje->getCadena ("fecha_inicio_investigacion"),
                                                 $this->lenguaje->getCadena ("fecha_fin_investigacion"),
                                                 $this->lenguaje->getCadena ("tiempo_investigacion"),
-                                                $this->lenguaje->getCadena ("rol_investigacion"),
+                                                //$this->lenguaje->getCadena ("rol_investigacion"),
                                                 //$this->lenguaje->getCadena ("titulo_investigacion"),
                                                 //$this->lenguaje->getCadena ("descripcion_investigacion"),
                                                 //$this->lenguaje->getCadena ("jefe_investigacion"),
@@ -160,7 +160,7 @@ class consultarInvestigacion {
                                                 <td align='left'>".$resultadoListaInvestigacion[$key]['fecha_inicio']."</td>
                                                 <td align='left'>".$resultadoListaInvestigacion[$key]['fecha_fin']."</td>
                                                 <td align='left'>".$diffInv[$key]->days."</td>
-                                                <td align='left'>".$resultadoListaInvestigacion[$key]['rol_investigacion']."</td>                                                                                                                                                
+                                                 
                                                 <td align='left' width='10%'>".$resultadoListaInvestigacion[$key]['nombre_institucion']."</td>
                                                 <td align='left'>".$resultadoListaInvestigacion[$key]['nivel_institucion']."</td>
                                                 <td align='left'>".$resultadoListaInvestigacion[$key]['telefono_institucion']."</td>

@@ -100,6 +100,7 @@ class consultarActividad {
                                                 $this->lenguaje->getCadena ("fecha_fin"),
                                                 $this->lenguaje->getCadena ("tiempo_experiencia"),
                                                 $this->lenguaje->getCadena ("codigo_tipo_actividad"),
+                                                $this->lenguaje->getCadena ("rol_investigacion"),
                                                 $this->lenguaje->getCadena ("nombre_actividad"),
                                                 $this->lenguaje->getCadena ("descripcion_actividad"),
                                                 $this->lenguaje->getCadena ("nombre_institucion_actividad"),
@@ -160,6 +161,7 @@ class consultarActividad {
                                                 <td align='left'>".$resultadoListaActividad[$key]['fecha_fin']."</td>
                                                 <td align='left'>".$diffAct[$key]->days."</td>    
                                                 <td align='left'>".$resultadoListaActividad[$key]['nombre_tipo_actividad']."</td>
+                                                <td align='left'>".$resultadoListaActividad[$key]['rol_investigacion']."</td>
                                                 <td align='left'>".$resultadoListaActividad[$key]['nombre_actividad']."</td>
                                                 <td align='left'>".$resultadoListaActividad[$key]['descripcion']."</td>
                                                 <td align='left'>".$resultadoListaActividad[$key]['nombre_institucion']."</td>

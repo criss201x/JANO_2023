@@ -307,7 +307,7 @@ class investigacionForm {
                                     $matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
                                     $atributos ['matrizItems'] = $matrizItems;
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    echo $this->miFormulario->campoCuadroLista ( $atributos );
+                                    //echo $this->miFormulario->campoCuadroLista ( $atributos );
                                     unset ( $atributos );
 
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                      

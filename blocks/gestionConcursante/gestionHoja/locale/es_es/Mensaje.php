@@ -6,9 +6,9 @@ $this->idioma["tabContacto"]="Datos de Contacto";
 $this->idioma["tabFormacion"]="Formación Académica";
 $this->idioma["tabProfesional"]="Experiencia Profesional Equivalante";
 $this->idioma["tabDocencia"]="Experiencia Docente";
-$this->idioma["tabActividad"]="Otras Actividades Académicas";
+$this->idioma["tabActividad"]="Productos de Investigación y/o Investigación - Creación";
 $this->idioma["tabInvestigacion"]="Grupo de Investigación";
-$this->idioma["tabProduccion"]="Productos de Investigación y/o Investigación - Creación";
+$this->idioma["tabProduccion"]="Publicaciones - Obras Artísticas";
 $this->idioma["tabIdiomas"]="Lengua Extranjera";
 
 $this->idioma["marcoBasicos"]="Registro Datos Básicos";
@@ -28,8 +28,8 @@ $this->idioma["avisosAclaratoriosSegundaLengua"]="<strong>Atención!</strong>Ten
 $this->idioma["marcoDocencia"]="Registro Experiencia Docente Universitaria";
 $this->idioma["avisosAclaratoriosDoc"]="Adjuntar únicamente experiencia docente <strong>universitaria</strong>; si es hora cátedra especificar intensidad horaria.";
 $this->idioma["marcoListaDocencia"]="Experiencia Docente Universitaria";
-$this->idioma["marcoActividad"]="Registro Actividades Académicas";
-$this->idioma["marcoListaActividad"]="Actividades Académicas";
+$this->idioma["marcoActividad"]="Registro de Productos de Investigación y/o Investigación - Creación";
+$this->idioma["marcoListaActividad"]="Productos de Investigación y/o Investigación - Creación";
 $this->idioma["marcoInvestigacion"]="pertenencia a un grupo de investigación";
 $this->idioma["marcoListaInvestigacion"]="pertenencia a un grupo de investigación ";
 $this->idioma["marcoProduccion"]="Registro Producción Académica";
@@ -53,7 +53,7 @@ $this->idioma["borrar"]="Borrar Registro";
 
 $this->idioma["cuadroIdentificacion"]="Identificación "; 
 $this->idioma["cuadroNacimiento"]="Lugar y Fecha de Nacimiento"; 
-$this->idioma["cuadroSoportesBasicos"]="GrupLAC"; 
+$this->idioma["cuadroSoportesBasicos"]="Archivos de Soporte"; 
 
 
 $this->idioma["fotoTitulo"]="Adjuntar Documento en Formato JPG,JPEG o PGN menor a 1 Mb";
@@ -201,7 +201,7 @@ $this->idioma["tiempo_docenciaTitulo"]="Tiempo de experiencia en docencia univer
 $this->idioma["tiempo_docencia"]="Días experiencia";
 
 
-$this->idioma["nuevoActividad"]="Registrar Actividad Académica";
+$this->idioma["nuevoActividad"]="Registrar datos proyecto";
 $this->idioma["pais_actividadTitulo"]="Seleccione el país";
 $this->idioma["pais_actividad"]="País  ";
 $this->idioma["codigo_institucion_actividadTitulo"]="Selecciona la institución donde realiza la actividad";
@@ -349,8 +349,8 @@ $this->idioma["botonContacto"]="Guardar datos de contacto";
 $this->idioma["botonFormacion"]="Guardar datos de formación";
 $this->idioma["botonProfesional"]="Guardar datos de experiencia profesional";
 $this->idioma["botonDocencia"]="Guardar datos de experiencia docente universitaria";
-$this->idioma["botonActividad"]="Guardar datos de actividad académica";
-$this->idioma["botonInvestigacion"]="Guardar datos de experiencia en investigación / creación";
+$this->idioma["botonActividad"]="Guardar datos proyecto";
+$this->idioma["botonInvestigacion"]="Guardar datos grupo de investigación";
 $this->idioma["botonProduccion"]="Guardar datos de producción académica";
 $this->idioma["botonIdioma"]="Guardar datos de lengua extranjera";
 

@@ -416,7 +416,8 @@ $(function () {
           });   
           
 //controles idioma        
-if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
+if($("#<?php echo $this->campoSeguro('certificado')?>").val()==''){
+        $("#MarcoCertificacion").fadeOut(200);
         $("#<?php echo $this->campoSeguro('certificacion')?>").val('');
         $("#<?php echo $this->campoSeguro('certificacion')?>").removeClass("validate[required]");
         $("#<?php echo $this->campoSeguro('certificacion')?>").attr('disabled','');
@@ -469,8 +470,9 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
                  $("#<?php echo $this->campoSeguro('nivel_certificado')?>").removeClass("validate[required]");
                  $("#<?php echo $this->campoSeguro('nivel_certificado')?>").attr('disabled','');
                  $("#<?php echo $this->campoSeguro('nivel_certificado')?>").hide();                 
-
-            }else{
+                 $("#MarcoCertificacion").fadeOut(200);
+            }else if ($("#<?php echo $this->campoSeguro('certificado')?>").val()=='S'){
+                  $("#MarcoCertificacion").fadeIn(300);
                   $("#<?php echo $this->campoSeguro('certificacion')?>").val('');
                   $("#<?php echo $this->campoSeguro('certificacion')?>").addClass("validate[required]");
                   $("#<?php echo $this->campoSeguro('certificacion')?>").removeAttr('disabled');
@@ -495,6 +497,8 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
                   $("#<?php echo $this->campoSeguro('nivel_certificado')?>").addClass("validate[required]");
                   $("#<?php echo $this->campoSeguro('nivel_certificado')?>").removeAttr('disabled');
                   $("#<?php echo $this->campoSeguro('nivel_certificado')?>").hide().slideDown("slow");                  
+                 }else{
+                    $("#MarcoCertificacion").fadeOut(200);
                  }
           });       
           

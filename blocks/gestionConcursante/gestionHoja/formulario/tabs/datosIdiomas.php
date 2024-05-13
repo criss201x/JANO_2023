@@ -286,7 +286,11 @@ class idiomaForm {
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
                                     echo $this->miFormulario->campoCuadroLista ( $atributos );
                                     unset ( $atributos );
-                                    // ---------------- FIN CONTROL: Cuadro de Lista --------------------------------------------------------                                    
+                                    // ---------------- FIN CONTROL: Cuadro de Lista --------------------------------------------------------     
+                                    $atributos ["id"] = "MarcoCertificacion";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );                                                                   
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'certificacion';
                                     $atributos ['id'] = $esteCampo;
@@ -346,7 +350,6 @@ class idiomaForm {
                                     echo $this->miFormulario->campoCuadroLista ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------    
-
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------                                    
                                     $esteCampo = 'nivel_certificado';
                                     $atributos ['nombre'] = $esteCampo;
@@ -375,7 +378,7 @@ class idiomaForm {
                                     echo $this->miFormulario->campoCuadroLista ( $atributos );
                                     unset ( $atributos );                                    
                                    // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------    
-
+               
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'institucion_certificacion';
                                     $atributos ['id'] = $esteCampo;
@@ -406,7 +409,8 @@ class idiomaForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------    
-                            }
+                                    echo $this->miFormulario->division ( "fin");
+                                   }
                             echo $this->miFormulario->agrupacion ( 'fin' );
                             unset ( $atributos );                                    
                             

@@ -306,7 +306,8 @@ class Sql extends \Sql {
                                 $cadenaSql.=" act.descripcion, ";
                                 $cadenaSql.=" act.jefe_actividad,";
                                 $cadenaSql.=" act.fecha_inicio,";
-                                $cadenaSql.=" act.fecha_fin";
+                                $cadenaSql.=" act.fecha_fin, ";
+                                $cadenaSql.=" act.rol_investigacion";
                                 $cadenaSql.=" FROM concurso.persona bas ";
                                 $cadenaSql.=" INNER JOIN ".$prefijo."usuario usu ON trim(usu.tipo_identificacion)=trim(bas.tipo_identificacion) AND bas.identificacion=usu.identificacion";
                                 $cadenaSql.=" INNER JOIN concurso.actividad_academica act ON act.consecutivo_persona=bas.consecutivo";
@@ -754,8 +755,7 @@ class Sql extends \Sql {
                                 $cadenaSql.=" fecha_inicio,";
                                 $cadenaSql.=" fecha_fin, ";
                                 $cadenaSql.=" grupo_investigacion, ";
-                                $cadenaSql.=" categoria_grupo, ";
-                                $cadenaSql.=" rol_investigacion)";
+                                $cadenaSql.=" categoria_grupo) ";
                                 $cadenaSql.=" VALUES (";
                                 $cadenaSql.=" DEFAULT,";
                                 $cadenaSql.=" '".$variable['consecutivo_persona']."',";
@@ -776,8 +776,7 @@ class Sql extends \Sql {
                                 $cadenaSql.=" '".$variable['fecha_inicio_investigacion']."',";
                                 $cadenaSql.=" '".$variable['fecha_fin_investigacion']."',";
                                 $cadenaSql.=" '".$variable['grupo_investigacion']."',";
-                                $cadenaSql.=" '".$variable['categoria_grupo']."', ";
-                                $cadenaSql.=" '".$variable['rol_investigacion']."' ";
+                                $cadenaSql.=" '".$variable['categoria_grupo']."' ";
                                 $cadenaSql.=" )";
                                 $cadenaSql.=" RETURNING consecutivo_investigacion";
                             break;
@@ -1021,8 +1020,7 @@ class Sql extends \Sql {
                                 $cadenaSql.=" fecha_inicio='".$variable['fecha_inicio_investigacion']."', ";
                                 $cadenaSql.=" fecha_fin='".$variable['fecha_fin_investigacion']."', ";
                                 $cadenaSql.=" grupo_investigacion='".$variable['grupo_investigacion']."', ";
-                                $cadenaSql.=" categoria_grupo='".$variable['categoria_grupo']."', ";
-                                $cadenaSql.=" rol_investigacion='".$variable['rol_investigacion']."'";
+                                $cadenaSql.=" categoria_grupo='".$variable['categoria_grupo']."' ";
                                 $cadenaSql.=" WHERE ";
                                 $cadenaSql.=" consecutivo_investigacion='".$variable['consecutivo_investigacion']."' ";
                                 $cadenaSql.=  " RETURNING consecutivo_investigacion ";

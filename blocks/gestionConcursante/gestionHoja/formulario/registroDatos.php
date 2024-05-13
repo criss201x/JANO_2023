@@ -223,9 +223,8 @@ $atributosGlobales ['campoSeguro'] = 'true';
             // -------------------- Listado de Pestañas (Como lista No Ordenada) -------------------------------
 
             $items = array (
-                            
+                            "tabActividad"  => $this->lenguaje->getCadena ( "tabActividad" ),                            
                             "tabProduccion"  => $this->lenguaje->getCadena ( "tabProduccion" ),
-                            "tabActividad"  => $this->lenguaje->getCadena ( "tabActividad" ),
                             "tabIdiomas"  => $this->lenguaje->getCadena ( "tabIdiomas" ),
                             //"tabRegistrarMasivo" => $this->lenguaje->getCadena ( "tabRegistrarMasivo" ) 
             );
@@ -238,7 +237,18 @@ $atributosGlobales ['campoSeguro'] = 'true';
             //$atributos ["enlacePestaña"] = "true";
             echo $this->miFormulario->listaNoOrdenada ( $atributos );
             unset ( $atributos );
-
+            // ------------------Division para la pestaña 5-------------------------
+            $atributos ["id"] = "tabActividad";
+            $atributos ["estilo"] = "";
+            echo $this->miFormulario->division ( "inicio", $atributos );
+            if(!isset($_REQUEST['consecutivo_actividad']))
+                   {include_once ($this->ruta . "formulario/tabs/consultarActividad.php"); }
+                   include_once ($this->ruta . "formulario/tabs/datosActividad.php"); 
+            echo $this->miFormulario->division ( "fin" );
+            unset ( $atributos );
+            flush();
+            ob_flush();
+            // -----------------Fin Division para la pestaña 5-------------------------
             // ------------------Division para la pestaña 7-------------------------
             $atributos ["id"] = "tabProduccion";
             $atributos ["estilo"] = "";
@@ -252,18 +262,6 @@ $atributosGlobales ['campoSeguro'] = 'true';
             flush();
             ob_flush();
             // -----------------Fin Division para la pestaña 7-------------------------
-            // ------------------Division para la pestaña 5-------------------------
-            $atributos ["id"] = "tabActividad";
-            $atributos ["estilo"] = "";
-            echo $this->miFormulario->division ( "inicio", $atributos );
-            if(!isset($_REQUEST['consecutivo_actividad']))
-                   {include_once ($this->ruta . "formulario/tabs/consultarActividad.php"); }
-                   include_once ($this->ruta . "formulario/tabs/datosActividad.php"); 
-            echo $this->miFormulario->division ( "fin" );
-            unset ( $atributos );
-            flush();
-            ob_flush();
-            // -----------------Fin Division para la pestaña 5-------------------------
           
             // ------------------Division para la pestaña 8-------------------------
             $atributos ["id"] = "tabIdiomas";
