@@ -307,7 +307,9 @@ class Sql extends \Sql {
                                 $cadenaSql.=" act.jefe_actividad,";
                                 $cadenaSql.=" act.fecha_inicio,";
                                 $cadenaSql.=" act.fecha_fin, ";
-                                $cadenaSql.=" act.rol_investigacion";
+                                $cadenaSql.=" act.rol_investigacion, ";
+                                $cadenaSql.=" act.tipo_producto, ";
+                                $cadenaSql.=" act.nombre_proyecto";
                                 $cadenaSql.=" FROM concurso.persona bas ";
                                 $cadenaSql.=" INNER JOIN ".$prefijo."usuario usu ON trim(usu.tipo_identificacion)=trim(bas.tipo_identificacion) AND bas.identificacion=usu.identificacion";
                                 $cadenaSql.=" INNER JOIN concurso.actividad_academica act ON act.consecutivo_persona=bas.consecutivo";
@@ -705,9 +707,10 @@ class Sql extends \Sql {
                                 $cadenaSql.=" nombre_institucion,";
                                 $cadenaSql.=" correo_institucion, ";
                                 $cadenaSql.=" telefono_institucion, ";
-                                $cadenaSql.=" codigo_tipo_actividad,";
-                                $cadenaSql.=" nombre_tipo_actividad, ";
-                                $cadenaSql.=" nombre_actividad, ";
+                                //$cadenaSql.=" codigo_tipo_actividad,";
+                                //$cadenaSql.=" nombre_tipo_actividad, ";
+                                //$cadenaSql.=" nombre_actividad, ";
+                                $cadenaSql.=" nombre_proyecto, ";
                                 $cadenaSql.=" descripcion,";
                                 $cadenaSql.=" jefe_actividad, ";
                                 $cadenaSql.=" fecha_inicio, ";
@@ -723,11 +726,12 @@ class Sql extends \Sql {
                                 else {$cadenaSql.="(SELECT inst.nombre inst FROM general.institucion_educacion inst WHERE inst.codigo_ies='".$variable['codigo_institucion_actividad']."'),";}
                                 $cadenaSql.=" '".$variable['correo_institucion_actividad']."',";
                                 $cadenaSql.=" '".$variable['telefono_institucion_actividad']."',";
-                                $cadenaSql.=" '".$variable['codigo_tipo_actividad']."',";
-                                if(isset($variable['codigo_tipo_actividad']) && $variable['codigo_tipo_actividad']==0)
-                                     {$cadenaSql.=" '".$variable['nombre_tipo_actividad']."',";}
-                                else {$cadenaSql.="(SELECT niv.nombre FROM general.nivel niv WHERE niv.codigo_nivel='".$variable['codigo_tipo_actividad']."'),";}
-                                $cadenaSql.=" '".$variable['nombre_actividad']."',";
+                                //$cadenaSql.=" '".$variable['codigo_tipo_actividad']."',";
+                                //if(isset($variable['codigo_tipo_actividad']) && $variable['codigo_tipo_actividad']==0)
+                                //     {$cadenaSql.=" '".$variable['nombre_tipo_actividad']."',";}
+                                //else {$cadenaSql.="(SELECT niv.nombre FROM general.nivel niv WHERE niv.codigo_nivel='".$variable['codigo_tipo_actividad']."'),";}
+                                //$cadenaSql.=" '".$variable['nombre_actividad']."',";
+                                $cadenaSql.=" '".$variable['nombre_proyecto']."',";
                                 $cadenaSql.=" '".$variable['descripcion_actividad']."',";
                                 $cadenaSql.=" '".$variable['jefe_actividad']."',";
                                 $cadenaSql.=" '".$variable['fecha_inicio_actividad']."',";
@@ -987,11 +991,12 @@ class Sql extends \Sql {
                                 else {$cadenaSql.=" nombre_institucion=(SELECT inst.nombre inst FROM general.institucion_educacion inst WHERE inst.codigo_ies='".$variable['codigo_institucion_actividad']."'),";}
                                 $cadenaSql.=" correo_institucion='".$variable['correo_institucion_actividad']."', ";
                                 $cadenaSql.=" telefono_institucion='".$variable['telefono_institucion_actividad']."', ";
-                                $cadenaSql.=" codigo_tipo_actividad='".$variable['codigo_tipo_actividad']."', ";
-                                if(isset($variable['codigo_tipo_actividad']) && $variable['codigo_tipo_actividad']==0)
-                                     {$cadenaSql.="nombre_tipo_actividad='".$variable['nombre_tipo_actividad']."',";}
-                                else {$cadenaSql.="nombre_tipo_actividad=(SELECT niv.nombre FROM general.nivel niv WHERE niv.codigo_nivel='".$variable['codigo_tipo_actividad']."'),";}
-                                $cadenaSql.=" nombre_actividad='".$variable['nombre_actividad']."', ";
+                                //$cadenaSql.=" codigo_tipo_actividad='".$variable['codigo_tipo_actividad']."', ";
+                                //if(isset($variable['codigo_tipo_actividad']) && $variable['codigo_tipo_actividad']==0)
+                                    // {$cadenaSql.="nombre_tipo_actividad='".$variable['nombre_tipo_actividad']."',";}
+                                //else {$cadenaSql.="nombre_tipo_actividad=(SELECT niv.nombre FROM general.nivel niv WHERE niv.codigo_nivel='".$variable['codigo_tipo_actividad']."'),";}
+                                //$cadenaSql.=" nombre_actividad='".$variable['nombre_actividad']."', ";
+                                $cadenaSql.=" nombre_proyecto='".$variable['nombre_proyecto']."', ";
                                 $cadenaSql.=" descripcion='".$variable['descripcion_actividad']."', ";
                                 $cadenaSql.=" jefe_actividad='".$variable['jefe_actividad']."', ";
                                 $cadenaSql.=" fecha_inicio='".$variable['fecha_inicio_actividad']."', ";

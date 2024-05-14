@@ -121,7 +121,34 @@ class actividadForm {
                             echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
                             unset ( $atributos );
                             {	      
-
+                                    // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------   
+                                    $esteCampo = 'tipo_producto';
+                                    $atributos ['nombre'] = $esteCampo;
+                                    $atributos ['id'] = $esteCampo;
+                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+                                    $atributos ["etiquetaObligatorio"] = true;
+                                    $atributos ['anchoEtiqueta'] = 170;
+                                    $atributos ['evento'] = ' ';
+                                    if (isset ( $resultadoActividad[0]['tipo_producto'] ))
+                                         {  $atributos ['seleccion'] = $resultadoActividad[0]['tipo_producto'];}
+                                    else {	$atributos ['seleccion'] = -1;}
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['columnas'] = 1;
+                                    $atributos ['tamanno'] = 1;
+                                    $atributos ['estilo'] = "jqueryui";
+                                    $atributos ['validar'] = "required";
+                                    $atributos ['limitar'] = true;
+                                    $atributos ['anchoCaja'] = 400;
+                                    $atributos ['evento'] = '';
+                                    $parametronivel=array('tipo_nivel'=> 'TipoProductoInvestigacion');
+                                    $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "MostrarNivel",$parametronivel );
+                                    $matrizItems = array (array (0,' '));
+                                    $matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
+                                    $atributos ['matrizItems'] = $matrizItems;
+                                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                                    echo $this->miFormulario->campoCuadroLista ( $atributos );
+                                    unset ( $atributos );                                    
+                                    // ---------------- CONTROL: Cuadro de Lista --------------------------------------------------------
                                     // ---------------- CONTROL: Cuadro de Lista --------------------------------------------------------
                                     $esteCampo = 'pais_actividad';
                                     $atributos ['nombre'] = $esteCampo;
@@ -349,7 +376,7 @@ class actividadForm {
                                     $matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
                                     $atributos ['matrizItems'] = $matrizItems;
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    echo $this->miFormulario->campoCuadroLista ( $atributos );
+                                    //echo $this->miFormulario->campoCuadroLista ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Lista --------------------------------------------------------
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
@@ -384,7 +411,7 @@ class actividadForm {
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                      
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-                                    $esteCampo = 'nombre_actividad';
+                                    $esteCampo = 'nombre_proyecto';
                                     $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
                                     $atributos ['tipo'] = 'text';
@@ -397,8 +424,8 @@ class actividadForm {
                                     $atributos ['tabIndex'] = $tab;
                                     $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
                                     $atributos ['validar']="required,minSize[1],maxSize[150]";
-                                    if (isset ( $resultadoActividad[0]['nombre_actividad'] )) 
-                                         {   $atributos ['valor'] = $resultadoActividad[0]['nombre_actividad']; 
+                                    if (isset ( $resultadoActividad[0]['nombre_proyecto'] )) 
+                                         {   $atributos ['valor'] = $resultadoActividad[0]['nombre_proyecto']; 
                                          }
                                     else {   $atributos ['valor'] = '';
                                          }
