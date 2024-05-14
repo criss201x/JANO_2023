@@ -32,9 +32,9 @@ $this->idioma["marcoActividad"]="Registro de Productos de Investigación y/o Inv
 $this->idioma["marcoListaActividad"]="Productos de Investigación y/o Investigación - Creación";
 $this->idioma["marcoInvestigacion"]="pertenencia a un grupo de investigación";
 $this->idioma["marcoListaInvestigacion"]="pertenencia a un grupo de investigación ";
-$this->idioma["marcoProduccion"]="Registro Producción Académica";
+$this->idioma["marcoProduccion"]="Registro Publicaciones - Obras Artísticas";
 $this->idioma["avisosAclaratoriosProdAc"]="<strong>Antes de cargar los soportes requeridos por favor tener en cuenta las siguientes observaciones:</strong> <br> <ol type=”A”><li>Adjuntar por lo menos una publicación (libros, artículos, revistas indexadas; se debe evidenciar la autoría ISSN o ISBN).</li><li>Para los docentes de la facultad de artes, es válido obras artísticas reconocidas.</li><li>Adjuntar enlace del producto si se tiene.</li></ol>";
-$this->idioma["marcoListaProduccion"]="Producción Académica";
+$this->idioma["marcoListaProduccion"]="Publicaciones - Obras Artísticas";
 $this->idioma["marcoIdioma"]="Registro Lengua Extranjera ";
 $this->idioma["marcoListaIdioma"]="Lengua Extranjera ";
 
@@ -202,7 +202,7 @@ $this->idioma["tiempo_docenciaTitulo"]="Tiempo de experiencia en docencia univer
 $this->idioma["tiempo_docencia"]="Días experiencia";
 
 
-$this->idioma["nuevoActividad"]="Registrar datos proyecto";
+$this->idioma["nuevoActividad"]="Registrar datos producto";
 $this->idioma["pais_actividadTitulo"]="Seleccione el país";
 $this->idioma["pais_actividad"]="País  ";
 $this->idioma["codigo_institucion_actividadTitulo"]="Selecciona la institución donde realiza la actividad";
@@ -286,7 +286,7 @@ $this->idioma["rol_investigacionTitulo"]="Ingrese el rol que desempeño en la in
 $this->idioma["rol_investigacion"]="Rol ";
 
 
-$this->idioma["nuevoProduccion"]="Registrar Producción Académica";
+$this->idioma["nuevoProduccion"]="Registrar Publicaciones - Obras Artísticas";
 $this->idioma["pais_produccionTitulo"]="Seleccione el país";
 $this->idioma["pais_produccion"]="País  ";
 $this->idioma["departamento_produccionTitulo"]="Seleccione el departamento ";
@@ -362,7 +362,7 @@ $this->idioma["botonContacto"]="Guardar datos de contacto";
 $this->idioma["botonFormacion"]="Guardar datos de formación";
 $this->idioma["botonProfesional"]="Guardar datos de experiencia profesional";
 $this->idioma["botonDocencia"]="Guardar datos de experiencia docente universitaria";
-$this->idioma["botonActividad"]="Guardar datos proyecto";
+$this->idioma["botonActividad"]="Guardar datos producto";
 $this->idioma["botonInvestigacion"]="Guardar datos grupo de investigación";
 $this->idioma["botonProduccion"]="Guardar datos de producción académica";
 $this->idioma["botonIdioma"]="Guardar datos de lengua extranjera";
