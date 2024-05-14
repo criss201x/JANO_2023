@@ -102,6 +102,11 @@ class consultarActividad {
                                                 $this->lenguaje->getCadena ("codigo_tipo_actividad"),
                                                 $this->lenguaje->getCadena ("rol_investigacion"),
                                                 //$this->lenguaje->getCadena ("nombre_actividad"),
+                                                $this->lenguaje->getCadena ("titulo_patente"),
+                                                $this->lenguaje->getCadena ("numero_aprobacion_patente"),
+                                                $this->lenguaje->getCadena ("ano_aprobacion"),
+                                                $this->lenguaje->getCadena ("nombre_ponencia"),
+                                                $this->lenguaje->getCadena ("nombre_evento"),
                                                 $this->lenguaje->getCadena ("nombre_proyecto"),
                                                 $this->lenguaje->getCadena ("descripcion_actividad"),
                                                 $this->lenguaje->getCadena ("nombre_institucion_actividad"),
@@ -163,7 +168,12 @@ class consultarActividad {
                                                 <td align='left'>".$diffAct[$key]->days."</td>    
                                                 <td align='left'>".$resultadoListaActividad[$key]['nombre_tipo_actividad']."</td>
                                                 <td align='left'>".$resultadoListaActividad[$key]['rol_investigacion']."</td>
-                                                <td align='left'>".$resultadoListaActividad[$key]['nombre_proyecto']."</td>
+                                                <td align='left'>".$resultadoListaActividad[$key]['titulo_patente']."</td>
+                                                <td align='left'>".$resultadoListaActividad[$key]['numero_aprobacion_patente']."</td>
+                                                <td align='left'>".$resultadoListaActividad[$key]['ano_aprobacion']."</td>                                                
+                                                <td align='left'>".$resultadoListaActividad[$key]['nombre_ponencia']."</td>                                                
+                                                <td align='left'>".$resultadoListaActividad[$key]['nombre_evento']."</td>                                                
+                                                <td align='left'>".$resultadoListaActividad[$key]['nombre_proyecto']."</td>                                                
                                                 <td align='left'>".$resultadoListaActividad[$key]['descripcion']."</td>
                                                 <td align='left'>".$resultadoListaActividad[$key]['nombre_institucion']."</td>
                                                 <td align='left'>".$resultadoListaActividad[$key]['nivel_institucion']."</td>

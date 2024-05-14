@@ -149,7 +149,98 @@ class actividadForm {
                                     echo $this->miFormulario->campoCuadroLista ( $atributos );
                                     unset ( $atributos );                                    
                                     // ---------------- CONTROL: Cuadro de Lista --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoPatente";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );                                             
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $esteCampo = 'titulo_patente';
+                                    $atributos ['id'] = $esteCampo;
+                                    $atributos ['nombre'] = $esteCampo;
+                                    $atributos ['tipo'] = 'text';
+                                    $atributos ['estilo'] = 'jqueryui';
+                                    $atributos ['marco'] = true;
+                                    $atributos ['estiloMarco'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
+                                    $atributos ['columnas'] = 1;
+                                    $atributos ['dobleLinea'] = 0;
+                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+                                    $atributos ['validar']="required,minSize[5],maxSize[150]";
+                                    if (isset ( $resultadoActividad[0]['titulo_patente'] )) 
+                                         {  $atributos ['valor'] = $resultadoActividad[0]['titulo_patente'];} 
+                                    else {  $atributos ['valor'] = '';}
+                                    $atributos ['textoFondo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['tamanno'] = 60;
+                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ['anchoEtiqueta'] = 170;
+                                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                                    echo $this->miFormulario->campoCuadroTexto ( $atributos );
+                                    unset ( $atributos );
+                                    // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                       
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $esteCampo = 'numero_aprobacion_patente';
+                                    $atributos ['id'] = $esteCampo;
+                                    $atributos ['nombre'] = $esteCampo;
+                                    $atributos ['tipo'] = 'text';
+                                    $atributos ['estilo'] = 'jqueryui';
+                                    $atributos ['marco'] = true;
+                                    $atributos ['estiloMarco'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
+                                    $atributos ['columnas'] = 1;
+                                    $atributos ['dobleLinea'] = 0;
+                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+                                    $atributos ['validar']="required,minSize[3],maxSize[20]";
+                                    if (isset ( $resultadoActividad[0]['numero_aprobacion_patente'] )) 
+                                         {  $atributos ['valor'] = $resultadoActividad[0]['numero_aprobacion_patente'];} 
+                                    else {  $atributos ['valor'] = '';}
+                                    $atributos ['textoFondo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['tamanno'] = 60;
+                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ['anchoEtiqueta'] = 170;
+                                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                                    echo $this->miFormulario->campoCuadroTexto ( $atributos );
+                                    unset ( $atributos );
+                                    // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------               
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $esteCampo = 'ano_aprobacion';
+                                    $atributos ['id'] = $esteCampo;
+                                    $atributos ['nombre'] = $esteCampo;
+                                    $atributos ['tipo'] = 'text';
+                                    $atributos ['estilo'] = 'jqueryui';
+                                    $atributos ['marco'] = true;
+                                    $atributos ['estiloMarco'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
+                                    $atributos ['columnas'] = 1;
+                                    $atributos ['dobleLinea'] = 0;
+                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+                                    $atributos ['validar']="required,minSize[4],maxSize[4], custom[integer]";
+                                    if (isset ( $resultadoActividad[0]['ano_aprobacion'] )) 
+                                         {  $atributos ['valor'] = $resultadoActividad[0]['ano_aprobacion'];} 
+                                    else {  $atributos ['valor'] = '';}
+                                    $atributos ['textoFondo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['tamanno'] = 60;
+                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ['anchoEtiqueta'] = 170;
+                                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                                    echo $this->miFormulario->campoCuadroTexto ( $atributos );
+                                    unset ( $atributos );
+                                    // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                 
+                                    echo $this->miFormulario->division ( "fin");                                                                                                                                                                              
                                     // ---------------- CONTROL: Cuadro de Lista --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoPais_actividad";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     $esteCampo = 'pais_actividad';
                                     $atributos ['nombre'] = $esteCampo;
                                     $atributos ['id'] = $esteCampo;
@@ -177,7 +268,13 @@ class actividadForm {
                                     echo $this->miFormulario->campoCuadroLista ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Lista --------------------------------------------------------
+                                    echo $this->miFormulario->division ( "fin");                                                                                                                    
                                     // ---------------- CONTROL: Cuadro de Lista --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoNivel_institucion_actividad";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     $esteCampo = 'nivel_institucion_actividad';
                                     $atributos ['nombre'] = $esteCampo;
                                     $atributos ['id'] = $esteCampo;
@@ -205,8 +302,13 @@ class actividadForm {
                                     echo $this->miFormulario->campoCuadroLista ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Lista --------------------------------------------------------
-
+                                    echo $this->miFormulario->division ( "fin");                                                                                
                                     // ---------------- CONTROL: Cuadro de Lista --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoCodigo_institucion_actividad";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     $esteCampo = 'codigo_institucion_actividad';
                                     $atributos ['nombre'] = $esteCampo;
                                     $atributos ['id'] = $esteCampo;
@@ -234,7 +336,13 @@ class actividadForm {
                                     echo $this->miFormulario->campoCuadroLista ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Lista --------------------------------------------------------
+                                    echo $this->miFormulario->division ( "fin");                                                                                                                    
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoNombre_institucion_actividad";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     $esteCampo = 'nombre_institucion_actividad';
                                     $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
@@ -265,7 +373,79 @@ class actividadForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------  
+                                    echo $this->miFormulario->division ( "fin");                                                                                                                    
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoNombre_ponencia";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
+                                    $esteCampo = 'nombre_ponencia';
+                                    $atributos ['id'] = $esteCampo;
+                                    $atributos ['nombre'] = $esteCampo;
+                                    $atributos ['tipo'] = 'text';
+                                    $atributos ['estilo'] = 'jqueryui';
+                                    $atributos ['marco'] = true;
+                                    $atributos ['estiloMarco'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
+                                    $atributos ['columnas'] = 1;
+                                    $atributos ['dobleLinea'] = 0;
+                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+                                    $atributos ['validar']="required,minSize[5],maxSize[100]";
+                                    if (isset ( $resultadoActividad[0]['nombre_ponencia'] )) 
+                                         {  $atributos ['valor'] = $resultadoActividad[0]['nombre_ponencia'];} 
+                                    else {  $atributos ['valor'] = '';}
+                                    $atributos ['textoFondo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['tamanno'] = 60;
+                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ['anchoEtiqueta'] = 170;
+                                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                                    echo $this->miFormulario->campoCuadroTexto ( $atributos );
+                                    unset ( $atributos );
+                                    // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                          
+                                    echo $this->miFormulario->division ( "fin");                                                                                                                    
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoNombre_evento";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
+                                    $esteCampo = 'nombre_evento';
+                                    $atributos ['id'] = $esteCampo;
+                                    $atributos ['nombre'] = $esteCampo;
+                                    $atributos ['tipo'] = 'text';
+                                    $atributos ['estilo'] = 'jqueryui';
+                                    $atributos ['marco'] = true;
+                                    $atributos ['estiloMarco'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
+                                    $atributos ['columnas'] = 1;
+                                    $atributos ['dobleLinea'] = 0;
+                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+                                    $atributos ['validar']="required,minSize[5],maxSize[100]";
+                                    if (isset ( $resultadoActividad[0]['nombre_evento'] )) 
+                                         {  $atributos ['valor'] = $resultadoActividad[0]['nombre_evento'];} 
+                                    else {  $atributos ['valor'] = '';}
+                                    $atributos ['textoFondo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['tamanno'] = 60;
+                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ['anchoEtiqueta'] = 170;
+                                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                                    echo $this->miFormulario->campoCuadroTexto ( $atributos );
+                                    unset ( $atributos );
+                                    // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------         
+                                    echo $this->miFormulario->division ( "fin");                                                                                
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoCorreo_institucion_actividad";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     $esteCampo = 'correo_institucion_actividad';
                                     $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
@@ -296,7 +476,13 @@ class actividadForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    echo $this->miFormulario->division ( "fin");                                                                                                                                                        
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoTelefono_institucion_actividad";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     $esteCampo = 'telefono_institucion_actividad';
                                     $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
@@ -323,6 +509,13 @@ class actividadForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------   
+                                    echo $this->miFormulario->division ( "fin");                                                                                                                    
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoRol_investigacion";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     $esteCampo = 'rol_investigacion';
                                     $atributos ['nombre'] = $esteCampo;
                                     $atributos ['id'] = $esteCampo;
@@ -349,7 +542,10 @@ class actividadForm {
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
                                     echo $this->miFormulario->campoCuadroLista ( $atributos );
                                     unset ( $atributos );                                    
+                                    // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------   
+                                    echo $this->miFormulario->division ( "fin");                                                                                                                    
                                     // ---------------- CONTROL: Cuadro de Lista --------------------------------------------------------
+                                    
                                     $esteCampo = 'codigo_tipo_actividad';
                                     $atributos ['nombre'] = $esteCampo;
                                     $atributos ['id'] = $esteCampo;
@@ -409,7 +605,12 @@ class actividadForm {
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
                                     //echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
-                                    // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                      
+                                    // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------     
+                                    $atributos ["id"] = "MarcoNombre_proyecto";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'nombre_proyecto';
                                     $atributos ['id'] = $esteCampo;
@@ -440,7 +641,7 @@ class actividadForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                      
-
+                                    echo $this->miFormulario->division ( "fin");                                                                                                                    
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'descripcion_actividad';
                                     $atributos ['id'] = $esteCampo;
@@ -475,6 +676,11 @@ class actividadForm {
                                     unset ( $atributos );                                                   
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------                                                                      
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoJefe_actividad";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     $esteCampo = 'jefe_actividad';
                                     $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
@@ -502,7 +708,9 @@ class actividadForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                    
+                                    echo $this->miFormulario->division ( "fin");                                                                                                                    
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    
                                     $esteCampo = 'fecha_inicio_actividad';
                                     $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;

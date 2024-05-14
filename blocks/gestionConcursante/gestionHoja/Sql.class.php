@@ -309,6 +309,11 @@ class Sql extends \Sql {
                                 $cadenaSql.=" act.fecha_fin, ";
                                 $cadenaSql.=" act.rol_investigacion, ";
                                 $cadenaSql.=" act.tipo_producto, ";
+                                $cadenaSql.=" act.nombre_ponencia, ";
+                                $cadenaSql.=" act.nombre_evento, ";
+                                $cadenaSql.=" act.titulo_pantente, ";
+                                $cadenaSql.=" act.numero_aprobacion_patente, ";
+                                $cadenaSql.=" act.ano_aprobacion, ";
                                 $cadenaSql.=" act.nombre_proyecto";
                                 $cadenaSql.=" FROM concurso.persona bas ";
                                 $cadenaSql.=" INNER JOIN ".$prefijo."usuario usu ON trim(usu.tipo_identificacion)=trim(bas.tipo_identificacion) AND bas.identificacion=usu.identificacion";
@@ -711,6 +716,11 @@ class Sql extends \Sql {
                                 //$cadenaSql.=" nombre_tipo_actividad, ";
                                 //$cadenaSql.=" nombre_actividad, ";
                                 $cadenaSql.=" nombre_proyecto, ";
+                                $cadenaSql.=" titulo_patente, ";
+                                $cadenaSql.=" numero_aprobacion_patente, ";
+                                $cadenaSql.=" ano_aprobacion, ";
+                                $cadenaSql.=" nombre_ponencia, ";
+                                $cadenaSql.=" nombre_evento, ";
                                 $cadenaSql.=" descripcion,";
                                 $cadenaSql.=" jefe_actividad, ";
                                 $cadenaSql.=" fecha_inicio, ";
@@ -732,6 +742,11 @@ class Sql extends \Sql {
                                 //else {$cadenaSql.="(SELECT niv.nombre FROM general.nivel niv WHERE niv.codigo_nivel='".$variable['codigo_tipo_actividad']."'),";}
                                 //$cadenaSql.=" '".$variable['nombre_actividad']."',";
                                 $cadenaSql.=" '".$variable['nombre_proyecto']."',";
+                                $cadenaSql.=" '".$variable['titulo_patente']."',";
+                                $cadenaSql.=" '".$variable['numero_aprobacion_patente']."',";
+                                $cadenaSql.=" '".$variable['ano_aprobacion']."',";
+                                $cadenaSql.=" '".$variable['nombre_ponencia']."',";
+                                $cadenaSql.=" '".$variable['nombre_evento']."',";
                                 $cadenaSql.=" '".$variable['descripcion_actividad']."',";
                                 $cadenaSql.=" '".$variable['jefe_actividad']."',";
                                 $cadenaSql.=" '".$variable['fecha_inicio_actividad']."',";
@@ -991,6 +1006,11 @@ class Sql extends \Sql {
                                 else {$cadenaSql.=" nombre_institucion=(SELECT inst.nombre inst FROM general.institucion_educacion inst WHERE inst.codigo_ies='".$variable['codigo_institucion_actividad']."'),";}
                                 $cadenaSql.=" correo_institucion='".$variable['correo_institucion_actividad']."', ";
                                 $cadenaSql.=" telefono_institucion='".$variable['telefono_institucion_actividad']."', ";
+                                $cadenaSql.=" titulo_patente='".$variable['titulo_patente']."', ";
+                                $cadenaSql.=" numero_aprobacion_patente='".$variable['numero_aprobacion_patente']."', ";
+                                $cadenaSql.=" ano_aprobacion='".$variable['ano_aprobacion']."', ";
+                                $cadenaSql.=" nombre_ponencia='".$variable['nombre_ponencia']."', ";
+                                $cadenaSql.=" nombre_evento='".$variable['nombre_evento']."', ";
                                 //$cadenaSql.=" codigo_tipo_actividad='".$variable['codigo_tipo_actividad']."', ";
                                 //if(isset($variable['codigo_tipo_actividad']) && $variable['codigo_tipo_actividad']==0)
                                     // {$cadenaSql.="nombre_tipo_actividad='".$variable['nombre_tipo_actividad']."',";}
