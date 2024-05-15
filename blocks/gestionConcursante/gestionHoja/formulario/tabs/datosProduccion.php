@@ -140,34 +140,31 @@ class produccionForm {
                                     // ---------------- FIN CONTROL: Cuadro de Lista --------------------------------------------------------
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'nombre_tipo_produccion';
-                                    $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
-                                    $atributos ['tipo'] = 'text';
-                                    $atributos ['estilo'] = 'jqueryui';
-                                    $atributos ['marco'] = true;
-                                    $atributos ['estiloMarco'] = '';
-                                    $atributos ["etiquetaObligatorio"] = true;
-                                    $atributos ['columnas'] = 1;
-                                    $atributos ['dobleLinea'] = 0;
-                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['id'] = $esteCampo;
                                     $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-                                    $atributos ['validar']="required,minSize[1],maxSize[100]";
-                                    if (isset ( $resultadoProduccion[0]['nombre_tipo_produccion'] )) 
-                                         {   $atributos ['valor'] = $resultadoProduccion[0]['nombre_tipo_produccion']; 
-                                             $atributos ['deshabilitado'] = false;                                         
-                                         }
-                                    else {   $atributos ['valor'] = '';
-                                            $atributos ['deshabilitado'] = false;                                    
-                                         }
-                                    $atributos ['titulo'] = '';//$this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-                                    $atributos ['textoFondo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-                                    $atributos ['tamanno'] = 60;
-                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
                                     $atributos ['anchoEtiqueta'] = 170;
-                                    $tab ++;
+                                    $atributos ['evento'] = ' ';
+                                    if (isset ( $resultadoActividad[0]['nombre_tipo_produccion'] ))
+                                         {  $atributos ['seleccion'] = $resultadoActividad[0]['nombre_tipo_produccion'];}
+                                    else {	$atributos ['seleccion'] = -1;}
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['columnas'] = 1;
+                                    $atributos ['tamanno'] = 1;
+                                    $atributos ['estilo'] = "jqueryui";
+                                    $atributos ['validar'] = "required";
+                                    $atributos ['limitar'] = true;
+                                    $atributos ['anchoCaja'] = 400;
+                                    $atributos ['evento'] = '';
+                                    $parametronivel=array('tipo_nivel'=> 'Produccion');
+                                    $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "MostrarNivel",$parametronivel );
+                                    $matrizItems = array (array (0,' '));
+                                    $matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
+                                    $atributos ['matrizItems'] = $matrizItems;
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    //echo $this->miFormulario->campoCuadroTexto ( $atributos );
-                                    unset ( $atributos );
+                                    echo $this->miFormulario->campoCuadroLista ( $atributos );
+                                    unset ( $atributos );           
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------  
                                     $atributos ["id"] = "MarcoPais_produccion";
                                     $atributos ["estilo"] = "Marco";
