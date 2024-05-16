@@ -614,6 +614,9 @@ $('#<?php echo $this->campoSeguro('ciudad_produccion')?>').width(210);
 $("#<?php echo $this->campoSeguro('ciudad_produccion')?>").select2(); 
 $('#<?php echo $this->campoSeguro('codigo_tipo_produccion')?>').width(450);
 $("#<?php echo $this->campoSeguro('codigo_tipo_produccion')?>").select2(); 
+$('#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>').width(450);
+$("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").select2(); 
+
 
 
 $('#<?php echo $this->campoSeguro('codigo_idioma')?>').width(210);

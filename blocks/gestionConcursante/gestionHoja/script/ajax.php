@@ -875,8 +875,59 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
             }  
 
           });                
-                
+
+          if($("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()==''){
+            $("#MarcoPais_produccion").fadeOut(200);
+            $("#MarcoDepartamento_produccion").fadeOut(200);
+            $("#MarcoCiudad_produccion").fadeOut(200);
+            $("#MarcoNombre_autor").fadeOut(200);
+            $("#MarcoFecha_produccion").fadeOut(200);
+            $("#MarcoNombre_producto_incluye").fadeOut(200);
+            $("#MarcoNombre_editorial").fadeOut(200);
+            $("#MarcoVolumen").fadeOut(200);
+            $("#MarcoCodigo_isbn").fadeOut(200);
+            $("#MarcoCodigo_issn").fadeOut(200);
+            $("#MarcoIndexado").fadeOut(200);
+            $("#MarcoDescripcion_produccion").fadeOut(200);
+            $("#MarcoTitulo_produccion").fadeOut(200);
+            $("#MarcoPagina_producto").fadeOut(200);
+            $("#MarcoDireccion_produccion").fadeOut(200);
+          }                
         
+$("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").change(function(){
+
+    if($("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Obra de creación' ||
+    $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Obra de creación complementaria' ||
+    $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Interpretación' ){
+        $("#MarcoPais_produccion").fadeOut(200);
+            $("#MarcoDepartamento_produccion").fadeOut(200);
+            $("#MarcoCiudad_produccion").fadeOut(200);
+            $("#MarcoNombre_autor").fadeOut(200);
+            $("#MarcoNombre_producto_incluye").fadeOut(200);
+            $("#MarcoNombre_editorial").fadeOut(200);
+            $("#MarcoVolumen").fadeOut(200);
+            $("#MarcoCodigo_isbn").fadeOut(200);
+            $("#MarcoCodigo_issn").fadeOut(200);
+            $("#MarcoIndexado").fadeOut(200);
+            $("#MarcoDescripcion_produccion").fadeOut(200);
+            $("#MarcoTitulo_produccion").fadeIn(300);  
+            $("#MarcoFecha_produccion").fadeIn(300);  
+
+    }else{
+        $("#MarcoPais_produccion").fadeIn(300);
+            $("#MarcoDepartamento_produccion").fadeIn(300);
+            $("#MarcoCiudad_produccion").fadeIn(300);
+            $("#MarcoNombre_autor").fadeIn(300);
+            $("#MarcoNombre_producto_incluye").fadeIn(300);
+            $("#MarcoNombre_editorial").fadeIn(300);
+            $("#MarcoVolumen").fadeIn(300);
+            $("#MarcoCodigo_isbn").fadeIn(300);
+            $("#MarcoCodigo_issn").fadeIn(300);
+            $("#MarcoIndexado").fadeIn(300);
+            $("#MarcoDescripcion_produccion").fadeIn(300);  
+    }
+
+});
 // Controles de validacion de tipo de archivo          
     $("input[type='file']").bind('change',function(){
        var sizeByte = this.files[0].size;

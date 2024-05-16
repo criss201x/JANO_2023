@@ -109,35 +109,6 @@ class produccionForm {
                             echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
                             unset ( $atributos );
                             {	      
-                                    // ---------------- CONTROL: Cuadro de Lista --------------------------------------------------------
-                                    $esteCampo = 'codigo_tipo_produccion';
-                                    $atributos ['nombre'] = $esteCampo;
-                                    $atributos ['id'] = $esteCampo;
-                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-                                    $atributos ["etiquetaObligatorio"] = true;
-                                    $atributos ['tab'] = $tab ++;
-                                    $atributos ['anchoEtiqueta'] = 170;
-                                    $atributos ['evento'] = ' ';
-                                    if (isset ( $resultadoProduccion[0]['codigo_tipo_produccion'] ))
-                                         {  $atributos ['seleccion'] = $resultadoProduccion[0]['codigo_tipo_produccion'];}
-                                    else {	$atributos ['seleccion'] = -1;}
-                                    $atributos ['deshabilitado'] = false;
-                                    $atributos ['columnas'] = 1;
-                                    $atributos ['tamanno'] = 1;
-                                    $atributos ['estilo'] = "jqueryui";
-                                    $atributos ['validar'] = "required";
-                                    $atributos ['limitar'] = true;
-                                    $atributos ['anchoCaja'] = 400;
-                                    $atributos ['evento'] = '';
-                                    $parametronivel=array('tipo_nivel'=> 'Produccion', 'order' => 'codigo');
-                                    $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "consultarNivel",$parametronivel );
-                                    $matrizItems = array (array (0,' '));
-                                    $matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
-                                    $atributos ['matrizItems'] = $matrizItems;
-                                    $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    echo $this->miFormulario->campoCuadroLista ( $atributos );
-                                    unset ( $atributos );
-                                    // ---------------- FIN CONTROL: Cuadro de Lista --------------------------------------------------------
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'nombre_tipo_produccion';
                                     $atributos ['nombre'] = $esteCampo;
@@ -157,7 +128,7 @@ class produccionForm {
                                     $atributos ['limitar'] = true;
                                     $atributos ['anchoCaja'] = 400;
                                     $atributos ['evento'] = '';
-                                    $parametronivel=array('tipo_nivel'=> 'Produccion');
+                                    $parametronivel=array('tipo_nivel'=> 'Produccion' );
                                     $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "MostrarNivel",$parametronivel );
                                     $matrizItems = array (array (0,' '));
                                     $matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
@@ -278,6 +249,12 @@ class produccionForm {
                                     // ---------------- FIN CONTROL: Cuadro de Lista --------------------------------------------------------                                    
                                     echo $this->miFormulario->division ( "fin");
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoTitulo_produccion";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
+
                                     $esteCampo = 'titulo_produccion';
                                     $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
@@ -306,7 +283,12 @@ class produccionForm {
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
+                                    echo $this->miFormulario->division ( "fin");                                    
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------  
+                                    $atributos ["id"] = "MarcoNombre_autor";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'nombre_autor';
                                     $atributos ['id'] = $esteCampo;
@@ -334,7 +316,14 @@ class produccionForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------   
+                                    echo $this->miFormulario->division ( "fin");
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+
+                                    $atributos ["id"] = "MarcoFecha_produccion";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     $esteCampo = 'fecha_produccion';
                                     $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
@@ -360,6 +349,7 @@ class produccionForm {
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
+                                    echo $this->miFormulario->division ( "fin");
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                    
                                     $atributos ["id"] = "MarcoNombre_producto_incluye";
                                     $atributos ["estilo"] = "Marco";
@@ -391,11 +381,16 @@ class produccionForm {
                                     $atributos ['anchoEtiqueta'] = 170;
                                     $tab ++;
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    echo $this->miFormulario->campoCuadroTexto ( $atributos );
+                                    //echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                      
                                     echo $this->miFormulario->division ( "fin");
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoNombre_editorial";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     $esteCampo = 'nombre_editorial';
                                     $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
@@ -423,7 +418,13 @@ class produccionForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------  
+                                    echo $this->miFormulario->division ( "fin");
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoVolumen";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     $esteCampo = 'volumen';
                                     $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
@@ -451,7 +452,13 @@ class produccionForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    echo $this->miFormulario->division ( "fin");
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoPagina_producto";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     $esteCampo = 'pagina_producto';
                                     $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
@@ -479,6 +486,12 @@ class produccionForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                                                           
+                                    echo $this->miFormulario->division ( "fin");
+                                    $atributos ["id"] = "MarcoCodigo_isbn";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'codigo_isbn';
                                     $atributos ['id'] = $esteCampo;
@@ -507,7 +520,13 @@ class produccionForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                                                           
+                                    echo $this->miFormulario->division ( "fin");
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoCodigo_issn";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     $esteCampo = 'codigo_issn';
                                     $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
@@ -534,8 +553,9 @@ class produccionForm {
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
+                                    echo $this->miFormulario->division ( "fin");                                    
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------
-                                    $atributos ["id"] = "Marcoindexado";
+                                    $atributos ["id"] = "MarcoIndexado";
                                     $atributos ["estilo"] = "Marco";
                                     echo $this->miFormulario->division ( "inicio", $atributos );
                                     unset ( $atributos );         
@@ -568,6 +588,11 @@ class produccionForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                 
+                                    $atributos ["id"] = "MarcoDescripcion_produccion";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );         
+
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'descripcion_produccion';
                                     $atributos ['id'] = $esteCampo;
@@ -599,7 +624,8 @@ class produccionForm {
                                     // Aplica atributos globales al control
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
                                     echo $this->miFormulario->campoTextArea ( $atributos );
-                                    unset ( $atributos );                                                   
+                                    unset ( $atributos );      
+                                    echo $this->miFormulario->division ( "fin");                                                                                 
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------  
 
                             }
@@ -623,6 +649,11 @@ class produccionForm {
                               $atributos = array_merge ( $atributos, $atributosGlobales );
                               echo $this->miFormulario->cuadroMensaje ( $atributos );	
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $atributos ["id"] = "MarcoDireccion_produccion";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );        
+
                                     $esteCampo = 'direccion_produccion';
                                     $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
@@ -656,6 +687,7 @@ class produccionForm {
                                         $atributos = array_merge ( $atributos, $atributosGlobales );
                                         echo $this->miFormulario->division ( "inicio", $atributos );
                                         unset ( $atributos );
+                                        echo $this->miFormulario->division ( "fin");
                                                 {
                                                 // --------------- INICIO CONTROLES : CARGA SOPORTES SEGUN LOS RELACIONADOS --------------------------------------------------
                                                 foreach ($resultadoTiposop as $tipokey => $value) 
