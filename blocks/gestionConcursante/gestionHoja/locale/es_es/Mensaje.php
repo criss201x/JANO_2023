@@ -354,7 +354,7 @@ $this->idioma["noEncontroProfesional"]="No existe Experiencia Profesional regist
 $this->idioma["noEncontroDocencia"]="No existe Experiencia Docente Universitaria registrada! ";
 $this->idioma["noEncontroActividad"]="No existe Actividad Académica registrada! ";
 $this->idioma["noEncontroInvestigacion"]="No existe Experiencia en Investigación registrada! ";
-$this->idioma["noEncontroProduccion"]="No existe Producción Académica registrada! ";
+$this->idioma["noEncontroProduccion"]="No existen Publicaciones - Obras Artísticas registradas! ";
 $this->idioma["noEncontroIdioma"]="No existe Lengua Extranjera registrada! ";
 
 $this->idioma["botonBasicos"]="Guardar datos básicos";

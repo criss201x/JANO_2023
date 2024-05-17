@@ -672,15 +672,15 @@ class produccionForm {
                             $atributos ['estilo'] = 'jqueryui';
                             echo $this->miFormulario->agrupacion ( 'inicio', $atributos );
                             {
-                              $esteCampo = 'avisosAclaratoriosProdAc';
-                              $atributos ['id'] = $esteCampo;
-                              $atributos ['tipo'] = 'warning';
+                              //$esteCampo = 'avisosAclaratoriosProdAc';
+                              //$atributos ['id'] = $esteCampo;
+                              //$atributos ['tipo'] = 'warning';
                               //$atributos ['estilo'] = 'textoCentrar';
-                              $atributos ['mensaje'] = $this->lenguaje->getCadena ( $esteCampo );
+                              //$atributos ['mensaje'] = $this->lenguaje->getCadena ( $esteCampo );
                               //$tab ++;
                               // Aplica atributos globales al control
-                              $atributos = array_merge ( $atributos, $atributosGlobales );
-                              echo $this->miFormulario->cuadroMensaje ( $atributos );	
+                              //$atributos = array_merge ( $atributos, $atributosGlobales );
+                              //echo $this->miFormulario->cuadroMensaje ( $atributos );	
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     // ---------------- CONTROL: Cuadro de division --------------------------------------------------------
                                         $atributos ["id"]="Produccion";
