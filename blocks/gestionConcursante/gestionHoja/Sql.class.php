@@ -366,24 +366,24 @@ class Sql extends \Sql {
                                                     ELSE prod.nombre_tipo_produccion END) nombre_tipo_produccion, ";
                                 $cadenaSql.=" prod.titulo_produccion,";
                                 $cadenaSql.=" prod.nombre_autor,";
-                                $cadenaSql.=" prod.nombre_producto_incluye,";
+                                //$cadenaSql.=" prod.nombre_producto_incluye,";
                                 $cadenaSql.=" prod.nombre_editorial,";
                                 $cadenaSql.=" prod.volumen,";
                                 $cadenaSql.=" prod.pagina,";
                                 $cadenaSql.=" prod.codigo_isbn,";
                                 $cadenaSql.=" prod.codigo_issn,";
-                                $cadenaSql.=" prod.indexado,";
-                                $cadenaSql.=" prod.pais_produccion,";
-                                $cadenaSql.=" prod.departamento_produccion,";
-                                $cadenaSql.=" prod.ciudad_produccion,";
-                                $cadenaSql.=" city.nombre ciudad,";
+                                //$cadenaSql.=" prod.indexado,";
+                                //$cadenaSql.=" prod.pais_produccion,";
+                                //$cadenaSql.=" prod.departamento_produccion,";
+                                //$cadenaSql.=" prod.ciudad_produccion,";
+                                //$cadenaSql.=" city.nombre ciudad,";
                                 $cadenaSql.=" prod.descripcion,";
                                 $cadenaSql.=" prod.direccion_produccion,";
                                 $cadenaSql.=" prod.fecha_produccion";
                                 $cadenaSql.=" FROM concurso.persona bas ";
                                 $cadenaSql.=" INNER JOIN ".$prefijo."usuario usu ON trim(usu.tipo_identificacion)=trim(bas.tipo_identificacion) AND bas.identificacion=usu.identificacion";
                                 $cadenaSql.=" INNER JOIN concurso.produccion_academica prod ON prod.consecutivo_persona=bas.consecutivo";
-                                $cadenaSql.=" INNER JOIN general.ciudad city ON city.id_ciudad=prod.ciudad_produccion";
+                                //$cadenaSql.=" INNER JOIN general.ciudad city ON city.id_ciudad=prod.ciudad_produccion";
                                 $cadenaSql.=" WHERE usu.id_usuario='".$variable['id_usuario']."'";
                                 if(isset($variable['consecutivo_produccion']) && $variable['consecutivo_produccion']!='')
                                     {$cadenaSql.=" AND prod.consecutivo_produccion='".$variable['consecutivo_produccion']."' ";}
@@ -471,6 +471,7 @@ class Sql extends \Sql {
                                 $cadenaSql=" SELECT DISTINCT";
                                 $cadenaSql.=" nombre nombre_mostrar, ";
                                 $cadenaSql.=" nombre nombre_form, ";
+                                $cadenaSql.=" codigo_nivel, ";
                                 $cadenaSql.=" tipo_nivel,";
                                 $cadenaSql.=" descripcion,";
                                 $cadenaSql.=" estado";
@@ -799,6 +800,7 @@ class Sql extends \Sql {
                                 $cadenaSql.=" )";
                                 $cadenaSql.=" RETURNING consecutivo_investigacion";
                             break;
+
                         case 'registroProduccion' :
                                 $cadenaSql=" INSERT INTO concurso.produccion_academica(";
                                 $cadenaSql.=" consecutivo_produccion, ";
@@ -807,16 +809,16 @@ class Sql extends \Sql {
                                 $cadenaSql.=" nombre_tipo_produccion,";
                                 $cadenaSql.=" titulo_produccion, ";
                                 $cadenaSql.=" nombre_autor, ";
-                                $cadenaSql.=" nombre_producto_incluye, ";
+                                //$cadenaSql.=" nombre_producto_incluye, ";
                                 $cadenaSql.=" nombre_editorial, ";
                                 $cadenaSql.=" volumen, ";
                                 $cadenaSql.=" pagina, ";
                                 $cadenaSql.=" codigo_isbn, ";
                                 $cadenaSql.=" codigo_issn, ";
-                                $cadenaSql.=" indexado, ";
-                                $cadenaSql.=" pais_produccion,";
-                                $cadenaSql.=" departamento_produccion, ";
-                                $cadenaSql.=" ciudad_produccion, ";
+                                //$cadenaSql.=" indexado, ";
+                                //$cadenaSql.=" pais_produccion,";
+                                //$cadenaSql.=" departamento_produccion, ";
+                                //$cadenaSql.=" ciudad_produccion, ";
                                 $cadenaSql.=" descripcion,";
                                 $cadenaSql.=" direccion_produccion, ";
                                 $cadenaSql.=" fecha_produccion)";
@@ -824,21 +826,23 @@ class Sql extends \Sql {
                                 $cadenaSql.=" DEFAULT,";
                                 $cadenaSql.=" '".$variable['consecutivo_persona']."',";
                                 $cadenaSql.=" '".$variable['codigo_tipo_produccion']."',";
-                                if(isset($variable['codigo_tipo_produccion']) && $variable['codigo_tipo_produccion']==0)
-                                     {$cadenaSql.=" '".$variable['nombre_tipo_produccion']."',";}
-                                else {$cadenaSql.="(SELECT niv.nombre FROM general.nivel niv WHERE niv.codigo_nivel='".$variable['codigo_tipo_produccion']."'),";}
+                                //if(isset($variable['codigo_tipo_produccion']) && $variable['codigo_tipo_produccion']==0)
+                                     {
+                                        $cadenaSql.=" '".$variable['nombre_tipo_produccion']."',";
+                                    }
+                                //else {$cadenaSql.="(SELECT niv.nombre FROM general.nivel niv WHERE niv.codigo_nivel='".$variable['codigo_tipo_produccion']."'),";}
                                 $cadenaSql.=" '".$variable['titulo_produccion']."',";
                                 $cadenaSql.=" '".$variable['nombre_autor']."',";
-                                $cadenaSql.=" '".$variable['nombre_producto_incluye']."',";
+                                //$cadenaSql.=" '".$variable['nombre_producto_incluye']."',";
                                 $cadenaSql.=" '".$variable['nombre_editorial']."',";
                                 $cadenaSql.=" '".$variable['volumen']."',";
                                 $cadenaSql.=" '".$variable['pagina_producto']."',";
                                 $cadenaSql.=" '".$variable['codigo_isbn']."',";
                                 $cadenaSql.=" '".$variable['codigo_issn']."',";
-                                $cadenaSql.=" '".$variable['indexado']."',";
-                                $cadenaSql.=" '".$variable['pais_produccion']."',";
-                                $cadenaSql.=" '".$variable['departamento_produccion']."',";
-                                $cadenaSql.=" '".$variable['ciudad_produccion']."',";
+                                //$cadenaSql.=" '".$variable['indexado']."',";
+                                //$cadenaSql.=" '".$variable['pais_produccion']."',";
+                                //$cadenaSql.=" '".$variable['departamento_produccion']."',";
+                                //$cadenaSql.=" '".$variable['ciudad_produccion']."',";
                                 $cadenaSql.=" '".$variable['descripcion_produccion']."',";
                                 $cadenaSql.=" '".$variable['direccion_produccion']."',";
                                 $cadenaSql.=" '".$variable['fecha_produccion']."'";
@@ -1054,21 +1058,23 @@ class Sql extends \Sql {
                                 $cadenaSql=" UPDATE concurso.produccion_academica";
                                 $cadenaSql.=" SET ";
                                 $cadenaSql.=" codigo_tipo_produccion='".$variable['codigo_tipo_produccion']."', ";
-                                if(isset($variable['codigo_tipo_produccion']) && $variable['codigo_tipo_produccion']==0)
-                                     { $cadenaSql.="nombre_tipo_produccion='".$variable['nombre_tipo_produccion']."',";}
-                                else {$cadenaSql.="nombre_tipo_produccion= (SELECT niv.nombre FROM general.nivel niv WHERE niv.codigo_nivel='".$variable['codigo_tipo_produccion']."'),";}
+                                //if(isset($variable['codigo_tipo_produccion']) && $variable['codigo_tipo_produccion']==0)
+                                  //   { 
+                                        $cadenaSql.="nombre_tipo_produccion='".$variable['nombre_tipo_produccion']."',";
+                                    //}
+                                //else {$cadenaSql.="nombre_tipo_produccion= (SELECT niv.nombre FROM general.nivel niv WHERE niv.codigo_nivel='".$variable['codigo_tipo_produccion']."'),";}
                                 $cadenaSql.=" titulo_produccion='".$variable['titulo_produccion']."', ";
                                 $cadenaSql.=" nombre_autor='".$variable['nombre_autor']."', ";
-                                $cadenaSql.=" nombre_producto_incluye='".$variable['nombre_producto_incluye']."', ";
+                                //$cadenaSql.=" nombre_producto_incluye='".$variable['nombre_producto_incluye']."', ";
                                 $cadenaSql.=" nombre_editorial='".$variable['nombre_editorial']."', ";
                                 $cadenaSql.=" volumen='".$variable['volumen']."', ";
                                 $cadenaSql.=" pagina='".$variable['pagina_producto']."', ";
                                 $cadenaSql.=" codigo_isbn='".$variable['codigo_isbn']."', ";
                                 $cadenaSql.=" codigo_issn='".$variable['codigo_issn']."', ";
-                                $cadenaSql.=" indexado='".$variable['indexado']."', ";
-                                $cadenaSql.=" pais_produccion='".$variable['pais_produccion']."', ";
-                                $cadenaSql.=" departamento_produccion='".$variable['departamento_produccion']."', ";
-                                $cadenaSql.=" ciudad_produccion='".$variable['ciudad_produccion']."', ";
+                                //$cadenaSql.=" indexado='".$variable['indexado']."', ";
+                                //$cadenaSql.=" pais_produccion='".$variable['pais_produccion']."', ";
+                                //$cadenaSql.=" departamento_produccion='".$variable['departamento_produccion']."', ";
+                                //$cadenaSql.=" ciudad_produccion='".$variable['ciudad_produccion']."', ";
                                 $cadenaSql.=" descripcion='".$variable['descripcion_produccion']."', ";
                                 $cadenaSql.=" direccion_produccion='".$variable['direccion_produccion']."', ";
                                 $cadenaSql.=" fecha_produccion='".$variable['fecha_produccion']."' ";

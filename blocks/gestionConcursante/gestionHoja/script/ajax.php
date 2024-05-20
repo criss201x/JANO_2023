@@ -401,19 +401,6 @@ $(function () {
                  }
           });          
 
-    $("#<?php echo $this->campoSeguro('codigo_tipo_produccion')?>").change(function(){
-                
-            if($("#<?php echo $this->campoSeguro('codigo_tipo_produccion')?>").val()>0){
-                    $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").hide();
-                    $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val('');
-                    $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").removeClass("validate[required]");
-            }else if($("#<?php echo $this->campoSeguro('codigo_tipo_produccion')?>").val()==0){
-                    $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").attr('enabled');
-                    $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val('');
-                    $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").hide().slideDown("slow");
-                    $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").addClass("validate[required]");
-            }
-          });   
           
 //controles idioma        
 if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
@@ -877,25 +864,49 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
           });                
 
           if($("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()==''){
-            $("#MarcoNombre_autor").fadeOut(200);
-            $("#MarcoFecha_produccion").fadeOut(200);
+            limpiarPublicacionesForm();
+	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").val('');
+	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").removeClass("validate[required]");
+	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").attr('disabled','');
+        	$("#<?php echo $this->campoSeguro('soporteProduccion')?>").hide();            
+        }else if ($("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Obra de creación' ||
+    $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Obra de creación complementaria' ||
+    $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Interpretación' ){
+        $("#MarcoNombre_autor").fadeOut(200);
             $("#MarcoNombre_producto_incluye").fadeOut(200);
             $("#MarcoNombre_editorial").fadeOut(200);
             $("#MarcoVolumen").fadeOut(200);
             $("#MarcoCodigo_isbn").fadeOut(200);
             $("#MarcoCodigo_issn").fadeOut(200);
             $("#MarcoDescripcion_produccion").fadeOut(200);
-            $("#MarcoTitulo_produccion").fadeOut(200);
+            $("#MarcoTitulo_produccion").fadeIn(300);  
+            $("#MarcoFecha_produccion").fadeIn(300);  
+            $("#MarcoDireccion_produccion").fadeIn(300);
             $("#MarcoPagina_producto").fadeOut(200);
-            $("#MarcoDireccion_produccion").fadeOut(200);
 	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").val('');
 	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").removeClass("validate[required]");
 	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").attr('disabled','');
-        	$("#<?php echo $this->campoSeguro('soporteProduccion')?>").hide();            
+        	$("#<?php echo $this->campoSeguro('soporteProduccion')?>").hide();              
+        }else{
+            $("#MarcoTitulo_produccion").fadeIn(300);
+            $("#MarcoFecha_produccion").fadeIn(300);
+            $("#MarcoNombre_autor").fadeIn(300);
+            $("#MarcoNombre_producto_incluye").fadeIn(300);
+            $("#MarcoNombre_editorial").fadeIn(300);
+            $("#MarcoVolumen").fadeIn(300);
+            $("#MarcoCodigo_isbn").fadeIn(300);
+            $("#MarcoCodigo_issn").fadeIn(300);
+            $("#MarcoDescripcion_produccion").fadeIn(300);  
+            $("#MarcoPagina_producto").fadeIn(300);  
+            $("#MarcoDireccion_produccion").fadeOut(200);                        
+            $("#<?php echo $this->campoSeguro('soporteProduccion')?>").addClass("validate[required]");
+            $("#<?php echo $this->campoSeguro('soporteProduccion')?>").removeAttr('disabled');
+            $("#<?php echo $this->campoSeguro('soporteProduccion')?>").hide().slideDown("slow");                
         }                
         
 $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").change(function(){
-
+    limpiarPublicacionesForm();
+    
     if($("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Obra de creación' ||
     $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Obra de creación complementaria' ||
     $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Interpretación' ){
@@ -910,7 +921,7 @@ $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").change(function(
             $("#MarcoFecha_produccion").fadeIn(300);  
             $("#MarcoDireccion_produccion").fadeIn(300);
             $("#MarcoPagina_producto").fadeOut(200);
-	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").val('');
+
 	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").removeClass("validate[required]");
 	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").attr('disabled','');
         	$("#<?php echo $this->campoSeguro('soporteProduccion')?>").hide();                                                       
@@ -927,7 +938,6 @@ $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").change(function(
             $("#MarcoTitulo_produccion").fadeOut(200);
             $("#MarcoPagina_producto").fadeOut(200);
             $("#MarcoDireccion_produccion").fadeOut(200);
-	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").val('');
 	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").removeClass("validate[required]");
 	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").attr('disabled','');
         	$("#<?php echo $this->campoSeguro('soporteProduccion')?>").hide();       
@@ -942,8 +952,7 @@ $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").change(function(
             $("#MarcoCodigo_issn").fadeIn(300);
             $("#MarcoDescripcion_produccion").fadeIn(300);  
             $("#MarcoPagina_producto").fadeIn(300);  
-            $("#MarcoDireccion_produccion").fadeOut(200);            
-            $("#<?php echo $this->campoSeguro('soporteProduccion')?>").val('');
+            $("#MarcoDireccion_produccion").fadeOut(200);                        
             $("#<?php echo $this->campoSeguro('soporteProduccion')?>").addClass("validate[required]");
             $("#<?php echo $this->campoSeguro('soporteProduccion')?>").removeAttr('disabled');
             $("#<?php echo $this->campoSeguro('soporteProduccion')?>").hide().slideDown("slow");                    
@@ -1014,7 +1023,21 @@ function consultarCiudad(elem, request, response){
         });
     };
 
+function limpiarPublicacionesForm(){
 
+            $("#<?php echo $this->campoSeguro('titulo_produccion')?>").val('');
+            $("#<?php echo $this->campoSeguro('nombre_autor')?>").val('');
+            $("#<?php echo $this->campoSeguro('fecha_produccion')?>").val('');                            
+            $("#<?php echo $this->campoSeguro('nombre_editorial')?>").val('');
+            $("#<?php echo $this->campoSeguro('volumen')?>").val('');
+            $("#<?php echo $this->campoSeguro('pagina_producto')?>").val(''); 
+            $("#<?php echo $this->campoSeguro('codigo_isbn')?>").val('');
+            $("#<?php echo $this->campoSeguro('codigo_issn')?>").val('');
+            $("#<?php echo $this->campoSeguro('descripcion_produccion')?>").val('');            
+            $("#<?php echo $this->campoSeguro('direccion_produccion')?>").val('');
+            $("#<?php echo $this->campoSeguro('soporteProduccion')?>").val('');        
+
+}
 
 
 function consultarDepartamentoRes(elem, request, response){

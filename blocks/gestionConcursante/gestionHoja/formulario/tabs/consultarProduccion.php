@@ -55,6 +55,7 @@ class consultarProduccion {
 	//identifca lo roles para la busqueda de subsistemas
             $parametro=array('id_usuario'=>$_REQUEST['usuario']);    
             $cadena_sql = $this->miSql->getCadenaSql("consultarProduccion", $parametro);
+            error_log($cadena_sql);
             $resultadoListaProduccion = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
             //-----BUSCA LOS TIPOS DE SOPORTES PARA EL FORMUALRIO, SEGÚN LOS RELACIONADO EN LA TABLA
             $parametroTipoSop = array('dato_relaciona'=>'datosProduccion',);
@@ -99,18 +100,18 @@ class consultarProduccion {
                     if($resultadoListaProduccion)
                         {
                             $columnas = array( 
-                                            $this->lenguaje->getCadena ("ciudad_produccion"),
+                                            //$this->lenguaje->getCadena ("ciudad_produccion"),
                                             $this->lenguaje->getCadena ("fecha_produccion"),
                                             $this->lenguaje->getCadena ("codigo_tipo_produccion"),
                                             $this->lenguaje->getCadena ("titulo_produccion"),
                                             $this->lenguaje->getCadena ("nombre_autor"),
-                                            $this->lenguaje->getCadena ("nombre_producto_incluye"),
+                                            //$this->lenguaje->getCadena ("nombre_producto_incluye"),
                                             $this->lenguaje->getCadena ("nombre_editorial"),
                                             $this->lenguaje->getCadena ("volumen"),
                                             $this->lenguaje->getCadena ("pagina_producto"),
                                             $this->lenguaje->getCadena ("codigo_isbn"),
                                             $this->lenguaje->getCadena ("codigo_issn"),
-                                            $this->lenguaje->getCadena ("indexado"),
+                                            //$this->lenguaje->getCadena ("indexado"),
                                             $this->lenguaje->getCadena ("descripcion_produccion"),
                                             $this->lenguaje->getCadena ("direccion_produccion"));
                             
@@ -154,18 +155,18 @@ class consultarProduccion {
                                         $variableBorrar.= "#tabProduccion";      
                                         
                                         $mostrarHtml = "<tr align='center'>
-                                                <td align='left'>".$resultadoListaProduccion[$key]['ciudad']."</td>
+                                               
                                                 <td align='left'>".$resultadoListaProduccion[$key]['fecha_produccion']."</td>
                                                 <td align='left'>".$resultadoListaProduccion[$key]['nombre_tipo_produccion']."</td>
                                                 <td align='left'>".$resultadoListaProduccion[$key]['titulo_produccion']."</td>
                                                 <td align='left'>".$resultadoListaProduccion[$key]['nombre_autor']."</td>
-                                                <td align='left'>".$resultadoListaProduccion[$key]['nombre_producto_incluye']."</td>                                                    
+                                                
                                                 <td align='left'>".$resultadoListaProduccion[$key]['nombre_editorial']."</td>
                                                 <td align='left'>".$resultadoListaProduccion[$key]['volumen']."</td>
                                                 <td align='left'>".$resultadoListaProduccion[$key]['pagina']."</td>
                                                 <td align='left'>".$resultadoListaProduccion[$key]['codigo_isbn']."</td>
                                                 <td align='left'>".$resultadoListaProduccion[$key]['codigo_issn']."</td>
-                                                <td align='left'>".$resultadoListaProduccion[$key]['indexado']."</td>
+                                                
                                                 <td align='left'>".$resultadoListaProduccion[$key]['descripcion']."</td>";
                                         $mostrarHtml .= "<td>";
                                                     if(isset($resultadoListaProduccion[$key]['direccion_produccion']) && $resultadoListaProduccion[$key]['direccion_produccion']!='')
