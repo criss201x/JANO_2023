@@ -102,7 +102,7 @@ class consultarProduccion {
                             $columnas = array( 
                                             //$this->lenguaje->getCadena ("ciudad_produccion"),
                                             $this->lenguaje->getCadena ("fecha_produccion"),
-                                            $this->lenguaje->getCadena ("codigo_tipo_produccion"),
+                                            $this->lenguaje->getCadena ("nombre_tipo_produccion"),
                                             $this->lenguaje->getCadena ("titulo_produccion"),
                                             $this->lenguaje->getCadena ("nombre_autor"),
                                             //$this->lenguaje->getCadena ("nombre_producto_incluye"),

@@ -641,7 +641,11 @@ class actividadForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                      
-                                    echo $this->miFormulario->division ( "fin");                                                                                                                    
+                                    echo $this->miFormulario->division ( "fin");               
+                                    $atributos ["id"] = "MarcoDescripcion_actividad";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );                                                                                                                                                  
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'descripcion_actividad';
                                     $atributos ['id'] = $esteCampo;
@@ -675,6 +679,7 @@ class actividadForm {
                                     echo $this->miFormulario->campoTextArea ( $atributos );
                                     unset ( $atributos );                                                   
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------                                                                      
+                                    echo $this->miFormulario->division ( "fin");               
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $atributos ["id"] = "MarcoJefe_actividad";
                                     $atributos ["estilo"] = "Marco";
@@ -708,7 +713,11 @@ class actividadForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                    
-                                    echo $this->miFormulario->division ( "fin");                                                                                                                    
+                                    echo $this->miFormulario->division ( "fin");                
+                                    $atributos ["id"] = "MarcoFecha_inicio_actividad";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );                                                                                                             
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     
                                     $esteCampo = 'fecha_inicio_actividad';
@@ -737,6 +746,11 @@ class actividadForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    echo $this->miFormulario->division ( "fin");                
+                                    $atributos ["id"] = "MarcoFecha_fin_actividad";
+                                    $atributos ["estilo"] = "Marco";
+                                    echo $this->miFormulario->division ( "inicio", $atributos );
+                                    unset ( $atributos );                                                                           
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'fecha_fin_actividad';
                                     $atributos ['id'] = $esteCampo;
@@ -764,6 +778,7 @@ class actividadForm {
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
                                     // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    echo $this->miFormulario->division ( "fin");                
                             }
                             echo $this->miFormulario->agrupacion ( 'fin' );
                             unset ( $atributos );                                    

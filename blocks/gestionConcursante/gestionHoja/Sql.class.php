@@ -311,7 +311,7 @@ class Sql extends \Sql {
                                 $cadenaSql.=" act.tipo_producto, ";
                                 $cadenaSql.=" act.nombre_ponencia, ";
                                 $cadenaSql.=" act.nombre_evento, ";
-                                $cadenaSql.=" act.titulo_pantente, ";
+                                $cadenaSql.=" act.titulo_patente, ";
                                 $cadenaSql.=" act.numero_aprobacion_patente, ";
                                 $cadenaSql.=" act.ano_aprobacion, ";
                                 $cadenaSql.=" act.nombre_proyecto";
@@ -725,12 +725,13 @@ class Sql extends \Sql {
                                 $cadenaSql.=" descripcion,";
                                 $cadenaSql.=" jefe_actividad, ";
                                 $cadenaSql.=" fecha_inicio, ";
-                                $cadenaSql.=" fecha_fin)";
+                                $cadenaSql.=" fecha_fin, ";
+                                $cadenaSql.=" tipo_producto)";
                                 $cadenaSql.=" VALUES (";
                                 $cadenaSql.=" DEFAULT,";
                                 $cadenaSql.=" '".$variable['consecutivo_persona']."',";
                                 $cadenaSql.=" '".$variable['pais_actividad']."',";
-                                $cadenaSql.=" '".$variable['codigo_nivel_institucion']."',";
+                                $cadenaSql.=" ".$variable['codigo_nivel_institucion'].",";
                                 $cadenaSql.=" '".$variable['codigo_institucion_actividad']."',";
                                 if(isset($variable['codigo_institucion_actividad']) && $variable['codigo_institucion_actividad']==0)
                                     {$cadenaSql.=" '".$variable['nombre_institucion_actividad']."',";}
@@ -751,7 +752,8 @@ class Sql extends \Sql {
                                 $cadenaSql.=" '".$variable['descripcion_actividad']."',";
                                 $cadenaSql.=" '".$variable['jefe_actividad']."',";
                                 $cadenaSql.=" '".$variable['fecha_inicio_actividad']."',";
-                                $cadenaSql.=" '".$variable['fecha_fin_actividad']."'";
+                                $cadenaSql.=" '".$variable['fecha_fin_actividad']."',";
+                                $cadenaSql.=" '".$variable['tipo_producto']."'";
                                 $cadenaSql.=" )";
                                 $cadenaSql.=" RETURNING consecutivo_actividad";
                             break;
@@ -1003,7 +1005,7 @@ class Sql extends \Sql {
                                 $cadenaSql.=" concurso.actividad_academica";
                                 $cadenaSql.=" SET ";
                                 $cadenaSql.=" pais_actividad='".$variable['pais_actividad']."', ";
-                                $cadenaSql.=" codigo_nivel_institucion='".$variable['codigo_nivel_institucion']."', ";
+                                $cadenaSql.=" codigo_nivel_institucion=".$variable['codigo_nivel_institucion'].", ";
                                 $cadenaSql.=" codigo_institucion='".$variable['codigo_institucion_actividad']."', ";
                                 if(isset($variable['codigo_institucion_actividad']) && $variable['codigo_institucion_actividad']==0)
                                      {$cadenaSql.=" nombre_institucion='".$variable['nombre_institucion_actividad']."', ";}

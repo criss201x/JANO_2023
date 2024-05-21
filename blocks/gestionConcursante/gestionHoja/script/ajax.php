@@ -403,33 +403,56 @@ $(function () {
 
           
 //controles idioma        
-if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
-        $("#MarcoCertificacion").fadeOut(200);
-        $("#<?php echo $this->campoSeguro('certificacion')?>").val('');
-        $("#<?php echo $this->campoSeguro('certificacion')?>").removeClass("validate[required]");
-        $("#<?php echo $this->campoSeguro('certificacion')?>").attr('disabled','');
-        $("#<?php echo $this->campoSeguro('certificacion')?>").hide();
+if($("#<?php echo $this->campoSeguro('certificado')?>").val()=='N'){
+                 $("#<?php echo $this->campoSeguro('certificacion')?>").val('');
+                 $("#<?php echo $this->campoSeguro('certificacion')?>").removeClass("validate[required]");
+                 $("#<?php echo $this->campoSeguro('certificacion')?>").attr('disabled','');
+                 $("#<?php echo $this->campoSeguro('certificacion')?>").hide();
+                 
+                 $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").val('');
+                 $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").removeClass("validate[required]");
+                 $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").attr('disabled','');
+                 $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").hide();
+                 
 
-        $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").val('');
-        $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").removeClass("validate[required]");
-        $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").attr('disabled','');
-        $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").hide();
-        
-        $("#<?php echo $this->campoSeguro('soporteIdioma')?>").val('');
-        $("#<?php echo $this->campoSeguro('soporteIdioma')?>").removeClass("validate[required]");
-        $("#<?php echo $this->campoSeguro('soporteIdioma')?>").attr('disabled','');
-        $("#<?php echo $this->campoSeguro('soporteIdioma')?>").hide();        
+                 $("#<?php echo $this->campoSeguro('soporteIdioma')?>").removeClass("validate[required]");
+                 $("#<?php echo $this->campoSeguro('soporteIdioma')?>").attr('disabled','');
+                 $("#<?php echo $this->campoSeguro('soporteIdioma')?>").hide();
+                 
+                 $("#<?php echo $this->campoSeguro('tipo_examen')?>").val('');
+                 $("#<?php echo $this->campoSeguro('tipo_examen')?>").removeClass("validate[required]");
+                 $("#<?php echo $this->campoSeguro('tipo_examen')?>").attr('disabled','');
+                 $("#<?php echo $this->campoSeguro('tipo_examen')?>").hide();                 
 
-        $("#<?php echo $this->campoSeguro('tipo_examen')?>").val('');
-        $("#<?php echo $this->campoSeguro('tipo_examen')?>").removeClass("validate[required]");
-        $("#<?php echo $this->campoSeguro('tipo_examen')?>").attr('disabled','');
-        $("#<?php echo $this->campoSeguro('tipo_examen')?>").hide();
-        
-        $("#<?php echo $this->campoSeguro('nivel_certificado')?>").val('');
-        $("#<?php echo $this->campoSeguro('nivel_certificado')?>").removeClass("validate[required]");
-        $("#<?php echo $this->campoSeguro('nivel_certificado')?>").attr('disabled','');
-        $("#<?php echo $this->campoSeguro('nivel_certificado')?>").hide();                
-    }
+                 $("#<?php echo $this->campoSeguro('nivel_certificado')?>").val('');
+                 $("#<?php echo $this->campoSeguro('nivel_certificado')?>").removeClass("validate[required]");
+                 $("#<?php echo $this->campoSeguro('nivel_certificado')?>").attr('disabled','');
+                 $("#<?php echo $this->campoSeguro('nivel_certificado')?>").hide();                 
+                 $("#MarcoCertificacion").fadeOut(200);
+            }else if ($("#<?php echo $this->campoSeguro('certificado')?>").val()=='S'){
+                  $("#MarcoCertificacion").fadeIn(300);
+
+                  $("#<?php echo $this->campoSeguro('certificacion')?>").addClass("validate[required]");
+                  $("#<?php echo $this->campoSeguro('certificacion')?>").removeAttr('disabled');
+                  $("#<?php echo $this->campoSeguro('certificacion')?>").hide().slideDown("slow");
+                  
+
+                  $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").addClass("validate[required]");
+                  $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").removeAttr('disabled');
+                  $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").hide().slideDown("slow");
+                  
+
+                  $("#<?php echo $this->campoSeguro('tipo_examen')?>").addClass("validate[required]");
+                  $("#<?php echo $this->campoSeguro('tipo_examen')?>").removeAttr('disabled');
+                  $("#<?php echo $this->campoSeguro('tipo_examen')?>").hide().slideDown("slow");
+                  
+
+                  $("#<?php echo $this->campoSeguro('nivel_certificado')?>").addClass("validate[required]");
+                  $("#<?php echo $this->campoSeguro('nivel_certificado')?>").removeAttr('disabled');
+                  $("#<?php echo $this->campoSeguro('nivel_certificado')?>").hide().slideDown("slow");                  
+                 }else{
+                    $("#MarcoCertificacion").fadeOut(200);
+                 }
    
    $("#<?php echo $this->campoSeguro('certificado')?>").change(function(){
             if($("#<?php echo $this->campoSeguro('certificado')?>").val()=='N'){
@@ -443,7 +466,7 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
                  $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").attr('disabled','');
                  $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").hide();
                  
-                 $("#<?php echo $this->campoSeguro('soporteIdioma')?>").val('');
+
                  $("#<?php echo $this->campoSeguro('soporteIdioma')?>").removeClass("validate[required]");
                  $("#<?php echo $this->campoSeguro('soporteIdioma')?>").attr('disabled','');
                  $("#<?php echo $this->campoSeguro('soporteIdioma')?>").hide();
@@ -470,7 +493,7 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
                   $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").removeAttr('disabled');
                   $("#<?php echo $this->campoSeguro('institucion_certificacion')?>").hide().slideDown("slow");
                   
-                  $("#<?php echo $this->campoSeguro('soporteIdioma')?>").val('');
+
                   $("#<?php echo $this->campoSeguro('soporteIdioma')?>").addClass("validate[required]");
                   $("#<?php echo $this->campoSeguro('soporteIdioma')?>").removeAttr('disabled');
                   $("#<?php echo $this->campoSeguro('soporteIdioma')?>").hide().slideDown("slow");
@@ -501,75 +524,23 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
                     $("#MarcoRol_investigacion").fadeOut(200);
                     $("#MarcoNombre_proyecto").fadeOut(200);
                     $("#MarcoJefe_actividad").fadeOut(200);        
-                 $("#<?php echo $this->campoSeguro('titulo_patente')?>").val('');
-                 $("#<?php echo $this->campoSeguro('titulo_patente')?>").removeClass("validate[required]");
-                 $("#<?php echo $this->campoSeguro('titulo_patente')?>").attr('disabled','');
-                 $("#<?php echo $this->campoSeguro('titulo_patente')?>").hide();
-                 
-                 $("#<?php echo $this->campoSeguro('numero_aprobacion_patente')?>").val('');
-                 $("#<?php echo $this->campoSeguro('numero_aprobacion_patente')?>").removeClass("validate[required]");
-                 $("#<?php echo $this->campoSeguro('numero_aprobacion_patente')?>").attr('disabled','');
-                 $("#<?php echo $this->campoSeguro('numero_aprobacion_patente')?>").hide();
-                 
-                 $("#<?php echo $this->campoSeguro('ano_aprobacion')?>").val('');
-                 $("#<?php echo $this->campoSeguro('ano_aprobacion')?>").removeClass("validate[required]");
-                 $("#<?php echo $this->campoSeguro('ano_aprobacion')?>").attr('disabled','');
-                 $("#<?php echo $this->campoSeguro('ano_aprobacion')?>").hide();        
-
-                  $("#<?php echo $this->campoSeguro('pais_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('pais_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('pais_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('pais_actividad')?>").hide();                  
-
-                  $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('nombre_evento')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nombre_evento')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nombre_evento')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nombre_evento')?>").hide();                                    
-
-                  $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('rol_investigacion')?>").val('');
-                  $("#<?php echo $this->campoSeguro('rol_investigacion')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('rol_investigacion')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('rol_investigacion')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('jefe_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('jefe_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('jefe_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('jefe_actividad')?>").hide();                          
+                    $("#MarcoFecha_inicio_actividad").fadeOut(200);        
+                    $("#MarcoFecha_fin_actividad").fadeOut(200);      
+                    $("#MarcoDescripcion_actividad").fadeOut(200);      
+                      
+    }else if ($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Patente'){
+                $("#MarcoPatente").fadeIn(300);
+                $("#MarcoPais_actividad").fadeOut(200);
+                $("#MarcoNivel_institucion_actividad").fadeOut(200);
+                $("#MarcoCodigo_institucion_actividad").fadeOut(200);
+                $("#MarcoNombre_institucion_actividad").fadeOut(200);                                    
+                $("#MarcoNombre_ponencia").fadeOut(200);
+                $("#MarcoNombre_evento").fadeOut(200);
+                $("#MarcoCorreo_institucion_actividad").fadeOut(200);
+                $("#MarcoTelefono_institucion_actividad").fadeOut(200);                                    
+                $("#MarcoRol_investigacion").fadeOut(200);
+                $("#MarcoNombre_proyecto").fadeOut(200);
+                $("#MarcoJefe_actividad").fadeOut(200);
 
     }
           $("#<?php echo $this->campoSeguro('tipo_producto')?>").change(function(){
@@ -586,76 +557,7 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
                 $("#MarcoRol_investigacion").fadeOut(200);
                 $("#MarcoNombre_proyecto").fadeOut(200);
                 $("#MarcoJefe_actividad").fadeOut(200);
-                
-                  $("#<?php echo $this->campoSeguro('titulo_patente')?>").val('');
-                  $("#<?php echo $this->campoSeguro('titulo_patente')?>").addClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('titulo_patente')?>").removeAttr('disabled');
-                  $("#<?php echo $this->campoSeguro('titulo_patente')?>").hide().slideDown("slow");
-                  
-                  $("#<?php echo $this->campoSeguro('numero_aprobacion_patente')?>").val('');
-                  $("#<?php echo $this->campoSeguro('numero_aprobacion_patente')?>").addClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('numero_aprobacion_patente')?>").removeAttr('disabled');
-                  $("#<?php echo $this->campoSeguro('numero_aprobacion_patente')?>").hide().slideDown("slow");
-                  
-                  $("#<?php echo $this->campoSeguro('ano_aprobacion')?>").val('');
-                  $("#<?php echo $this->campoSeguro('ano_aprobacion')?>").addClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('ano_aprobacion')?>").removeAttr('disabled');
-                  $("#<?php echo $this->campoSeguro('ano_aprobacion')?>").hide().slideDown("slow");
 
-                  $("#<?php echo $this->campoSeguro('pais_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('pais_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('pais_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('pais_actividad')?>").hide();                  
-
-                  $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('nombre_evento')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nombre_evento')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nombre_evento')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nombre_evento')?>").hide();                                    
-
-                  $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('rol_investigacion')?>").val('');
-                  $("#<?php echo $this->campoSeguro('rol_investigacion')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('rol_investigacion')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('rol_investigacion')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('jefe_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('jefe_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('jefe_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('jefe_actividad')?>").hide();                  
                                                  
             } else if($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Proyectos de investigación e Investigación creación'){
                 $("#MarcoPatente").fadeOut(200);
@@ -671,61 +573,6 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
                 $("#MarcoNombre_ponencia").fadeOut(200);
                 $("#MarcoNombre_evento").fadeOut(200);                
 
-            $("#<?php echo $this->campoSeguro('pais_actividad')?>").val('');
-            $("#<?php echo $this->campoSeguro('pais_actividad')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('pais_actividad')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('pais_actividad')?>").hide().slideDown("slow");            
-
-            $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").val('');
-            $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").hide().slideDown("slow");            
-
-            $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").val('');
-            $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").hide().slideDown("slow");            
-
-            $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").val('');
-            $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").hide().slideDown("slow");            
-                      
-            $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").val('');
-            $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").hide().slideDown("slow");            
-
-            $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").val('');
-            $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").hide().slideDown("slow");            
-                        
-            $("#<?php echo $this->campoSeguro('rol_investigacion')?>").val('');
-            $("#<?php echo $this->campoSeguro('rol_investigacion')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('rol_investigacion')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('rol_investigacion')?>").hide().slideDown("slow");            
-
-            $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").val('');
-            $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").hide().slideDown("slow");            
-
-            $("#<?php echo $this->campoSeguro('jefe_actividad')?>").val('');
-            $("#<?php echo $this->campoSeguro('jefe_actividad')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('jefe_actividad')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('jefe_actividad')?>").hide().slideDown("slow");        
-            
-            $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").val('');
-            $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").removeClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").attr('disabled','');
-            $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").hide();                  
-                  
-            $("#<?php echo $this->campoSeguro('nombre_evento')?>").val('');
-            $("#<?php echo $this->campoSeguro('nombre_evento')?>").removeClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('nombre_evento')?>").attr('disabled','');
-            $("#<?php echo $this->campoSeguro('nombre_evento')?>").hide();                                      
-
             } else if($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Ponencia nacional' || $("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Ponencia internacional'){
                 $("#MarcoPatente").fadeOut(200);
                 $("#MarcoPais_actividad").fadeIn(300);                
@@ -736,46 +583,6 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
                 $("#MarcoNombre_evento").fadeIn(300);
                 $("#MarcoNombre_proyecto").fadeOut(200);
                 $("#MarcoRol_investigacion").fadeOut(200);
-
-            $("#<?php echo $this->campoSeguro('pais_actividad')?>").val('');
-            $("#<?php echo $this->campoSeguro('pais_actividad')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('pais_actividad')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('pais_actividad')?>").hide().slideDown("slow");            
-
-            $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").val('');
-            $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").hide().slideDown("slow");            
-
-            $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").val('');
-            $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").hide().slideDown("slow");            
-
-            $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").val('');
-            $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").hide().slideDown("slow");            
-                        
-            $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").val('');
-            $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").hide().slideDown("slow");            
-
-            $("#<?php echo $this->campoSeguro('nombre_evento')?>").val('');
-            $("#<?php echo $this->campoSeguro('nombre_evento')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('nombre_evento')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('nombre_evento')?>").hide().slideDown("slow");            
-
-            $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").val('');
-            $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").removeClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").attr('disabled','');
-            $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").hide();         
-
-            $("#<?php echo $this->campoSeguro('rol_investigacion')?>").val('');
-            $("#<?php echo $this->campoSeguro('rol_investigacion')?>").removeClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('rol_investigacion')?>").attr('disabled','');
-            $("#<?php echo $this->campoSeguro('rol_investigacion')?>").hide();    
 
             }else{
                 $("#MarcoPatente").fadeOut(200);        
@@ -790,85 +597,26 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
                     $("#MarcoRol_investigacion").fadeOut(200);
                     $("#MarcoNombre_proyecto").fadeOut(200);
                     $("#MarcoJefe_actividad").fadeOut(200);        
-                 $("#<?php echo $this->campoSeguro('titulo_patente')?>").val('');
-                 $("#<?php echo $this->campoSeguro('titulo_patente')?>").removeClass("validate[required]");
-                 $("#<?php echo $this->campoSeguro('titulo_patente')?>").attr('disabled','');
-                 $("#<?php echo $this->campoSeguro('titulo_patente')?>").hide();
-                 
-                 $("#<?php echo $this->campoSeguro('numero_aprobacion_patente')?>").val('');
-                 $("#<?php echo $this->campoSeguro('numero_aprobacion_patente')?>").removeClass("validate[required]");
-                 $("#<?php echo $this->campoSeguro('numero_aprobacion_patente')?>").attr('disabled','');
-                 $("#<?php echo $this->campoSeguro('numero_aprobacion_patente')?>").hide();
-                 
-                 $("#<?php echo $this->campoSeguro('ano_aprobacion')?>").val('');
-                 $("#<?php echo $this->campoSeguro('ano_aprobacion')?>").removeClass("validate[required]");
-                 $("#<?php echo $this->campoSeguro('ano_aprobacion')?>").attr('disabled','');
-                 $("#<?php echo $this->campoSeguro('ano_aprobacion')?>").hide();        
-
-                  $("#<?php echo $this->campoSeguro('pais_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('pais_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('pais_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('pais_actividad')?>").hide();                  
-
-                  $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('nombre_evento')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nombre_evento')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nombre_evento')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nombre_evento')?>").hide();                                    
-
-                  $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('rol_investigacion')?>").val('');
-                  $("#<?php echo $this->campoSeguro('rol_investigacion')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('rol_investigacion')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('rol_investigacion')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").val('');
-                  $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").hide();                  
-                  
-                  $("#<?php echo $this->campoSeguro('jefe_actividad')?>").val('');
-                  $("#<?php echo $this->campoSeguro('jefe_actividad')?>").removeClass("validate[required]");
-                  $("#<?php echo $this->campoSeguro('jefe_actividad')?>").attr('disabled','');
-                  $("#<?php echo $this->campoSeguro('jefe_actividad')?>").hide();                     
+                    $("#MarcoFecha_inicio_actividad").fadeOut(200);        
+                    $("#MarcoFecha_fin_actividad").fadeOut(200);        
+                    $("#MarcoDescripcion_actividad").fadeOut(200);                          
             }  
 
           });                
 
           if($("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()==''){
-            limpiarPublicacionesForm();
-	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").val('');
-	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").removeClass("validate[required]");
-	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").attr('disabled','');
-        	$("#<?php echo $this->campoSeguro('soporteProduccion')?>").hide();            
+            $("#MarcoNombre_autor").fadeOut(200);
+            $("#MarcoFecha_produccion").fadeOut(200);
+            $("#MarcoNombre_producto_incluye").fadeOut(200);
+            $("#MarcoNombre_editorial").fadeOut(200);
+            $("#MarcoVolumen").fadeOut(200);
+            $("#MarcoCodigo_isbn").fadeOut(200);
+            $("#MarcoCodigo_issn").fadeOut(200);
+            $("#MarcoDescripcion_produccion").fadeOut(200);
+            $("#MarcoTitulo_produccion").fadeOut(200);
+            $("#MarcoPagina_producto").fadeOut(200);
+            $("#MarcoDireccion_produccion").fadeOut(200);
+            
         }else if ($("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Obra de creación' ||
     $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Obra de creación complementaria' ||
     $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Interpretación' ){
@@ -883,7 +631,7 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
             $("#MarcoFecha_produccion").fadeIn(300);  
             $("#MarcoDireccion_produccion").fadeIn(300);
             $("#MarcoPagina_producto").fadeOut(200);
-	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").val('');
+
 	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").removeClass("validate[required]");
 	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").attr('disabled','');
         	$("#<?php echo $this->campoSeguro('soporteProduccion')?>").hide();              
@@ -899,17 +647,16 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
             $("#MarcoDescripcion_produccion").fadeIn(300);  
             $("#MarcoPagina_producto").fadeIn(300);  
             $("#MarcoDireccion_produccion").fadeOut(200);                        
-            $("#<?php echo $this->campoSeguro('soporteProduccion')?>").addClass("validate[required]");
-            $("#<?php echo $this->campoSeguro('soporteProduccion')?>").removeAttr('disabled');
-            $("#<?php echo $this->campoSeguro('soporteProduccion')?>").hide().slideDown("slow");                
+
+        
         }                
         
 $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").change(function(){
-    limpiarPublicacionesForm();
     
     if($("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Obra de creación' ||
     $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Obra de creación complementaria' ||
     $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()=='Interpretación' ){
+
             $("#MarcoNombre_autor").fadeOut(200);
             $("#MarcoNombre_producto_incluye").fadeOut(200);
             $("#MarcoNombre_editorial").fadeOut(200);
@@ -921,12 +668,22 @@ $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").change(function(
             $("#MarcoFecha_produccion").fadeIn(300);  
             $("#MarcoDireccion_produccion").fadeIn(300);
             $("#MarcoPagina_producto").fadeOut(200);
-
+            
+            $("#<?php echo $this->campoSeguro('nombre_autor')?>").val('');
+            $("#<?php echo $this->campoSeguro('nombre_editorial')?>").val('');
+            $("#<?php echo $this->campoSeguro('volumen')?>").val('');
+            $("#<?php echo $this->campoSeguro('pagina_producto')?>").val(''); 
+            $("#<?php echo $this->campoSeguro('codigo_isbn')?>").val('');
+            $("#<?php echo $this->campoSeguro('codigo_issn')?>").val('');
+            $("#<?php echo $this->campoSeguro('descripcion_produccion')?>").val('');            
+            
+            $("#<?php echo $this->campoSeguro('soporteProduccion')?>").val('');        
 	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").removeClass("validate[required]");
 	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").attr('disabled','');
         	$("#<?php echo $this->campoSeguro('soporteProduccion')?>").hide();                                                       
 
     }else if ($("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").val()==''){
+
             $("#MarcoNombre_autor").fadeOut(200);
             $("#MarcoFecha_produccion").fadeOut(200);
             $("#MarcoNombre_producto_incluye").fadeOut(200);
@@ -937,7 +694,7 @@ $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").change(function(
             $("#MarcoDescripcion_produccion").fadeOut(200);
             $("#MarcoTitulo_produccion").fadeOut(200);
             $("#MarcoPagina_producto").fadeOut(200);
-            $("#MarcoDireccion_produccion").fadeOut(200);
+            $("#MarcoDireccion_produccion").fadeOut(200);            
 	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").removeClass("validate[required]");
 	        $("#<?php echo $this->campoSeguro('soporteProduccion')?>").attr('disabled','');
         	$("#<?php echo $this->campoSeguro('soporteProduccion')?>").hide();       
@@ -953,9 +710,12 @@ $("#<?php echo $this->campoSeguro('nombre_tipo_produccion')?>").change(function(
             $("#MarcoDescripcion_produccion").fadeIn(300);  
             $("#MarcoPagina_producto").fadeIn(300);  
             $("#MarcoDireccion_produccion").fadeOut(200);                        
+            $("#<?php echo $this->campoSeguro('direccion_produccion')?>").val('');
+            if ($("#<?php echo $this->campoSeguro('soporteProduccion')?>").val()==''){
             $("#<?php echo $this->campoSeguro('soporteProduccion')?>").addClass("validate[required]");
             $("#<?php echo $this->campoSeguro('soporteProduccion')?>").removeAttr('disabled');
             $("#<?php echo $this->campoSeguro('soporteProduccion')?>").hide().slideDown("slow");                    
+            }
     }
 
 });
@@ -1038,6 +798,7 @@ function limpiarPublicacionesForm(){
             $("#<?php echo $this->campoSeguro('soporteProduccion')?>").val('');        
 
 }
+
 
 
 function consultarDepartamentoRes(elem, request, response){

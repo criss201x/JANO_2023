@@ -44,7 +44,7 @@ class RegistradorActividad
             'consecutivo_actividad' => $_REQUEST['consecutivo_actividad'],
             'consecutivo_persona' => $_REQUEST['consecutivo_persona'],
             'pais_actividad' => $_REQUEST['pais_actividad'],
-            'codigo_nivel_institucion' => $_REQUEST['nivel_institucion_actividad'],
+            'codigo_nivel_institucion' => ($_REQUEST['nivel_institucion_actividad']=='')? 'NULL':$_REQUEST['nivel_institucion_actividad'],
             'codigo_institucion_actividad' => $_REQUEST['codigo_institucion_actividad'],
             'nombre_institucion_actividad' => $_REQUEST['nombre_institucion_actividad'],
             'correo_institucion_actividad' => $_REQUEST['correo_institucion_actividad'],
@@ -62,6 +62,7 @@ class RegistradorActividad
             'jefe_actividad' => $_REQUEST['jefe_actividad'],
             'fecha_inicio_actividad' => $_REQUEST['fecha_inicio_actividad'],
             'fecha_fin_actividad' => $_REQUEST['fecha_fin_actividad'],
+            'tipo_producto' => $_REQUEST['tipo_producto'],
             'nombre' => $_REQUEST['nombre'],
             'apellido' => $_REQUEST['apellido'],
         );

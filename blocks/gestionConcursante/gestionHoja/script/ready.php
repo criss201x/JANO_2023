@@ -605,6 +605,10 @@ $('#<?php echo $this->campoSeguro('nivel_institucion_investigacion')?>').width(2
 $("#<?php echo $this->campoSeguro('nivel_institucion_investigacion')?>").select2(); 
 $('#<?php echo $this->campoSeguro('codigo_institucion_investigacion')?>').width(450);
 $("#<?php echo $this->campoSeguro('codigo_institucion_investigacion')?>").select2(); 
+$('#<?php echo $this->campoSeguro('tipo_producto')?>').width(450);
+$("#<?php echo $this->campoSeguro('tipo_producto')?>").select2(); 
+$('#<?php echo $this->campoSeguro('rol_investigacion')?>').width(450);
+$("#<?php echo $this->campoSeguro('rol_investigacion')?>").select2(); 
 
 $('#<?php echo $this->campoSeguro('pais_produccion')?>').width(210);
 $("#<?php echo $this->campoSeguro('pais_produccion')?>").select2(); 
@@ -631,6 +635,10 @@ $('#<?php echo $this->campoSeguro('certificado')?>').width(210);
 $("#<?php echo $this->campoSeguro('certificado')?>").select2(); 
 $('#<?php echo $this->campoSeguro('idioma_concurso')?>').width(210);
 $("#<?php echo $this->campoSeguro('idioma_concurso')?>").select2(); 
+$('#<?php echo $this->campoSeguro('tipo_examen')?>').width(210);
+$("#<?php echo $this->campoSeguro('tipo_examen')?>").select2(); 
+$('#<?php echo $this->campoSeguro('nivel_certificado')?>').width(210);
+$("#<?php echo $this->campoSeguro('nivel_certificado')?>").select2(); 
 
 
 <?php 
