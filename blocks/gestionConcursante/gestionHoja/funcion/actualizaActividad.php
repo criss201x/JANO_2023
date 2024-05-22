@@ -43,7 +43,7 @@ class RegistradorActividad
         $arregloDatos = array('id_usuario' => $_REQUEST['id_usuario'],
             'consecutivo_actividad' => $_REQUEST['consecutivo_actividad'],
             'consecutivo_persona' => $_REQUEST['consecutivo_persona'],
-            'pais_actividad' => $_REQUEST['pais_actividad'],
+            'pais_actividad' => ($_REQUEST['pais_actividad']=='')? 'NULL':$_REQUEST['pais_actividad'],
             'codigo_nivel_institucion' => ($_REQUEST['nivel_institucion_actividad']=='')? 'NULL':$_REQUEST['nivel_institucion_actividad'],
             'codigo_institucion_actividad' => $_REQUEST['codigo_institucion_actividad'],
             'nombre_institucion_actividad' => $_REQUEST['nombre_institucion_actividad'],
@@ -54,7 +54,7 @@ class RegistradorActividad
             //'nombre_actividad' => $_REQUEST['nombre_actividad'],
             'titulo_patente' => $_REQUEST['titulo_patente'],
             'numero_aprobacion_patente' => $_REQUEST['numero_aprobacion_patente'],
-            'ano_aprobacion' => $_REQUEST['ano_aprobacion'],
+            'ano_aprobacion' => ($_REQUEST['ano_aprobacion']=='')? 'NULL':$_REQUEST['ano_aprobacion'],
             'nombre_ponencia' => $_REQUEST['nombre_ponencia'],
             'nombre_evento' => $_REQUEST['nombre_evento'],
             'nombre_proyecto' => $_REQUEST['nombre_proyecto'],
@@ -63,16 +63,19 @@ class RegistradorActividad
             'fecha_inicio_actividad' => $_REQUEST['fecha_inicio_actividad'],
             'fecha_fin_actividad' => $_REQUEST['fecha_fin_actividad'],
             'tipo_producto' => $_REQUEST['tipo_producto'],
+            'rol_investigacion' => $_REQUEST['rol_investigacion'],
             'nombre' => $_REQUEST['nombre'],
             'apellido' => $_REQUEST['apellido'],
         );
         if ($arregloDatos['consecutivo_actividad'] == 0) {
             $cadenaSql = $this->miSql->getCadenaSql('registroActividad', $arregloDatos);
+            error_log($cadenaSql);
             $SQLs[] = $cadenaSql;
             $resultadoActividad = $esteRecursoDB->ejecutarAcceso($cadenaSql, "registra", $arregloDatos, "registroActividadAcademica");
             $_REQUEST['consecutivo_actividad'] = $resultadoActividad;
         } else {
-            $cadenaSql = $this->miSql->getCadenaSql('actualizarActividad', $arregloDatos);
+            $cadenaSql = $this->miSql->getCadenaSql('actualizarActividad', $arregloDatos);            
+            error_log($cadenaSql);
             $SQLs[] = $cadenaSql;
             $resultadoActividad = $esteRecursoDB->ejecutarAcceso($cadenaSql, "actualiza", $arregloDatos, "actualizarActividadAcademica");
         }

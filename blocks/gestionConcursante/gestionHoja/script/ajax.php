@@ -530,6 +530,9 @@ if($("#<?php echo $this->campoSeguro('certificado')?>").val()=='N'){
                       
     }else if ($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Patente'){
                 $("#MarcoPatente").fadeIn(300);
+                $("#MarcoDescripcion_actividad").fadeIn(300);
+                $("#MarcoFecha_inicio_actividad").fadeIn(300);
+                $("#MarcoFecha_fin_actividad").fadeIn(300);
                 $("#MarcoPais_actividad").fadeOut(200);
                 $("#MarcoNivel_institucion_actividad").fadeOut(200);
                 $("#MarcoCodigo_institucion_actividad").fadeOut(200);
@@ -542,25 +545,11 @@ if($("#<?php echo $this->campoSeguro('certificado')?>").val()=='N'){
                 $("#MarcoNombre_proyecto").fadeOut(200);
                 $("#MarcoJefe_actividad").fadeOut(200);
 
-    }
-          $("#<?php echo $this->campoSeguro('tipo_producto')?>").change(function(){
-            if($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Patente'){
-                $("#MarcoPatente").fadeIn(300);
-                $("#MarcoPais_actividad").fadeOut(200);
-                $("#MarcoNivel_institucion_actividad").fadeOut(200);
-                $("#MarcoCodigo_institucion_actividad").fadeOut(200);
-                $("#MarcoNombre_institucion_actividad").fadeOut(200);                                    
-                $("#MarcoNombre_ponencia").fadeOut(200);
-                $("#MarcoNombre_evento").fadeOut(200);
-                $("#MarcoCorreo_institucion_actividad").fadeOut(200);
-                $("#MarcoTelefono_institucion_actividad").fadeOut(200);                                    
-                $("#MarcoRol_investigacion").fadeOut(200);
-                $("#MarcoNombre_proyecto").fadeOut(200);
-                $("#MarcoJefe_actividad").fadeOut(200);
 
-                                                 
-            } else if($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Proyectos de investigación e Investigación creación'){
-                $("#MarcoPatente").fadeOut(200);
+    }else if ($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Proyectos de investigación e Investigación creación'){
+        $("#MarcoPatente").fadeOut(200);
+                $("#MarcoNombre_ponencia").fadeOut(200);
+                $("#MarcoNombre_evento").fadeOut(200);                
                 $("#MarcoPais_actividad").fadeIn(300);                
                 $("#MarcoNivel_institucion_actividad").fadeIn(300);
                 $("#MarcoCodigo_institucion_actividad").fadeIn(300);
@@ -570,8 +559,80 @@ if($("#<?php echo $this->campoSeguro('certificado')?>").val()=='N'){
                 $("#MarcoRol_investigacion").fadeIn(300);
                 $("#MarcoNombre_proyecto").fadeIn(300);
                 $("#MarcoJefe_actividad").fadeIn(300);
+                $("#MarcoDescripcion_actividad").fadeIn(300);
+                $("#MarcoFecha_inicio_actividad").fadeIn(300);
+                $("#MarcoFecha_fin_actividad").fadeIn(300);                        
+    }else if($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Ponencia nacional' || $("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Ponencia internacional'){
+        $("#MarcoPatente").fadeOut(200);
+                $("#MarcoPais_actividad").fadeIn(300);                
+                $("#MarcoNivel_institucion_actividad").fadeIn(300);
+                $("#MarcoCodigo_institucion_actividad").fadeIn(300);
+                $("#MarcoNombre_institucion_actividad").fadeIn(300);
+                $("#MarcoNombre_ponencia").fadeIn(300);
+                $("#MarcoNombre_evento").fadeIn(300);
+                $("#MarcoNombre_proyecto").fadeOut(200);
+                $("#MarcoRol_investigacion").fadeOut(200);
+                $("#MarcoFecha_inicio_actividad").fadeIn(300);
+                $("#MarcoFecha_fin_actividad").fadeIn(300);
+                $("#MarcoDescripcion_actividad").fadeIn(300);
+                $("#MarcoJefe_actividad").fadeOut(200);
+                $("#MarcoCorreo_institucion_actividad").fadeOut(200);
+                $("#MarcoTelefono_institucion_actividad").fadeOut(200);    
+
+    }
+
+          $("#<?php echo $this->campoSeguro('tipo_producto')?>").change(function(){
+            if($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Patente'){
+                $("#MarcoPatente").fadeIn(300);
+                $("#MarcoDescripcion_actividad").fadeIn(300);
+                $("#MarcoFecha_inicio_actividad").fadeIn(300);
+                $("#MarcoFecha_fin_actividad").fadeIn(300);
+                $("#MarcoPais_actividad").fadeOut(200);
+                $("#MarcoNivel_institucion_actividad").fadeOut(200);
+                $("#MarcoCodigo_institucion_actividad").fadeOut(200);
+                $("#MarcoNombre_institucion_actividad").fadeOut(200);                                    
+                $("#MarcoNombre_ponencia").fadeOut(200);
+                $("#MarcoNombre_evento").fadeOut(200);
+                $("#MarcoCorreo_institucion_actividad").fadeOut(200);
+                $("#MarcoTelefono_institucion_actividad").fadeOut(200);                                    
+                $("#MarcoRol_investigacion").fadeOut(200);
+                $("#MarcoNombre_proyecto").fadeOut(200);
+                $("#MarcoJefe_actividad").fadeOut(200);
+
+                $("#<?php echo $this->campoSeguro('pais_actividad')?>").val('');
+                $("#<?php echo $this->campoSeguro('nivel_institucion_actividad')?>").val('');                
+                $("#<?php echo $this->campoSeguro('codigo_institucion_actividad')?>").val('');
+                $("#<?php echo $this->campoSeguro('nombre_institucion_actividad')?>").val('');                
+                $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").val('');
+                $("#<?php echo $this->campoSeguro('nombre_evento')?>").val('');                
+                $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").val('');
+                $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").val('');                
+                $("#<?php echo $this->campoSeguro('rol_investigacion')?>").val('');
+                $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").val('');                
+                $("#<?php echo $this->campoSeguro('jefe_actividad')?>").val('');
+
+            } else if($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Proyectos de investigación e Investigación creación'){
+                $("#MarcoPatente").fadeOut(200);
                 $("#MarcoNombre_ponencia").fadeOut(200);
                 $("#MarcoNombre_evento").fadeOut(200);                
+                $("#MarcoPais_actividad").fadeIn(300);                
+                $("#MarcoNivel_institucion_actividad").fadeIn(300);
+                $("#MarcoCodigo_institucion_actividad").fadeIn(300);
+                $("#MarcoNombre_institucion_actividad").fadeIn(300);
+                $("#MarcoCorreo_institucion_actividad").fadeIn(300);
+                $("#MarcoTelefono_institucion_actividad").fadeIn(300);
+                $("#MarcoRol_investigacion").fadeIn(300);
+                $("#MarcoNombre_proyecto").fadeIn(300);
+                $("#MarcoJefe_actividad").fadeIn(300);
+                $("#MarcoDescripcion_actividad").fadeIn(300);
+                $("#MarcoFecha_inicio_actividad").fadeIn(300);
+                $("#MarcoFecha_fin_actividad").fadeIn(300);                
+
+                $("#<?php echo $this->campoSeguro('titulo_patente')?>").val('');
+                $("#<?php echo $this->campoSeguro('numero_aprobacion_patente')?>").val('');
+                $("#<?php echo $this->campoSeguro('ano_aprobacion')?>").val('');
+                $("#<?php echo $this->campoSeguro('nombre_ponencia')?>").val('');
+                $("#<?php echo $this->campoSeguro('nombre_evento')?>").val('');       
 
             } else if($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Ponencia nacional' || $("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Ponencia internacional'){
                 $("#MarcoPatente").fadeOut(200);
@@ -581,8 +642,23 @@ if($("#<?php echo $this->campoSeguro('certificado')?>").val()=='N'){
                 $("#MarcoNombre_institucion_actividad").fadeIn(300);
                 $("#MarcoNombre_ponencia").fadeIn(300);
                 $("#MarcoNombre_evento").fadeIn(300);
+                $("#MarcoJefe_actividad").fadeOut(200);
+                $("#MarcoCorreo_institucion_actividad").fadeOut(200);
+                $("#MarcoTelefono_institucion_actividad").fadeOut(200);                                    
                 $("#MarcoNombre_proyecto").fadeOut(200);
                 $("#MarcoRol_investigacion").fadeOut(200);
+                $("#MarcoFecha_inicio_actividad").fadeIn(300);
+                $("#MarcoFecha_fin_actividad").fadeIn(300);
+                $("#MarcoDescripcion_actividad").fadeIn(300);
+
+                $("#<?php echo $this->campoSeguro('titulo_patente')?>").val('');
+                $("#<?php echo $this->campoSeguro('numero_aprobacion_patente')?>").val('');
+                $("#<?php echo $this->campoSeguro('ano_aprobacion')?>").val('');
+                $("#<?php echo $this->campoSeguro('rol_investigacion')?>").val('');
+                $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").val('');
+                $("#<?php echo $this->campoSeguro('correo_institucion_actividad')?>").val('');
+                $("#<?php echo $this->campoSeguro('telefono_institucion_actividad')?>").val('');                
+                $("#<?php echo $this->campoSeguro('jefe_actividad')?>").val('');                
 
             }else{
                 $("#MarcoPatente").fadeOut(200);        

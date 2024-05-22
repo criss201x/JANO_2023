@@ -50,6 +50,7 @@ class consultarActividad {
 	//identifca lo roles para la busqueda de subsistemas
             $parametro=array('id_usuario'=>$_REQUEST['usuario']);    
             $cadena_sql = $this->miSql->getCadenaSql("consultarActividad", $parametro);
+            error_log($cadena_sql);
             $resultadoListaActividad = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
             //-----BUSCA LOS TIPOS DE SOPORTES PARA EL FORMUALRIO, SEGÚN LOS RELACIONADO EN LA TABLA
             $parametroTipoSop = array('dato_relaciona'=>'datosActividad',);
@@ -99,7 +100,7 @@ class consultarActividad {
                                                 $this->lenguaje->getCadena ("fecha_inicio"),
                                                 $this->lenguaje->getCadena ("fecha_fin"),
                                                 $this->lenguaje->getCadena ("tiempo_experiencia"),
-                                                $this->lenguaje->getCadena ("codigo_tipo_actividad"),
+                                                $this->lenguaje->getCadena ("tipo_producto"),
                                                 $this->lenguaje->getCadena ("rol_investigacion"),
                                                 //$this->lenguaje->getCadena ("nombre_actividad"),
                                                 $this->lenguaje->getCadena ("titulo_patente"),
@@ -166,7 +167,7 @@ class consultarActividad {
                                                 <td align='left'>".$resultadoListaActividad[$key]['fecha_inicio']."</td>
                                                 <td align='left'>".$resultadoListaActividad[$key]['fecha_fin']."</td>
                                                 <td align='left'>".$diffAct[$key]->days."</td>    
-                                                <td align='left'>".$resultadoListaActividad[$key]['nombre_tipo_actividad']."</td>
+                                                <td align='left'>".$resultadoListaActividad[$key]['tipo_producto']."</td>
                                                 <td align='left'>".$resultadoListaActividad[$key]['rol_investigacion']."</td>
                                                 <td align='left'>".$resultadoListaActividad[$key]['titulo_patente']."</td>
                                                 <td align='left'>".$resultadoListaActividad[$key]['numero_aprobacion_patente']."</td>
