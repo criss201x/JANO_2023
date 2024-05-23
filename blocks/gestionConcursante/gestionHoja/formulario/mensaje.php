@@ -127,7 +127,7 @@ class registrarForm {
                                         break;        
                                     case "actualizoProfesional":
                                         $tipo = 'success';
-                                        $mensaje = "Los datos de Experiencia Profesional del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
+                                        $mensaje = "Los datos de experiencia profesional equivalente del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
                                         $boton = "continuar";
                                         $pestanna='#tabProfesional';
                                         break;                                    
@@ -139,27 +139,27 @@ class registrarForm {
                                         break; 
                                     case "actualizoActividad":
                                         $tipo = 'success';
-                                        $mensaje = "Los datos de  Actividad Académica del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
+                                        $mensaje = "Los datos de Productos de Investigación y/o Investigación - Creación del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
                                         $boton = "continuar";
                                         $pestanna='#tabActividad';
                                         break; 
                                     case "actualizoInvestigacion":
                                         $tipo = 'success';
-                                        $mensaje = "Los datos de Experiencia en Investigación del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
+                                        $mensaje = "Los datos de pertenencia a un grupo de investigación del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
                                         $boton = "continuar";
                                         //$variable.="&tab=tabContacto";
                                         $pestanna='#tabInvestigacion';
                                         break;  
                                     case "actualizoProduccion":
                                         $tipo = 'success';
-                                        $mensaje = "Los datos de Producción Académica del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
+                                        $mensaje = "Los datos de Publicaciones - Obras Artísticas del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
                                         $boton = "continuar";
                                         //$variable.="&tab=tabContacto";
                                         $pestanna='#tabProduccion';
                                         break;    
                                     case "actualizoIdioma":
                                         $tipo = 'success';
-                                        $mensaje = "Los datos de Segunda Lengua del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
+                                        $mensaje = "Los datos de Lengua extranjera del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
                                         $boton = "continuar";
                                         //$variable.="&tab=tabContacto";
                                         $pestanna='#tabIdiomas';

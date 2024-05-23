@@ -58,8 +58,9 @@ class consultarFormacion {
             $resultadoFormacion = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
             //-----BUSCA LOS TIPOS DE SOPORTES PARA EL FORMUALRIO, SEGÚN LOS RELACIONADO EN LA TABLA
             $parametroTipoSop = array('dato_relaciona'=>'datosFormacion',);
-            $cadenaSalud_sql = $this->miSql->getCadenaSql("buscarTipoSoporte", $parametroTipoSop);
+            $cadenaSalud_sql = $this->miSql->getCadenaSql("buscarTipoSoporte", $parametroTipoSop);            
             $resultadoTiposop = $esteRecursoDB->ejecutarAcceso($cadenaSalud_sql, "busqueda");
+            unset($resultadoTiposop[1]);//se elimina tarjeta profesional de esta vista debido a requerimiento por parte de oficina de docencia 
             // ---------------- SECCION: Enlace para soporte -----------------------------------------------
             $variableSoporte = "pagina=gestionarSoportes"; //pendiente la pagina para modificar parametro                                                        
             $variableSoporte.= "&action=gestionarSoportes";
@@ -97,7 +98,7 @@ class consultarFormacion {
                       </table></div> ";
 
                     if($resultadoFormacion)
-                        {   $columnas = array( 
+                        {   $columnas = array(
                                                 $this->lenguaje->getCadena ("pais_formacion"),
                                                 $this->lenguaje->getCadena ("nombre_institucion"),
                                                 $this->lenguaje->getCadena ("nivel_formacion"),

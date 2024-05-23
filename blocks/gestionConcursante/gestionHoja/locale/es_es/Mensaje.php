@@ -19,7 +19,7 @@ $this->idioma["marcoFactoresEvaluacion"]="Factores de evaluación";
 $this->idioma["marcoInformacionBasica"]="Datos Aspirante";
 $this->idioma["avisosHabilitantes"]="<strong>Atención!</strong> Estos requisitos son obligatorios para participar en el concurso";
 $this->idioma["avisosFactoresEvaluacion"]="<strong>Atención!</strong> Estos son requisitos puntuables";
-$this->idioma["marcoListaFormacion"]="Formación Académica Formal e Informal";
+$this->idioma["marcoListaFormacion"]="Formación Académica";
 $this->idioma["marcoProfesional"]="Registro Experiencia Profesional";
 $this->idioma["avisosAclaratoriosExProf"]="<strong>Antes de cargar los soportes requeridos por favor tener en cuenta las siguientes observaciones:</strong> <br> <ol type=”A”><li>Adjuntar únicamente experiencia profesional a partir del título de pregrado.</li><li>Para los docentes de la Facultad de Artes, es válida la producción Artística reconocida con intensidad horaria.</li></ol>";
 $this->idioma["marcoListaProfesional"]="Experiencia Profesional";
@@ -38,9 +38,9 @@ $this->idioma["marcoListaProduccion"]="Publicaciones - Obras Artísticas";
 $this->idioma["marcoIdioma"]="Registro Lengua Extranjera ";
 $this->idioma["marcoListaIdioma"]="Lengua Extranjera ";
 
-$this->idioma ["mensajeFormacion"] = "Mediante este formulario puede registrar formación formal e informal";
+$this->idioma ["mensajeFormacion"] = "Mediante este formulario puede registrar formación";
 $this->idioma ["avisosAclaratoriosFa"] = "<strong>Antes de cargar los soportes requeridos por favor tener en cuenta las siguientes observaciones:</strong> <br> <ol type=”A”><li>Cuando el certificado o diploma corresponda a un título extranjero debe anexar la convalidación respectiva.</li><li>Para los docentes de la Facultad de Artes, es válido adjuntar cursos y diplomas realizados especificando la intensidad horaria.</li> <li>Si su profesión requiere tarjeta profesional deberá adjuntarla.</li></ol>";
-$this->idioma ["mensajeActividad"] = "Mediante este formulario puede registrar certamenes, consejos, grupos de trabajo, monitorias en las que haya participado y distinciones que haya recibido";
+$this->idioma ["mensajeActividad"] = "¿¿¿¿¿¿¿¿¿agregar mensaje aqui????????????????";
 
 $this->idioma ["noDefinido"] = "Etiqueta no esta definida en locale/es_es/Mensaje.php";
 $this->idioma ["botonAceptar"] ="Aceptar";
@@ -115,7 +115,7 @@ $this->idioma["nombre_institucionTitulo"]="Ingrese el nombre de la institución 
 $this->idioma["nombre_institucion"]="Nombre institución ";
 $this->idioma["consecutivo_programaTitulo"]="Selecciona el programa académico";
 $this->idioma["consecutivo_programa"]="Programa académico ";
-$this->idioma["nombre_programaTitulo"]="Ingrese el nombre del programa académico o curso";
+$this->idioma["nombre_programaTitulo"]="Ingrese el nombre del programa académico";
 $this->idioma["nombre_programa"]="Nombre programa ";
 $this->idioma["cursos_temporalidadTitulo"]="Seleccione la periodicidad del curso";
 $this->idioma["cursos_temporalidad"]="Periodicidad ";

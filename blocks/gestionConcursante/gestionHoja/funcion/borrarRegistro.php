@@ -60,32 +60,32 @@ class borrarRegistro
                 $SQLs[] = $cadenaSql;
                 break;
             case 'borrarProfesional':
-                $arregloDatos['dato'] = ' Experiencia Profesional ';
+                $arregloDatos['dato'] = ' Experiencia Profesional equivalente';
                 $cadenaSql = $this->miSql->getCadenaSql('borrarProfesional', $arregloDatos);
                 $SQLs[] = $cadenaSql;
                 break;
             case 'borrarDocencia':
-                $arregloDatos['dato'] = ' Experiencia Docente ';
+                $arregloDatos['dato'] = ' Experiencia Docente Universitaria';
                 $cadenaSql = $this->miSql->getCadenaSql('borrarDocencia', $arregloDatos);
                 $SQLs[] = $cadenaSql;
                 break;
             case 'borrarActividad':
-                $arregloDatos['dato'] = ' Actividad Académica ';
+                $arregloDatos['dato'] = ' Producto de Investigación y/o Investigación - Creación ';
                 $cadenaSql = $this->miSql->getCadenaSql('borrarActividad', $arregloDatos);
                 $SQLs[] = $cadenaSql;
                 break;
             case 'borrarInvestigacion':
-                $arregloDatos['dato'] = ' Experiencia en Investigación ';
+                $arregloDatos['dato'] = ' grupo de investigación ';
                 $cadenaSql = $this->miSql->getCadenaSql('borrarInvestigacion', $arregloDatos);
                 $SQLs[] = $cadenaSql;
                 break;
             case 'borrarProduccion':
-                $arregloDatos['dato'] = ' Producción Académica ';
+                $arregloDatos['dato'] = ' Publicación - Obras Artística ';
                 $cadenaSql = $this->miSql->getCadenaSql('borrarProduccion', $arregloDatos);
                 $SQLs[] = $cadenaSql;
                 break;
             case 'borrarIdiomas':
-                $arregloDatos['dato'] = ' Conocimiento en Idioma ';
+                $arregloDatos['dato'] = ' Lengua Extranjera ';
                 $cadenaSql = $this->miSql->getCadenaSql('borrarIdiomas', $arregloDatos);
                 $SQLs[] = $cadenaSql;
                 break;

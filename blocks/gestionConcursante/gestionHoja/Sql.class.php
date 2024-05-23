@@ -318,6 +318,7 @@ class Sql extends \Sql {
                                 $cadenaSql.=" FROM concurso.persona bas ";
                                 $cadenaSql.=" INNER JOIN ".$prefijo."usuario usu ON trim(usu.tipo_identificacion)=trim(bas.tipo_identificacion) AND bas.identificacion=usu.identificacion";
                                 $cadenaSql.=" INNER JOIN concurso.actividad_academica act ON act.consecutivo_persona=bas.consecutivo";
+                                $cadenaSql.=" INNER JOIN general.nivel n on act.tipo_producto = n.nombre and n.estado = 'A'";
                                 $cadenaSql.=" LEFT JOIN general.pais ps ON ps.id_pais=act.pais_actividad";
                                 $cadenaSql.=" WHERE usu.id_usuario='".$variable['id_usuario']."'";
                                 if(isset($variable['consecutivo_actividad']) && $variable['consecutivo_actividad']!='')
@@ -382,8 +383,9 @@ class Sql extends \Sql {
                                 $cadenaSql.=" prod.fecha_produccion";
                                 $cadenaSql.=" FROM concurso.persona bas ";
                                 $cadenaSql.=" INNER JOIN ".$prefijo."usuario usu ON trim(usu.tipo_identificacion)=trim(bas.tipo_identificacion) AND bas.identificacion=usu.identificacion";
-                                $cadenaSql.=" INNER JOIN concurso.produccion_academica prod ON prod.consecutivo_persona=bas.consecutivo";
+                                $cadenaSql.=" INNER JOIN concurso.produccion_academica prod ON prod.consecutivo_persona=bas.consecutivo";                                
                                 //$cadenaSql.=" INNER JOIN general.ciudad city ON city.id_ciudad=prod.ciudad_produccion";
+                                $cadenaSql.=" INNER join general.nivel n on prod.nombre_tipo_produccion = n.nombre and n.estado = 'A'";
                                 $cadenaSql.=" WHERE usu.id_usuario='".$variable['id_usuario']."'";
                                 if(isset($variable['consecutivo_produccion']) && $variable['consecutivo_produccion']!='')
                                     {$cadenaSql.=" AND prod.consecutivo_produccion='".$variable['consecutivo_produccion']."' ";}

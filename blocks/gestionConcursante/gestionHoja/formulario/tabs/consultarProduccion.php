@@ -55,7 +55,6 @@ class consultarProduccion {
 	//identifca lo roles para la busqueda de subsistemas
             $parametro=array('id_usuario'=>$_REQUEST['usuario']);    
             $cadena_sql = $this->miSql->getCadenaSql("consultarProduccion", $parametro);
-            error_log($cadena_sql);
             $resultadoListaProduccion = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
             //-----BUSCA LOS TIPOS DE SOPORTES PARA EL FORMUALRIO, SEGÚN LOS RELACIONADO EN LA TABLA
             $parametroTipoSop = array('dato_relaciona'=>'datosProduccion',);

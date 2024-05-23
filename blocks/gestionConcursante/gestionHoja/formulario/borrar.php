@@ -87,32 +87,32 @@ class mensajeForm {
                                     $consecutivo=$_REQUEST['consecutivo_formacion'];
                                 break;
                                 case 'Profesional':
-                                    $dato=' la experiencia profesional ';
+                                    $dato=' la experiencia profesional equivalente ';
                                     $accion='borrarProfesional';
                                     $consecutivo=$_REQUEST['consecutivo_experiencia'];
                                 break;
                                 case 'Docencia':
-                                    $dato=' la experiencia docente ';
+                                    $dato=' la experiencia docente universitaria ';
                                     $accion='borrarDocencia';
                                     $consecutivo=$_REQUEST['consecutivo_docencia'];
                                 break;
                                 case 'Actividad':
-                                    $dato=' la actividad académica ';
+                                    $dato=' el Producto de Investigación y/o Investigación - Creación ';
                                     $accion='borrarActividad';
                                     $consecutivo=$_REQUEST['consecutivo_actividad'];
                                 break;
                                 case 'Investigacion':
-                                    $dato=' la experiencia en investigación ';
+                                    $dato=' el grupo de investigación ';
                                     $accion='borrarInvestigacion';
                                     $consecutivo=$_REQUEST['consecutivo_investigacion'];
                                 break;
                                 case 'Produccion':
-                                    $dato=' la producción académica ';
+                                    $dato=' la Publicación - Obras Artística ';
                                     $accion='borrarProduccion';
                                     $consecutivo=$_REQUEST['consecutivo_produccion'];
                                 break;
                                 case 'Idiomas':
-                                    $dato=' el conocimiento en idioma ';
+                                    $dato=' la Lengua Extranjera ';
                                     $accion='borrarIdiomas';
                                     $consecutivo=$_REQUEST['consecutivo_conocimiento'];
                                 break;

@@ -599,6 +599,8 @@ $("#<?php echo $this->campoSeguro('actividad_actual')?>").select2();
 
 $('#<?php echo $this->campoSeguro('pais_investigacion')?>').width(210);
 $("#<?php echo $this->campoSeguro('pais_investigacion')?>").select2(); 
+$('#<?php echo $this->campoSeguro('categoria_grupo')?>').width(210);
+$("#<?php echo $this->campoSeguro('categoria_grupo')?>").select2(); 
 $('#<?php echo $this->campoSeguro('investigacion_actual')?>').width(210);
 $("#<?php echo $this->campoSeguro('investigacion_actual')?>").select2(); 
 $('#<?php echo $this->campoSeguro('nivel_institucion_investigacion')?>').width(210);
