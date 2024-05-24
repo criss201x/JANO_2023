@@ -74,7 +74,7 @@ class consultarInvestigacion {
                             <td align='center'>";
                                 $esteCampo = 'nuevoInvestigacion';
                                 $atributos ['id'] = $esteCampo;
-                                $atributos ['enlace'] = "#";//$variableNuevo;
+                                $atributos ['enlace'] = "";//$variableNuevo;
                                 $atributos ['onClick'] ="show(\"marcoInvestigacion\")";
                                 $atributos ['tabIndex'] = 1;
                                 $atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );

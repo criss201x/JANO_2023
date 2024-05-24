@@ -81,7 +81,7 @@ class consultarFormacion {
                             <td align='center'>";
                                 $esteCampo = 'nuevoFormacion';
                                 $atributos ['id'] = $esteCampo;
-                                $atributos ['enlace'] = "#";//$variableNuevo;
+                                $atributos ['enlace'] = "#marcoFormacion";//$variableNuevo;
                                 $atributos ['onClick'] ="show(\"marcoFormacion\")";
                                 $atributos ['tabIndex'] = 1;
                                 $atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );

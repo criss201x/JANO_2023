@@ -80,7 +80,7 @@ class consultarProduccion {
                             <td align='center'>";
                                 $esteCampo = 'nuevoProduccion';
                                 $atributos ['id'] = $esteCampo;
-                                $atributos ['enlace'] = "#";//$variableNuevo;
+                                $atributos ['enlace'] = "";//$variableNuevo;
                                 $atributos ['onClick'] ="show(\"marcoProduccion\")";
                                 $atributos ['tabIndex'] = 1;
                                 $atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
