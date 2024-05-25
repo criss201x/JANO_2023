@@ -90,8 +90,8 @@ class consultarProfesional {
                             <td align='center'>";
                                 $esteCampo = 'nuevoProfesional';
                                 $atributos ['id'] = $esteCampo;
-                                $atributos ['enlace'] = "";//$variableNuevo;
-                                $atributos ['onClick'] ="show(\"marcoProfesional\")";
+                                $atributos ['enlace'] = "#registro_experiencia";//$variableNuevo;
+                                $atributos ['onClick'] ="show(\"registro_experiencia\")";
                                 $atributos ['tabIndex'] = 1;
                                 $atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
                                 $atributos ['estilo'] = 'textoPequenno textoGris';

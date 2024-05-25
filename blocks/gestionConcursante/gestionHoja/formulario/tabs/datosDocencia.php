@@ -93,7 +93,7 @@ class docenciaForm {
 			$variable = "pagina=" . $miPaginaActual;
 			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-			$esteCampo = "marcoDocencia";
+			$esteCampo = "registro_docencia";
 			$atributos ['id'] = $esteCampo;
 			$atributos ["estilo"] = "jqueryui";
                         if(!isset($_REQUEST['consecutivo_docencia']))

@@ -78,8 +78,8 @@ class consultarDocencia {
                             <td align='center'>";
                                 $esteCampo = 'nuevoDocencia';
                                 $atributos ['id'] = $esteCampo;
-                                $atributos ['enlace'] = "";//$variableNuevo;
-                                $atributos ['onClick'] ="show(\"marcoDocencia\")";
+                                $atributos ['enlace'] = "#registro_docencia";//$variableNuevo;
+                                $atributos ['onClick'] ="show(\"registro_docencia\")";
                                 $atributos ['tabIndex'] = 1;
                                 $atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
                                 $atributos ['estilo'] = 'textoPequenno textoGris';

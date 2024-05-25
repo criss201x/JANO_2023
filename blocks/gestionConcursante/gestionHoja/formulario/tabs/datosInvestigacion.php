@@ -92,7 +92,7 @@ class investigacionForm {
 			$variable = "pagina=" . $miPaginaActual;
 			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-			$esteCampo = "marcoInvestigacion";
+			$esteCampo = "registro_grupo";
 			$atributos ['id'] = $esteCampo;
 			$atributos ["estilo"] = "jqueryui";
                         if(!isset($_REQUEST['consecutivo_investigacion']))

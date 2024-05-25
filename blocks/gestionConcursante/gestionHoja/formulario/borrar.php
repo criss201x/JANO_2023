@@ -97,7 +97,7 @@ class mensajeForm {
                                     $consecutivo=$_REQUEST['consecutivo_docencia'];
                                 break;
                                 case 'Actividad':
-                                    $dato=' el Producto de Investigación y/o Investigación - Creación ';
+                                    $dato=' el producto de investigación y/o investigación - creación ';
                                     $accion='borrarActividad';
                                     $consecutivo=$_REQUEST['consecutivo_actividad'];
                                 break;
@@ -107,12 +107,12 @@ class mensajeForm {
                                     $consecutivo=$_REQUEST['consecutivo_investigacion'];
                                 break;
                                 case 'Produccion':
-                                    $dato=' la Publicación - Obras Artística ';
+                                    $dato=' la publicación - obra artística ';
                                     $accion='borrarProduccion';
                                     $consecutivo=$_REQUEST['consecutivo_produccion'];
                                 break;
                                 case 'Idiomas':
-                                    $dato=' la Lengua Extranjera ';
+                                    $dato=' la lengua extranjera ';
                                     $accion='borrarIdiomas';
                                     $consecutivo=$_REQUEST['consecutivo_conocimiento'];
                                 break;

@@ -93,7 +93,7 @@ class profesionalForm {
 			$variable = "pagina=" . $miPaginaActual;
 			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-			$esteCampo = "marcoProfesional";
+			$esteCampo = "registro_experiencia";
 			$atributos ['id'] = $esteCampo;
 			$atributos ["estilo"] = "jqueryui";
                         if(!isset($_REQUEST['consecutivo_experiencia']))

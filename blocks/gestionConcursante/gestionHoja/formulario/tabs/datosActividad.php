@@ -93,7 +93,7 @@ class actividadForm {
 			$variable = "pagina=" . $miPaginaActual;
 			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-			$esteCampo = "marcoActividad";
+			$esteCampo = "registro_producto";
 			$atributos ['id'] = $esteCampo;
 			$atributos ["estilo"] = "jqueryui";
                         if(!isset($_REQUEST['consecutivo_actividad']))
@@ -103,7 +103,7 @@ class actividadForm {
 			echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
 			unset ( $atributos );
 			{  
-                            $esteCampo = 'mensajeActividad';
+                            /*$esteCampo = 'mensajeActividad';
                             $atributos ['id'] = $esteCampo;
                             $atributos ['tipo'] = 'warning';
                             $atributos ['estilo'] = 'textoCentrar';
@@ -112,7 +112,7 @@ class actividadForm {
                             // Aplica atributos globales al control
                             $atributos = array_merge ( $atributos, $atributosGlobales );
                             echo $this->miFormulario->cuadroMensaje ( $atributos );	                            
-                            
+                            */
                             
                             $atributos ['id'] = 'datos';
                             $atributos ["estilo"] = "jqueryui";

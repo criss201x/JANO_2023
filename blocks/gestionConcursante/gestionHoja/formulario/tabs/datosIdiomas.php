@@ -97,7 +97,7 @@ class idiomaForm {
 			$variable = "pagina=" . $miPaginaActual;
 			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-			$esteCampo = "marcoIdioma";
+			$esteCampo = "registro_idioma";
 			$atributos ['id'] = $esteCampo;
 			$atributos ["estilo"] = "jqueryui";
                         if(!isset($_REQUEST['consecutivo_conocimiento']))

@@ -97,7 +97,7 @@ class formacionForm {
 			$variable = "pagina=" . $miPaginaActual;
 			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-			$esteCampo = "marcoFormacion";
+			$esteCampo = "registro_formacion";
 			$atributos ['id'] = $esteCampo;
 			$atributos ["estilo"] = "jqueryui";
                         if(!isset($_REQUEST['consecutivo_formacion']))
@@ -107,7 +107,7 @@ class formacionForm {
 			echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
 			unset ( $atributos );
 			{   
-                            $esteCampo = 'mensajeFormacion';
+                            /*$esteCampo = 'mensajeFormacion';
                             $atributos ['id'] = $esteCampo;
                             $atributos ['tipo'] = 'warning';
                             $atributos ['estilo'] = 'textoCentrar';
@@ -115,7 +115,7 @@ class formacionForm {
                             //$tab ++;
                             // Aplica atributos globales al control
                             $atributos = array_merge ( $atributos, $atributosGlobales );
-                            echo $this->miFormulario->cuadroMensaje ( $atributos );	
+                            echo $this->miFormulario->cuadroMensaje ( $atributos );	*/
                             
                             // ---------------- CONTROL AGRUPACION: Cuadro Agrupacion --------------------------------------------------------
                             $atributos ['id'] = 'datos';

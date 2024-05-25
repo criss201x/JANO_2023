@@ -84,8 +84,8 @@ class consultarIdioma {
                             <td align='center'>";
                                 $esteCampo = 'nuevoIdioma';
                                 $atributos ['id'] = $esteCampo;
-                                $atributos ['enlace'] = "";//$variableNuevo;
-                                $atributos ['onClick'] ="show(\"marcoIdioma\")";
+                                $atributos ['enlace'] = "#registro_idioma";//$variableNuevo;
+                                $atributos ['onClick'] ="show(\"registro_idioma\")";
                                 $atributos ['tabIndex'] = 1;
                                 $atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
                                 $atributos ['estilo'] = 'textoPequenno textoGris';

@@ -115,13 +115,13 @@ class registrarForm {
                                         break;                                
                                     case "actualizoContacto":
                                         $tipo = 'success';
-                                        $mensaje = "Los datos de Contacto del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
+                                        $mensaje = "Los datos de contacto del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
                                         $boton = "continuar";
                                         $pestanna='#tabContacto';
                                         break;                                      
                                     case "actualizoFormacion":
                                         $tipo = 'success';
-                                        $mensaje = "Los datos de Formación Académica del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
+                                        $mensaje = "Los datos de formación académica del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
                                         $boton = "continuar";
                                         $pestanna='#tabFormacion';
                                         break;        
@@ -133,13 +133,13 @@ class registrarForm {
                                         break;                                    
                                     case "actualizoDocencia":
                                         $tipo = 'success';
-                                        $mensaje = "Los datos de Experiencia Docente Universitaria del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
+                                        $mensaje = "Los datos de experiencia docente universitaria del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
                                         $boton = "continuar";
                                         $pestanna='#tabDocencia';
                                         break; 
                                     case "actualizoActividad":
                                         $tipo = 'success';
-                                        $mensaje = "Los datos de Productos de Investigación y/o Investigación - Creación del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
+                                        $mensaje = "Los datos de productos de investigación y/o investigación - creación del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
                                         $boton = "continuar";
                                         $pestanna='#tabActividad';
                                         break; 
@@ -152,14 +152,14 @@ class registrarForm {
                                         break;  
                                     case "actualizoProduccion":
                                         $tipo = 'success';
-                                        $mensaje = "Los datos de Publicaciones - Obras Artísticas del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
+                                        $mensaje = "Los datos de publicaciones - obras artísticas del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
                                         $boton = "continuar";
                                         //$variable.="&tab=tabContacto";
                                         $pestanna='#tabProduccion';
                                         break;    
                                     case "actualizoIdioma":
                                         $tipo = 'success';
-                                        $mensaje = "Los datos de Lengua extranjera del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
+                                        $mensaje = "Los datos de lengua extranjera del usuario ".$_REQUEST['nombres']." ".$_REQUEST['apellidos'].", se actualizaron exitosamente.";
                                         $boton = "continuar";
                                         //$variable.="&tab=tabContacto";
                                         $pestanna='#tabIdiomas';
@@ -213,7 +213,7 @@ class registrarForm {
 
                                     case "existeLog":
                                         $tipo = 'error';
-                                        $mensaje = "No es posible Eliminar el usuario <b>".$_REQUEST['id_usuario']." - ".$_REQUEST['nombres']." ".$_REQUEST['apellidos']."</b>, ya que tiene registros asociados en el Sistema!!";
+                                        $mensaje = "No es posible eliminar el usuario <b>".$_REQUEST['id_usuario']." - ".$_REQUEST['nombres']." ".$_REQUEST['apellidos']."</b>, ya que tiene registros asociados en el Sistema!!";
                                         $boton = "regresar";
                                         break;                                    
 
