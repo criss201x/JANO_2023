@@ -48,6 +48,9 @@ class Funcion {
 	function registrar() {
 		include_once ($this->ruta . "funcion/registrar.php");
 	}
+	function validacion(){
+		include_once ($this->ruta . "/funcion/validar.php");
+	}
 	function action() {
 		
 		// Evitar qu44444444rrrre se ingrese codigo HTML y PHP en los campos de texto
@@ -82,7 +85,9 @@ class Funcion {
                             case "resumenFaseElegible":
                                     $this->resumenFaseElegible();
                                 break;
-
+							case "guardarValidacion":
+								$this->validacion();
+								break;
                         }
                                        
 // 			if ($validacion == false) {

@@ -126,6 +126,16 @@ class registrarForm {
 																				$boton = "regresar";
                                         break;
 
+									case "noRegistroValidacion":
+										$tipo = 'warning';
+										$mensaje = "Antes de guardar la validación general debe registrar la evaluación individual de los requistos habilitantes, para esto ingrese en la opción 'Evaluar soportes hoja de vida' en 'Validación de requisitos'";
+										$variable.= "&opcion=detalle";
+										$variable.="&consecutivo_concurso=".$_REQUEST['consecutivo_concurso'];
+										$variable.="&consecutivo_perfil=".$_REQUEST['consecutivo_perfil'];
+										$variable.="&consecutivo_inscrito=".$_REQUEST['consecutivo_inscrito'];
+										$boton = "regresar";
+										break;
+
                                     /*****/
 
                                     case "errorActualizoDetalle":

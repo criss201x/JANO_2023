@@ -861,8 +861,6 @@ class Sql extends \Sql {
                                // $cadenaSql.=" (SELECT nombre FROM general.nivel WHERE codigo_nivel=to_number(conidm.nivel_habla,'99')) nombre_nivel_habla,";
                                 $cadenaSql.=" conidm.certificacion,";
                                 $cadenaSql.=" conidm.institucion_certificacion, ";
-                                $cadenaSql.=" conidm.tipo_examen, ";
-                                $cadenaSql.=" conidm.nivel_certificado, ";
                                 $cadenaSql.=" conidm.idioma_concurso";
                                 $cadenaSql.=" FROM concurso.persona bas "; 
                                 $cadenaSql.=" INNER JOIN concurso.conocimiento_idioma conidm ON conidm.consecutivo_persona=bas.consecutivo";    
@@ -871,6 +869,68 @@ class Sql extends \Sql {
                                 $cadenaSql.=" ORDER BY idm.nombre DESC";   
                             break;                              
                         
+            case "insertValidacionSoporte":
+                $cadenaSql = "INSERT INTO concurso.validacion_soporte ";
+                $cadenaSql .= "(consecutivo_soporte_ins, valido, observacion, estado) ";
+                $cadenaSql .= "VALUES ";
+                $cadenaSql .= "(" . $variable['idSoporte'] . ", " . $variable["validacion"] . ", '" . $variable["observacion"] . "', 'A')";
+                break;
+
+            case "existValidacionSoporte":
+                $cadenaSql = "SELECT EXISTS(SELECT 1 AS validado FROM concurso.validacion_soporte ";
+                $cadenaSql .= "WHERE estado='A' ";
+                $cadenaSql .= "AND consecutivo_soporte_ins = " . $variable . ")";
+                break;
+
+            case "consultaValidacionSoporte":
+                $cadenaSql = "SELECT valido, observacion FROM concurso.validacion_soporte ";
+                $cadenaSql .= "WHERE estado='A' ";
+                $cadenaSql .= "AND consecutivo_soporte_ins = " . $variable;
+                break;
+
+            case "actualizaValidacionSoporte":
+                $cadenaSql = "UPDATE concurso.validacion_soporte ";
+                $cadenaSql .= "SET ";
+                if ($variable["validacion"] != '') {
+                    $cadenaSql .= "valido=" . $variable["validacion"]. ", ";
+                }
+                $cadenaSql .= "observacion='" . $variable["observacion"] . "' ";
+                $cadenaSql .= "WHERE estado='A' ";
+                $cadenaSql .= "AND consecutivo_soporte_ins = " . $variable['idSoporte'];
+                break;
+
+
+            case "insertValidacionTipoSoporte":
+                $cadenaSql = "INSERT INTO concurso.validacion_tipo_soporte ";
+                $cadenaSql .= "(consecutivo_inscrito, tipo_dato, valido, observacion, estado) ";
+                $cadenaSql .= "VALUES (" . $variable["consecutivo_inscrito"] . ", '" . $variable["tipo_dato"] . "', " . $variable["validacion"] . ", '" . $variable["observacion"] . "', 'A')";
+                break;
+
+            case "existValidacionTipoSoporte":
+                $cadenaSql = "SELECT EXISTS(SELECT 1 AS validado FROM concurso.validacion_tipo_soporte ";
+                $cadenaSql .= "WHERE estado='A' ";
+                $cadenaSql .= "AND consecutivo_inscrito = " . $variable["consecutivo_inscrito"] . " ";
+                $cadenaSql .= "AND tipo_dato='" . $variable["tipo_dato"] . "')";
+                break;
+
+            case "consultaValidacionTipoSoporte":
+                $cadenaSql = "SELECT valido, observacion FROM concurso.validacion_tipo_soporte ";
+                $cadenaSql .= "WHERE estado='A' ";
+                $cadenaSql .= "AND consecutivo_inscrito = " . $variable["consecutivo_inscrito"] . " ";
+                $cadenaSql .= "AND tipo_dato='" . $variable["tipo_dato"] . "'";
+                break;
+
+            case "actualizaValidacionTipoSoporte":
+                $cadenaSql = "UPDATE concurso.validacion_tipo_soporte ";
+                $cadenaSql .= "SET ";
+                if ($variable["validacion"] != '') {
+                    $cadenaSql .= "valido=" . $variable["validacion"]. ", ";
+                }
+                $cadenaSql .= "observacion='" . $variable["observacion"] . "' ";
+                $cadenaSql .= "WHERE estado='A' ";
+                $cadenaSql .= "AND consecutivo_inscrito = " . $variable["consecutivo_inscrito"] . " ";
+                $cadenaSql .= "AND tipo_dato='" . $variable["tipo_dato"] . "'";
+                break;
                                         
 				/**
 				 * Clausulas genéricas. se espera que estén en todos los formularios

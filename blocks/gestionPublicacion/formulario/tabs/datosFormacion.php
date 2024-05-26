@@ -62,11 +62,33 @@ class consultarFormacion {
             
             echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
             unset ( $atributos );
+
+            // ---------------- SECCION: Parámetros Generales del Formulario ----------------------------------
+            $esteCampo = 'datosFormacion';
+            $atributos ['id'] = $esteCampo;
+            $atributos ['nombre'] = $esteCampo;
+            // Si no se coloca, entonces toma el valor predeterminado 'application/x-www-form-urlencoded'
+            $atributos ['tipoFormulario'] = 'multipart/form-data';
+            // Si no se coloca, entonces toma el valor predeterminado 'POST'
+            $atributos ['metodo'] = 'POST';
+            // Si no se coloca, entonces toma el valor predeterminado 'index.php' (Recomendado)
+            $atributos ['action'] = 'index.php';
+            // $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo );
+            // Si no se coloca, entonces toma el valor predeterminado.
+            $atributos ['estilo'] = '';
+            $atributos ['marco'] = false;
+            $tab = 1;
+            // ---------------- FIN SECCION: de Parámetros Generales del Formulario ----------------------------
+            // ----------------INICIAR EL FORMULARIO ------------------------------------------------------------
+            $atributos ['tipoEtiqueta'] = 'inicio';
+		    echo $this->miFormulario->formulario ( $atributos );
+
                 {
 
                     if($resultadoFormacion)
                         {       //define las acebceras de la tablas
                             $columnas = array( 
+                                                $this->lenguaje->getCadena ("consecutivo"),
                                                 $this->lenguaje->getCadena ("pais_formacion"),
                                                 $this->lenguaje->getCadena ("nombre_institucion"),
                                                 $this->lenguaje->getCadena ("nivel_formacion"),
@@ -78,7 +100,7 @@ class consultarFormacion {
                                                 $this->lenguaje->getCadena ("graduado"),
                                                 $this->lenguaje->getCadena ("fecha_grado"));                            foreach ($resultadoTiposop as $tipokey => $value) 
                                 {array_push($columnas, $resultadoTiposop[$tipokey]['alias']);}
-                                
+                            include('validarSoportesGeneral.php');
                                 
                             //-----------------Inicio de Conjunto de Controles----------------------------------------
                                 $esteCampo = "marcoFormacion";
@@ -96,9 +118,11 @@ class consultarFormacion {
                                     <tbody>";
                                 foreach($resultadoFormacion as $key=>$value )
                                     { 
+                                        $consecutivo_soporte_ins = $value["consecutivo_soporte_ins"];
                                         $datos=json_decode ($resultadoFormacion[$key]['valor_dato']);	
                                      
                                         $mostrarHtml = "<tr align='center'>
+                                                <td align='left'>".$consecutivo_soporte_ins."</td>
                                                 <td align='left'>".$datos->pais."</td>
                                                 <td align='left' width='15%'>".$datos->nombre_institucion."</td>
                                                 <td align='left'>".$datos->nivel."</td>
@@ -197,6 +221,7 @@ class consultarFormacion {
                                                                            //$atributos = array_merge ( $atributos, $atributosGlobales );
                                                                            $mostrarHtml.= $this->miFormulario->campoCuadroTexto ( $atributos );
                                                                            // --------------- FIN CONTROL : Cuadro de Texto --------------------------------------------------
+                                                                           unset($atributos);
                                                                         }   
 
                                                                      }
@@ -205,7 +230,7 @@ class consultarFormacion {
                                                         $mostrarHtml .= "</td> ";               
                                                      } 
                                                 // --------------- FIN CONTROLES : ver SOPORTES --------------------------------------------------                                              
-                                        
+                                        include('validarSoportes.php');
                                        $mostrarHtml .= "</tr>";
                                        echo $mostrarHtml;
                                        unset($mostrarHtml);
@@ -239,6 +264,55 @@ class consultarFormacion {
                                 //------------------Division para los botones-------------------------
                         }
                 }
+
+            /**
+			 * En algunas ocasiones es útil pasar variables entre las diferentes páginas.
+			 * SARA permite realizar esto a través de tres
+			 * mecanismos:
+			 * (a). Registrando las variables como variables de sesión. Estarán disponibles durante toda la sesión de usuario. Requiere acceso a
+			 * la base de datos.
+			 * (b). Incluirlas de manera codificada como campos de los formularios. Para ello se utiliza un campo especial denominado
+			 * formsara, cuyo valor será una cadena codificada que contiene las variables.
+			 * (c) a través de campos ocultos en los formularios. (deprecated)
+			 */
+			// En este formulario se utiliza el mecanismo (b) para pasar las siguientes variables:
+
+            $valorCodificado = "action=" . $esteBloque ['nombre'];
+            $valorCodificado .= "&pagina=" . $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
+            $valorCodificado .= "&bloque=" . $esteBloque ['nombre'];
+            $valorCodificado .= "&bloqueGrupo=" . $esteBloque ["grupo"];
+            $valorCodificado .= "&opcion=guardarValidacion";
+            $valorCodificado .= "&consecutivo_inscrito=".$_REQUEST['consecutivo_inscrito'];
+            $valorCodificado .= "&consecutivo_concurso=".$_REQUEST['consecutivo_concurso'];
+            $valorCodificado .= "&consecutivo_perfil=".$_REQUEST['consecutivo_perfil'];
+            $valorCodificado .= "&tab=".$id;
+
+            /**
+             * SARA permite que los nombres de los campos sean dinámicos.
+             * Para ello utiliza la hora en que es creado el formulario para
+             * codificar el nombre de cada campo. Si se utiliza esta técnica es necesario pasar dicho tiempo como una variable:
+             * (a) invocando a la variable $_REQUEST ['tiempo'] que se ha declarado en ready.php o
+             * (b) asociando el tiempo en que se está creando el formulario
+             */
+            $valorCodificado .= "&campoSeguro=" . $_REQUEST ['tiempo'];
+            $valorCodificado .= "&tiempo=" . time ();
+            // Paso 2: codificar la cadena resultante
+            $valorCodificado = $this->miConfigurador->fabricaConexiones->crypto->codificar ( $valorCodificado );
+
+            $atributos ["id"] = "formSaraData"; // No cambiar este nombre
+            $atributos ["tipo"] = "hidden";
+            $atributos ['estilo'] = '';
+            $atributos ["obligatorio"] = false;
+            $atributos ['marco'] = true;
+            $atributos ["etiqueta"] = "";
+            $atributos ["valor"] = $valorCodificado;
+            echo $this->miFormulario->campoCuadroTexto ( $atributos );
+            unset ( $atributos );
+
+            $atributos ['marco'] = true;
+            $atributos ['tipoEtiqueta'] = 'fin';
+            echo "</form>";
+
             echo $this->miFormulario->marcoAgrupacion ( 'fin');
             unset ( $atributos );
     }

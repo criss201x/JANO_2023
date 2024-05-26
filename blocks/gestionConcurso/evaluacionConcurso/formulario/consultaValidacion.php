@@ -138,6 +138,7 @@ class registrarForm {
 						$variableVerHoja .= "&consecutivo_inscrito=".$_REQUEST['consecutivo_inscrito'];
 						$variableVerHoja .= "&consecutivo_concurso=".$_REQUEST['consecutivo_concurso'];
 						$variableVerHoja .= "&consecutivo_perfil=".$_REQUEST['consecutivo_perfil'];
+						$variableVerHoja .= "&mostrarValidacion=true";
 						$variableVerHoja = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($variableVerHoja, $directorio);
 
 						$mostrarHtml = "<tr align='center'>

@@ -108,6 +108,15 @@ class redireccion {
         		case "paginaPrincipal" :
 				$variable = "pagina=" . $miPaginaActual;
 				break;
+
+                        case "noRegistroValidacion":
+                                $variable="pagina=".$miPaginaActual;
+                                $variable.="&opcion=mensaje";
+                                $variable.="&mensaje=noRegistroValidacion";
+                                $variable.="&consecutivo_concurso=".$_REQUEST['consecutivo_concurso'];
+                                $variable.="&consecutivo_perfil=".$_REQUEST['consecutivo_perfil'];
+                                $variable.="&consecutivo_inscrito=".$_REQUEST['consecutivo_inscrito'];
+                                break;
 		}
 
 		foreach ( $_REQUEST as $clave => $valor ) {

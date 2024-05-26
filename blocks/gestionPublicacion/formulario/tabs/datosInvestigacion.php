@@ -62,18 +62,36 @@ class consultarInvestigacion {
             
             echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
             unset ( $atributos );
+
+            // ---------------- SECCION: Parámetros Generales del Formulario ----------------------------------
+            $esteCampo = 'datosInvestigacion';
+            $atributos ['id'] = $esteCampo;
+            $atributos ['nombre'] = $esteCampo;
+            // Si no se coloca, entonces toma el valor predeterminado 'application/x-www-form-urlencoded'
+            $atributos ['tipoFormulario'] = 'multipart/form-data';
+            // Si no se coloca, entonces toma el valor predeterminado 'POST'
+            $atributos ['metodo'] = 'POST';
+            // Si no se coloca, entonces toma el valor predeterminado 'index.php' (Recomendado)
+            $atributos ['action'] = 'index.php';
+            // $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo );
+            // Si no se coloca, entonces toma el valor predeterminado.
+            $atributos ['estilo'] = '';
+            $atributos ['marco'] = false;
+            $tab = 1;
+            // ---------------- FIN SECCION: de Parámetros Generales del Formulario ----------------------------
+            // ----------------INICIAR EL FORMULARIO ------------------------------------------------------------
+            $atributos ['tipoEtiqueta'] = 'inicio';
+            echo $this->miFormulario->formulario ( $atributos );
+
                 {
                     if($resultadoInvestigacion)
                         {//se definen cabeceras de la tabla
                             $columnas = array( 
+                                                $this->lenguaje->getCadena ("consecutivo"),
                                                 $this->lenguaje->getCadena ("pais_investigacion"),
                                                 $this->lenguaje->getCadena ("fecha_inicio_investigacion"),
                                                 $this->lenguaje->getCadena ("fecha_fin_investigacion"),
                                                 $this->lenguaje->getCadena ("tiempo_investigacion"),
-                                                $this->lenguaje->getCadena ("rol_investigacion"),
-                                                $this->lenguaje->getCadena ("titulo_investigacion"),
-                                                $this->lenguaje->getCadena ("descripcion_investigacion"),
-                                                $this->lenguaje->getCadena ("jefe_investigacion"),
                                                 $this->lenguaje->getCadena ("nombre_institucion_investigacion"),
                                                 $this->lenguaje->getCadena ("nivel_institucion_investigacion"),
                                                 $this->lenguaje->getCadena ("telefono_institucion_investigacion"),
@@ -84,6 +102,7 @@ class consultarInvestigacion {
                             
                             foreach ($resultadoTiposop as $tipokey => $value) 
                                 {array_push($columnas, $resultadoTiposop[$tipokey]['alias']);}
+                            include('validarSoportesGeneral.php');
                             //-----------------Inicio de Conjunto de Controles----------------------------------------
                                 $esteCampo = "marcoInvestigacion";
                                 $atributos["estilo"] = "jqueryui";
@@ -99,7 +118,9 @@ class consultarInvestigacion {
                                     </thead>
                                     <tbody>";     
                                 foreach($resultadoInvestigacion as $key=>$value )
-                                    {   $datos=json_decode ($resultadoInvestigacion[$key]['valor_dato']);	
+                                    {   
+                                        $consecutivo_soporte_ins = $value["consecutivo_soporte_ins"];
+                                        $datos=json_decode ($resultadoInvestigacion[$key]['valor_dato']);	
                                         //calcula el tiempo de experiencia
                                         $date1 = new DateTime( $datos->fecha_inicio);
                                         if( $datos->fecha_fin!='')
@@ -108,14 +129,11 @@ class consultarInvestigacion {
                                         $diff[$key] = $date1->diff($date2);
                                         
                                         $mostrarHtml = "<tr align='center'>
+                                                <td align='left'>".$consecutivo_soporte_ins."</td>
                                                 <td align='left'>".$datos->pais."</td>
                                                 <td align='left'>".$datos->fecha_inicio."</td>
                                                 <td align='left'>".$datos->fecha_fin."</td>
                                                 <td align='left'>".$diff[$key]->days."</td>
-                                                <td align='left'>".$datos->rol_investigacion."</td>
-                                                <td align='left'>".$datos->titulo_investigacion."</td>
-                                                <td align='left'>".$datos->descripcion_investigacion."</td>
-                                                <td align='left'>".$datos->jefe_investigacion."</td>
                                                 <td align='left'>".$datos->nombre_institucion."</td>
                                                 <td align='left'>".$datos->nivel_institucion."</td>
                                                 <td align='left'>".$datos->telefono_institucion."</td>
@@ -240,6 +258,7 @@ class consultarInvestigacion {
                                                                            //$atributos = array_merge ( $atributos, $atributosGlobales );
                                                                            $mostrarHtml.= $this->miFormulario->campoCuadroTexto ( $atributos );
                                                                            // --------------- FIN CONTROL : Cuadro de Texto --------------------------------------------------
+                                                                           unset ( $atributos );
                                                                         }   
 
                                                                      }
@@ -248,7 +267,7 @@ class consultarInvestigacion {
                                                         $mostrarHtml .= "</td> ";               
                                                      } 
                                                 // --------------- FIN CONTROLES : ver SOPORTES --------------------------------------------------                                              
-                                        
+                                        include('validarSoportes.php');
                                        $mostrarHtml .= "</tr>";
                                        echo $mostrarHtml;
                                        unset($mostrarHtml);
@@ -282,6 +301,53 @@ class consultarInvestigacion {
                                 //------------------Division para los botones-------------------------
                         }
                 }
+
+            /**
+			 * En algunas ocasiones es útil pasar variables entre las diferentes páginas.
+			 * SARA permite realizar esto a través de tres
+			 * mecanismos:
+			 * (a). Registrando las variables como variables de sesión. Estarán disponibles durante toda la sesión de usuario. Requiere acceso a
+			 * la base de datos.
+			 * (b). Incluirlas de manera codificada como campos de los formularios. Para ello se utiliza un campo especial denominado
+			 * formsara, cuyo valor será una cadena codificada que contiene las variables.
+			 * (c) a través de campos ocultos en los formularios. (deprecated)
+			 */
+			// En este formulario se utiliza el mecanismo (b) para pasar las siguientes variables:
+
+            $valorCodificado = "action=" . $esteBloque ['nombre'];
+            $valorCodificado .= "&pagina=" . $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
+            $valorCodificado .= "&bloque=" . $esteBloque ['nombre'];
+            $valorCodificado .= "&bloqueGrupo=" . $esteBloque ["grupo"];
+            $valorCodificado .= "&opcion=guardarValidacion";
+            $valorCodificado .= "&consecutivo_inscrito=".$_REQUEST['consecutivo_inscrito'];
+            $valorCodificado .= "&consecutivo_concurso=".$_REQUEST['consecutivo_concurso'];
+            $valorCodificado .= "&consecutivo_perfil=".$_REQUEST['consecutivo_perfil'];
+            $valorCodificado .= "&tab=".$id;
+
+            /**
+             * SARA permite que los nombres de los campos sean dinámicos.
+             * Para ello utiliza la hora en que es creado el formulario para
+             * codificar el nombre de cada campo. Si se utiliza esta técnica es necesario pasar dicho tiempo como una variable:
+             * (a) invocando a la variable $_REQUEST ['tiempo'] que se ha declarado en ready.php o
+             * (b) asociando el tiempo en que se está creando el formulario
+             */
+            $valorCodificado .= "&campoSeguro=" . $_REQUEST ['tiempo'];
+            $valorCodificado .= "&tiempo=" . time ();
+            // Paso 2: codificar la cadena resultante
+            $valorCodificado = $this->miConfigurador->fabricaConexiones->crypto->codificar ( $valorCodificado );
+
+            $atributos ["id"] = "formSaraData"; // No cambiar este nombre
+            $atributos ["tipo"] = "hidden";
+            $atributos ['estilo'] = '';
+            $atributos ["obligatorio"] = false;
+            $atributos ['marco'] = true;
+            $atributos ["etiqueta"] = "";
+            $atributos ["valor"] = $valorCodificado;
+            echo $this->miFormulario->campoCuadroTexto ( $atributos );
+            unset ( $atributos );
+    
+            echo "</form>";
+
             echo $this->miFormulario->marcoAgrupacion ( 'fin');
             unset ( $atributos );
     }

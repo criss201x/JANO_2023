@@ -10,7 +10,124 @@
         //sin cabecera ni pie
         $('#tablaProcesos').DataTable({bFilter: false, bInfo: false}});
          */  
+
+$esteBloque = $this->miConfigurador->getVariableConfiguracion ( 'esteBloque' );
+
+$enlace = "action=index.php";
+$enlace .= "&bloqueNombre=" . $esteBloque ["nombre"];
+$enlace .= "&bloqueGrupo=" . $esteBloque ["grupo"];
+$enlace .= "&procesarAjax=true";
+$enlace .= "&funcion=codificar";
+$enlace .= "&tiempo=" . $_REQUEST['tiempo'];
+$directorio = $this->miConfigurador->getVariableConfiguracion ( "host" );
+$directorio .= $this->miConfigurador->getVariableConfiguracion ( "site" ) . "/index.php?";
+$directorio .= $this->miConfigurador->getVariableConfiguracion ( "enlace" );
+$enlace = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $enlace, $directorio ); 
+
     ?>  
+
+var sel = $('#radioBtn a').data('title');
+$('#<?php echo $this->campoSeguro("validacion")?>').val(sel);
+
+$('#radioBtn a').on('click', function(){
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+
+    $.ajax({
+        url: "<?php echo $enlace;?>",
+        type: 'POST',
+        data: {valor: tog},
+        success: function(response){
+            var result = response.replace(/\n/g, "");
+            $('#'+result).prop('value', sel == 'SI' ? 'true' : 'false');
+        }
+    });
+
+    $('#'+tog).prop('value', sel == 'SI' ? 'true' : 'false');
+
+    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+});
+
+// Asociar el widget de validación al formulario datosFormacion
+$("#datosFormacion").validationEngine({
+    promptPosition : "centerRight",
+    scroll: false
+});
+
+$(function() {
+    $("#datosFormacion").submit(function() {
+        $resultado=$("#datosFormacion").validationEngine("validate");
+        if ($resultado) {
+            return true;
+        }
+        return false;
+    });
+});
+
+// Asociar el widget de validación al formulario datosProfesional
+$("#datosProfesional").validationEngine({
+    promptPosition : "centerRight",
+    scroll: false
+});
+
+$(function() {
+    $("#datosProfesional").submit(function() {
+        $resultado=$("#datosProfesional").validationEngine("validate");
+        if ($resultado) {
+            return true;
+        }
+        return false;
+    });
+});
+
+// Asociar el widget de validación al formulario datosDocencia
+$("#datosDocencia").validationEngine({
+    promptPosition : "centerRight",
+    scroll: false
+});
+
+$(function() {
+    $("#datosDocencia").submit(function() {
+        $resultado=$("#datosDocencia").validationEngine("validate");
+        if ($resultado) {
+            return true;
+        }
+        return false;
+    });
+});
+
+// Asociar el widget de validación al formulario datosInvestigacion
+$("#datosInvestigacion").validationEngine({
+    promptPosition : "centerRight",
+    scroll: false
+});
+
+$(function() {
+    $("#datosInvestigacion").submit(function() {
+        $resultado=$("#datosInvestigacion").validationEngine("validate");
+        if ($resultado) {
+            return true;
+        }
+        return false;
+    });
+});
+
+// Asociar el widget de validación al formulario datosIdioma
+$("#datosIdioma").validationEngine({
+    promptPosition : "centerRight",
+    scroll: false
+});
+
+$(function() {
+    $("#datosIdioma").submit(function() {
+        $resultado=$("#datosIdioma").validationEngine("validate");
+        if ($resultado) {
+            return true;
+        }
+        return false;
+    });
+});
 
 $('#tablaListaGeneral').DataTable({
 "language": {

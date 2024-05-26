@@ -588,8 +588,6 @@ class Sql extends \Sql {
                                 $cadenaSql.=" conidm.nivel_habla, ";
                                // $cadenaSql.=" (SELECT nombre FROM general.nivel WHERE codigo_nivel=to_number(conidm.nivel_habla,'99')) nombre_nivel_habla,";
                                 $cadenaSql.=" conidm.certificacion,";
-                                $cadenaSql.=" conidm.tipo_examen,";
-                                $cadenaSql.=" conidm.nivel_certificado,";
                                 $cadenaSql.=" conidm.institucion_certificacion";
                                 $cadenaSql.=" FROM concurso.conocimiento_idioma conidm ";
                                 $cadenaSql.=" INNER JOIN general.idioma idm ON idm.codigo_idioma=conidm.codigo_idioma";
@@ -932,6 +930,14 @@ class Sql extends \Sql {
                                 $cadenaSql .= " WHERE id_subsistema = '".$variable['id_subsistema']."' ";
                                 $cadenaSql .= " AND rol_id = '".$variable['rol_id']."' ";
 			break;
+
+            case "consultaRegistroValidacionesHabilitantes":
+                $cadenaSql = "SELECT EXISTS(SELECT 1 AS valido";
+                $cadenaSql.=" FROM concurso.validacion_tipo_soporte";
+                $cadenaSql.=" WHERE estado='A'";
+                $cadenaSql.=" AND consecutivo_inscrito='".$variable['consecutivo_inscrito']."'";
+                $cadenaSql.=" AND tipo_dato='".$variable['tipo_dato']."')";
+                break;
 
 				/**
 				 * Clausulas genéricas. se espera que estén en todos los formularios

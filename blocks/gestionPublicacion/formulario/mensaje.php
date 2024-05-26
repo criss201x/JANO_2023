@@ -272,6 +272,42 @@ class registrarForm {
                                         $variable.="&opcion=perfil";
                                         $variable.="&id_usuario=".$_REQUEST['id_usuario'];
                                         break;
+
+                                    case "errorObservaciones":
+                                        $tipo = 'warning';
+                                        $mensaje = "Es necesario diligenciar las observaciones de todos los soportes. Por favor intente nuevamente.";
+                                        $boton = "regresar";
+                                        $variable = "pagina=publicacion";
+                                        $variable.= "&opcion=hojaVida";
+                                        $variable.="&consecutivo_inscrito=".$_REQUEST['consecutivo_inscrito'];
+                                        $variable.="&consecutivo_concurso=".$_REQUEST['consecutivo_concurso'];
+                                        $variable.="&consecutivo_perfil=".$_REQUEST['consecutivo_perfil'];
+                                        $variable .= "&validarSoportes=true";
+                                        break;
+
+                                    case "validoSoportes":
+                                        $tipo = 'success';
+                                        $mensaje = "Se registraron las observaciones de los soportes de forma exitosa.";
+                                        $boton = "regresar";
+                                        $variable = "pagina=publicacion";
+                                        $variable.= "&opcion=hojaVida";
+                                        $variable.="&consecutivo_inscrito=".$_REQUEST['consecutivo_inscrito'];
+                                        $variable.="&consecutivo_concurso=".$_REQUEST['consecutivo_concurso'];
+                                        $variable.="&consecutivo_perfil=".$_REQUEST['consecutivo_perfil'];
+                                        $variable .= "&validarSoportes=true";
+                                        break;
+
+                                    case "noValidoSoportes":
+                                        $tipo = 'error';
+                                        $mensaje = "Se presento un problema al registrar las observaciones. Por favor intente mas tarde.";
+                                        $boton = "regresar";
+                                        $variable = "pagina=publicacion";
+                                        $variable.= "&opcion=hojaVida";
+                                        $variable.="&consecutivo_inscrito=".$_REQUEST['consecutivo_inscrito'];
+                                        $variable.="&consecutivo_concurso=".$_REQUEST['consecutivo_concurso'];
+                                        $variable.="&consecutivo_perfil=".$_REQUEST['consecutivo_perfil'];
+                                        $variable .= "&validarSoportes=true";
+                                        break;
                                     }
                             // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                             $esteCampo = 'mensaje';

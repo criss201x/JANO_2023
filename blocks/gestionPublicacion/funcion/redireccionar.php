@@ -225,6 +225,39 @@ class redireccion {
                                         $variable.="&id_sesion=".$valor;
                                 }
                                 break;
+                        
+                        case "errorObservaciones":
+                                $variable = "pagina=publicacion";
+                                $variable.= "&opcion=mensaje";
+                                $variable.="&mensaje=errorObservaciones";
+                                $variable.="&consecutivo_inscrito=".$_REQUEST['consecutivo_inscrito'];
+                                $variable.="&consecutivo_concurso=".$_REQUEST['consecutivo_concurso'];
+                                $variable.="&consecutivo_perfil=".$_REQUEST['consecutivo_perfil'];
+                                $variable.="&tab=".$_REQUEST['tab'];
+                                $variable .= "&validarSoportes=true";
+                                break;
+
+                        case "validoSoportes":
+                                $variable = "pagina=publicacion";
+                                $variable.= "&opcion=mensaje";
+                                $variable.="&mensaje=validoSoportes";
+                                $variable.="&consecutivo_inscrito=".$_REQUEST['consecutivo_inscrito'];
+                                $variable.="&consecutivo_concurso=".$_REQUEST['consecutivo_concurso'];
+                                $variable.="&consecutivo_perfil=".$_REQUEST['consecutivo_perfil'];
+                                $variable.="&tab=".$_REQUEST['tab'];
+                                $variable .= "&validarSoportes=true";
+                                break;
+
+                        case "noValidoSoportes":
+                                $variable = "pagina=publicacion";
+                                $variable.= "&opcion=mensaje";
+                                $variable.="&mensaje=noValidoSoportes";
+                                $variable.="&consecutivo_inscrito=".$_REQUEST['consecutivo_inscrito'];
+                                $variable.="&consecutivo_concurso=".$_REQUEST['consecutivo_concurso'];
+                                $variable.="&consecutivo_perfil=".$_REQUEST['consecutivo_perfil'];
+                                $variable.="&tab=".$_REQUEST['tab'];
+                                $variable .= "&validarSoportes=true";
+                                break;
 			
 			case "paginaPrincipal" :
 				$variable = "pagina=" . $miPaginaActual;

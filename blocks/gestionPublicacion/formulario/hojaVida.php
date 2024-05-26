@@ -29,11 +29,11 @@ echo $this->miFormulario->division ( "inicio", $atributos );
                             "tabBasicos"   => $this->lenguaje->getCadena ( "tabBasicos" ),            
                             "tabContacto"  => $this->lenguaje->getCadena ( "tabContacto" ),
                             "tabFormacion"  => $this->lenguaje->getCadena ( "tabFormacion" ),
+                            "tabDocencia"  => $this->lenguaje->getCadena ( "tabDocencia" ),                            
                             "tabProfesional"  => $this->lenguaje->getCadena ( "tabProfesional" ),
-                            "tabDocencia"  => $this->lenguaje->getCadena ( "tabDocencia" ),
                             "tabInvestigacion"  => $this->lenguaje->getCadena ( "tabInvestigacion" ),
-                            "tabProduccion"  => $this->lenguaje->getCadena ( "tabProduccion" ),
                             "tabActividad"  => $this->lenguaje->getCadena ( "tabActividad" ),
+                            "tabProduccion"  => $this->lenguaje->getCadena ( "tabProduccion" ),
                             "tabIdiomas"  => $this->lenguaje->getCadena ( "tabIdiomas" ),
                             //"tabRegistrarMasivo" => $this->lenguaje->getCadena ( "tabRegistrarMasivo" ) 
             );
@@ -74,6 +74,14 @@ echo $this->miFormulario->division ( "inicio", $atributos );
             echo $this->miFormulario->division ( "fin" );
             unset ( $atributos );
             // -----------------Fin Division para la pestaña 3-------------------------
+            // ------------------Division para la pestaña 5-------------------------
+            $atributos ["id"] = "tabDocencia";
+            $atributos ["estilo"] = "";
+            echo $this->miFormulario->division ( "inicio", $atributos );
+                   include_once ($this->ruta . "formulario/tabs/datosDocencia.php"); 
+            echo $this->miFormulario->division ( "fin" );
+            unset ( $atributos );
+            // -----------------Fin Division para la pestaña 5-------------------------            
             // ------------------Division para la pestaña 4-------------------------
             $atributos ["id"] = "tabProfesional";
             $atributos ["estilo"] = "";
@@ -82,14 +90,6 @@ echo $this->miFormulario->division ( "inicio", $atributos );
             echo $this->miFormulario->division ( "fin" );
             unset ( $atributos );
             // -----------------Fin Division para la pestaña 4-------------------------
-            // ------------------Division para la pestaña 5-------------------------
-            $atributos ["id"] = "tabDocencia";
-            $atributos ["estilo"] = "";
-            echo $this->miFormulario->division ( "inicio", $atributos );
-                   include_once ($this->ruta . "formulario/tabs/datosDocencia.php"); 
-            echo $this->miFormulario->division ( "fin" );
-            unset ( $atributos );
-            // -----------------Fin Division para la pestaña 5-------------------------
             // ------------------Division para la pestaña 6-------------------------
             $atributos ["id"] = "tabInvestigacion";
             $atributos ["estilo"] = "";
@@ -98,6 +98,14 @@ echo $this->miFormulario->division ( "inicio", $atributos );
             echo $this->miFormulario->division ( "fin" );
             unset ( $atributos );
             // -----------------Fin Division para la pestaña 6-------------------------
+            // ------------------Division para la pestaña 8-------------------------
+            $atributos ["id"] = "tabActividad";
+            $atributos ["estilo"] = "";
+            echo $this->miFormulario->division ( "inicio", $atributos );
+                   include_once ($this->ruta . "formulario/tabs/datosActividad.php"); 
+            echo $this->miFormulario->division ( "fin" );
+            unset ( $atributos );
+            // -----------------Fin Division para la pestaña 8-------------------------            
             // ------------------Division para la pestaña 7-------------------------
             $atributos ["id"] = "tabProduccion";
             $atributos ["estilo"] = "";
@@ -106,14 +114,6 @@ echo $this->miFormulario->division ( "inicio", $atributos );
             echo $this->miFormulario->division ( "fin" );
             unset ( $atributos );
             // -----------------Fin Division para la pestaña 7-------------------------
-            // ------------------Division para la pestaña 8-------------------------
-            $atributos ["id"] = "tabActividad";
-            $atributos ["estilo"] = "";
-            echo $this->miFormulario->division ( "inicio", $atributos );
-                   include_once ($this->ruta . "formulario/tabs/datosActividad.php"); 
-            echo $this->miFormulario->division ( "fin" );
-            unset ( $atributos );
-            // -----------------Fin Division para la pestaña 8-------------------------
             // ------------------Division para la pestaña 9-------------------------
             $atributos ["id"] = "tabIdiomas";
             $atributos ["estilo"] = "";

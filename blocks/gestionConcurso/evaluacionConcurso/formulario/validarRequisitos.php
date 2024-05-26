@@ -145,6 +145,7 @@ class registrarForm {
                                             $variableVerHoja .= "&consecutivo_inscrito=".$_REQUEST['consecutivo_inscrito'];
                                             $variableVerHoja .= "&consecutivo_concurso=".$_REQUEST['consecutivo_concurso'];
                                             $variableVerHoja .= "&consecutivo_perfil=".$_REQUEST['consecutivo_perfil'];
+                                            $variableVerHoja .= "&validarSoportes=true";
                                             $variableVerHoja = $this->miConfigurador->fabricaConexiones->crypto->codificar_url($variableVerHoja, $directorio);
 
                                                             //-------------Enlace-----------------------
@@ -154,9 +155,9 @@ class registrarForm {
                                                             $atributos ['enlace'] = 'javascript:enlace("ruta_enlace_hoja");';
                                                             $atributos ['tabIndex'] = 0;
                                                             $atributos ['columnas'] = 1;
-                                                            $atributos ['enlaceTexto'] = 'Ver Curriculum';
+                                                            $atributos ['enlaceTexto'] = 'Evaluar soportes hoja de vida';
                                                             $atributos ['estilo'] = 'clasico';
-                                                            $atributos['enlaceImagen']=$rutaBloque."/images/xmag.png";
+                                                            $atributos['enlaceImagen']=$rutaBloque."/images/continuar.png";
                                                             $atributos ['posicionImagen'] ="atras";//"adelante";
                                                             $atributos ['ancho'] = '20px';
                                                             $atributos ['alto'] = '20px';

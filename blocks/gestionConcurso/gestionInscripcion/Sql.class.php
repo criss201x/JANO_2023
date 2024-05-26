@@ -983,8 +983,6 @@ class Sql extends \Sql {
                                // $cadenaSql.=" (SELECT nombre FROM general.nivel WHERE codigo_nivel=to_number(conidm.nivel_habla,'99')) nombre_nivel_habla,";
                                 $cadenaSql.=" conidm.certificacion,";
                                 $cadenaSql.=" conidm.institucion_certificacion, ";
-                                $cadenaSql.=" conidm.tipo_examen, ";
-                                $cadenaSql.=" conidm.nivel_certificado, ";
                                 $cadenaSql.=" conidm.idioma_concurso";
                                 $cadenaSql.=" FROM concurso.conocimiento_idioma conidm ";
                                 $cadenaSql.=" INNER JOIN general.idioma idm ON idm.codigo_idioma=conidm.codigo_idioma";

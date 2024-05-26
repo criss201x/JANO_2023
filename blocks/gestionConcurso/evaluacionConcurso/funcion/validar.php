@@ -52,6 +52,29 @@ class RegistradorValidacion
 
         );
 
+        $registrosHabilitantes = array(
+            "datosFormacion" => "Formación Académica",
+            "datosProfesional" => "Experiencia profesional",
+            "datosDocencia" => "Experiencia docente",
+            "datosInvestigacion" => "Grupo investigación"
+        );
+
+        $validacionesHabilitantes = true;
+        foreach ($registrosHabilitantes as $clave => $valor) {
+            $variable = array(
+                'consecutivo_inscrito' => $_REQUEST['consecutivo_inscrito'],
+                'tipo_dato' => $clave
+            );
+            $cadenaSql = $this->miSql->getCadenaSql('consultaRegistroValidacionesHabilitantes', $variable);
+            $resultado = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+            $validacionesHabilitantes = $validacionesHabilitantes && $resultado[0]['exists'] == 't';
+        }
+
+        if (!$validacionesHabilitantes) {
+            redireccion::redireccionar('noRegistroValidacion', $arregloDatos);
+            exit();
+        }
+
         $cadenaSql = $this->miSql->getCadenaSql('registroValidacion', $arregloDatos);
         $SQLs[] = $cadenaSql;
         $resultado = $esteRecursoDB->ejecutarAcceso($cadenaSql, "registra", $arregloDatos, "registroValidacion");

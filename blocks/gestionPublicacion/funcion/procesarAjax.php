@@ -28,6 +28,9 @@ if ($_REQUEST ['funcion'] == 'consultarPerfil') {
 	$resultado = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
 	$resultado = json_encode ( $resultado );
 	echo $resultado;
+} elseif ($_REQUEST ['funcion'] == 'codificar') {
+    $resultado = $this->miConfigurador->fabricaConexiones->crypto->codificar($_REQUEST ['valor'] . $_REQUEST ['tiempo']);
+    echo $resultado;
 }
 
 
