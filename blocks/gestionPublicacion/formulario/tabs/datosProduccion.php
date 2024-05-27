@@ -65,18 +65,19 @@ class consultarProduccion {
                     if($resultadoProduccion)
                         {   //se definen cabeceras de la tabla
                             $columnas = array( 
-                                            $this->lenguaje->getCadena ("ciudad_produccion"),
+                                            //$this->lenguaje->getCadena ("ciudad_produccion"),
                                             $this->lenguaje->getCadena ("fecha_produccion"),
-                                            $this->lenguaje->getCadena ("codigo_tipo_produccion"),
+                                            $this->lenguaje->getCadena ("nombre_tipo_produccion"),
+                                            //$this->lenguaje->getCadena ("codigo_tipo_produccion"),
                                             $this->lenguaje->getCadena ("titulo_produccion"),
                                             $this->lenguaje->getCadena ("nombre_autor"),
-                                            $this->lenguaje->getCadena ("nombre_producto_incluye"),
+                                            //$this->lenguaje->getCadena ("nombre_producto_incluye"),
                                             $this->lenguaje->getCadena ("nombre_editorial"),
                                             $this->lenguaje->getCadena ("volumen"),
                                             $this->lenguaje->getCadena ("pagina_producto"),
                                             $this->lenguaje->getCadena ("codigo_isbn"),
                                             $this->lenguaje->getCadena ("codigo_issn"),
-                                            $this->lenguaje->getCadena ("indexado"),
+                                            //$this->lenguaje->getCadena ("indexado"),
                                             $this->lenguaje->getCadena ("descripcion_produccion"),
                                             $this->lenguaje->getCadena ("direccion_produccion"));
                             foreach ($resultadoTiposop as $tipokey => $value) 
@@ -99,18 +100,18 @@ class consultarProduccion {
                                     {   $datos=json_decode ($resultadoProduccion[$key]['valor_dato']);	
                                     
                                         $mostrarHtml = "<tr align='center'>
-                                                <td align='left'>".$datos->ciudad."</td>
+
                                                 <td align='left'>".$datos->fecha_produccion."</td>
                                                 <td align='left'>".$datos->nombre_tipo_produccion."</td>
                                                 <td align='left'>".$datos->titulo_produccion."</td>
                                                 <td align='left'>".$datos->nombre_autor."</td>
-                                                <td align='left'>".$datos->nombre_producto_incluye."</td>
+
                                                 <td align='left'>".$datos->nombre_editorial."</td>
                                                 <td align='left'>".$datos->volumen."</td>
                                                 <td align='left'>".$datos->pagina."</td>
                                                 <td align='left'>".$datos->codigo_isbn."</td>
                                                 <td align='left'>".$datos->codigo_issn."</td>
-                                                <td align='left'>".$datos->indexado."</td>
+
                                                 <td align='left'>".$datos->descripcion."</td>";                                        
                                         
                                         $mostrarHtml .= "<td>";

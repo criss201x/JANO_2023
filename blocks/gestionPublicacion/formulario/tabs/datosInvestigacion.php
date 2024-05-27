@@ -100,8 +100,8 @@ class consultarInvestigacion {
                                                 $this->lenguaje->getCadena ("categoria_grupo"),
                                                 $this->lenguaje->getCadena ("direccion_investigacion"));                            
                             
-                            foreach ($resultadoTiposop as $tipokey => $value) 
-                                {array_push($columnas, $resultadoTiposop[$tipokey]['alias']);}
+                            //foreach ($resultadoTiposop as $tipokey => $value) 
+                                //{array_push($columnas, $resultadoTiposop[$tipokey]['alias']);}
                             include('validarSoportesGeneral.php');
                             //-----------------Inicio de Conjunto de Controles----------------------------------------
                                 $esteCampo = "marcoInvestigacion";
@@ -173,6 +173,7 @@ class consultarInvestigacion {
                                                         }
                                         $mostrarHtml .= "</td>";                                        
                                         // --------------- INICIO CONTROLES : Visualizar SOPORTES SEGUN LOS RELACIONADOS --------------------------------------------------
+                                                /*
                                                 foreach ($resultadoTiposop as $tipokey => $value) 
                                                     {//valida si existen soportes para el tipo
                                                     //se arman las celdas con los soportes existentes
@@ -266,6 +267,7 @@ class consultarInvestigacion {
                                                               }  
                                                         $mostrarHtml .= "</td> ";               
                                                      } 
+                                                     */
                                                 // --------------- FIN CONTROLES : ver SOPORTES --------------------------------------------------                                              
                                         include('validarSoportes.php');
                                        $mostrarHtml .= "</tr>";

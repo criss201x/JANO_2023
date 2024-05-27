@@ -70,8 +70,16 @@ class consultarActividad {
                                                 $this->lenguaje->getCadena ("fecha_inicio"),
                                                 $this->lenguaje->getCadena ("fecha_fin"),
                                                 $this->lenguaje->getCadena ("tiempo_experiencia"),
-                                                $this->lenguaje->getCadena ("codigo_tipo_actividad"),
-                                                $this->lenguaje->getCadena ("nombre_actividad"),
+                                                $this->lenguaje->getCadena ("tipo_producto"),
+                                                $this->lenguaje->getCadena ("rol_investigacion"),
+                                                //$this->lenguaje->getCadena ("codigo_tipo_actividad"),
+                                                //$this->lenguaje->getCadena ("nombre_actividad"),
+                                                $this->lenguaje->getCadena ("titulo_patente"),
+                                                $this->lenguaje->getCadena ("numero_aprobacion_patente"),
+                                                $this->lenguaje->getCadena ("ano_aprobacion"),
+                                                $this->lenguaje->getCadena ("nombre_ponencia"),
+                                                $this->lenguaje->getCadena ("nombre_evento"),
+                                                $this->lenguaje->getCadena ("nombre_proyecto"),
                                                 $this->lenguaje->getCadena ("descripcion_actividad"),
                                                 $this->lenguaje->getCadena ("nombre_institucion_actividad"),
                                                 $this->lenguaje->getCadena ("nivel_institucion_actividad"),
@@ -109,8 +117,14 @@ class consultarActividad {
                                                         <td align='left'>".$datos->fecha_inicio."</td>
                                                         <td align='left'>".$datos->fecha_fin."</td>
                                                         <td align='left'>".$diff[$key]->days."</td>
-                                                        <td align='left'>".$datos->nombre_tipo_actividad."</td>
-                                                        <td align='left'>".$datos->nombre_actividad."</td>
+                                                        <td align='left'>".$datos->tipo_producto."</td>
+                                                        <td align='left'>".$datos->rol_investigacion."</td>
+                                                        <td align='left'>".$datos->titulo_patente."</td>
+                                                        <td align='left'>".$datos->numero_aprobacion_patente."</td>
+                                                        <td align='left'>".$datos->ano_aprobacion."</td>
+                                                        <td align='left'>".$datos->nombre_ponencia."</td>
+                                                        <td align='left'>".$datos->nombre_evento."</td>
+                                                        <td align='left'>".$datos->nombre_proyecto."</td>
                                                         <td align='left'>".$datos->descripcion."</td>
                                                         <td align='left'>".$datos->nombre_institucion."</td>
                                                         <td align='left'>".$datos->nivel_institucion."</td>

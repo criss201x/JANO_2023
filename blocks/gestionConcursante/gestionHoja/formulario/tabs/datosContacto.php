@@ -235,7 +235,7 @@ class contactoForm {
 
                                     // Aplica atributos globales al control
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    echo $this->miFormulario->campoTextArea ( $atributos );
+                                    echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );                                                   
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'correo';
