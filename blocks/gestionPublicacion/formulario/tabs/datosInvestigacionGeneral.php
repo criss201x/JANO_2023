@@ -69,10 +69,10 @@ class consultarInvestigacion {
                                                 $this->lenguaje->getCadena ("fecha_inicio_investigacion"),
                                                 $this->lenguaje->getCadena ("fecha_fin_investigacion"),
                                                 $this->lenguaje->getCadena ("tiempo_investigacion"),
-                                                $this->lenguaje->getCadena ("rol_investigacion"),
-                                                $this->lenguaje->getCadena ("titulo_investigacion"),
-                                                $this->lenguaje->getCadena ("descripcion_investigacion"),
-                                                $this->lenguaje->getCadena ("jefe_investigacion"),
+                                                //$this->lenguaje->getCadena ("rol_investigacion"),
+                                                //$this->lenguaje->getCadena ("titulo_investigacion"),
+                                                //$this->lenguaje->getCadena ("descripcion_investigacion"),
+                                                //$this->lenguaje->getCadena ("jefe_investigacion"),
                                                 $this->lenguaje->getCadena ("nombre_institucion_investigacion"),
                                                 $this->lenguaje->getCadena ("nivel_institucion_investigacion"),
                                                 $this->lenguaje->getCadena ("telefono_institucion_investigacion"),
@@ -81,8 +81,8 @@ class consultarInvestigacion {
                                                 $this->lenguaje->getCadena ("categoria_grupo"),
                                                 $this->lenguaje->getCadena ("direccion_investigacion"));                            
                             
-                            foreach ($resultadoTiposop as $tipokey => $value) 
-                                {array_push($columnas, $resultadoTiposop[$tipokey]['alias']);}
+                            //foreach ($resultadoTiposop as $tipokey => $value) 
+                                //{array_push($columnas, $resultadoTiposop[$tipokey]['alias']);}
                             //-----------------Inicio de Conjunto de Controles----------------------------------------
                                 $esteCampo = "marcoInvestigacion";
                                 $atributos["estilo"] = "jqueryui";
@@ -119,10 +119,6 @@ class consultarInvestigacion {
                                                 <td align='left'>".$resultadoInvestigacion[$key]['fecha_inicio']."</td>
                                                 <td align='left'>".$resultadoInvestigacion[$key]['fecha_fin']."</td>
                                                 <td align='left'>".$diffInv[$key]->days."</td>
-                                                <td align='left'>".$resultadoInvestigacion[$key]['rol_investigacion']."</td>
-                                                <td align='left'>".$resultadoInvestigacion[$key]['titulo_investigacion']."</td>
-                                                <td align='left'>".$resultadoInvestigacion[$key]['descripcion_investigacion']."</td>
-                                                <td align='left'>".$resultadoInvestigacion[$key]['jefe_investigacion']."</td>
                                                 <td align='left'>".$resultadoInvestigacion[$key]['nombre_institucion']."</td>
                                                 <td align='left'>".$resultadoInvestigacion[$key]['nivel_institucion']."</td>
                                                 <td align='left'>".$resultadoInvestigacion[$key]['telefono_institucion']."</td>
@@ -162,6 +158,7 @@ class consultarInvestigacion {
                                                         }
                                         $mostrarHtml .= "</td>";                                        
                                         // --------------- INICIO CONTROLES : Visualizar SOPORTES SEGUN LOS RELACIONADOS --------------------------------------------------
+/*                                        
                                                 foreach ($resultadoTiposop as $tipokey => $value) 
                                                     {//valida si existen soportes para el tipo
                                                     $parametroSop = array('consecutivo_persona'=>trim($resultadoInvestigacion[$key]['consecutivo_persona']),
@@ -255,7 +252,7 @@ class consultarInvestigacion {
                                                                      }  
                                                         }
                                                         $mostrarHtml .= "</td> ";               
-                                                     } 
+                                                     } */
                                                 // --------------- FIN CONTROLES : ver SOPORTES --------------------------------------------------  
                                        $mostrarHtml .= "</tr>";
                                        echo $mostrarHtml;

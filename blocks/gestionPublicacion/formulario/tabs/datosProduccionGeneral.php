@@ -65,18 +65,19 @@ class consultarProduccion {
                     if($resultadoProduccion)
                         {   //se definen cabeceras de la tabla
                             $columnas = array( 
-                                            $this->lenguaje->getCadena ("ciudad_produccion"),
+                                            //$this->lenguaje->getCadena ("ciudad_produccion"),
                                             $this->lenguaje->getCadena ("fecha_produccion"),
-                                            $this->lenguaje->getCadena ("codigo_tipo_produccion"),
+                                            $this->lenguaje->getCadena ("nombre_tipo_produccion"),
+                                            //$this->lenguaje->getCadena ("codigo_tipo_produccion"),
                                             $this->lenguaje->getCadena ("titulo_produccion"),
                                             $this->lenguaje->getCadena ("nombre_autor"),
-                                            $this->lenguaje->getCadena ("nombre_producto_incluye"),
+                                            //$this->lenguaje->getCadena ("nombre_producto_incluye"),
                                             $this->lenguaje->getCadena ("nombre_editorial"),
                                             $this->lenguaje->getCadena ("volumen"),
                                             $this->lenguaje->getCadena ("pagina_producto"),
                                             $this->lenguaje->getCadena ("codigo_isbn"),
                                             $this->lenguaje->getCadena ("codigo_issn"),
-                                            $this->lenguaje->getCadena ("indexado"),
+                                            //$this->lenguaje->getCadena ("indexado"),
                                             $this->lenguaje->getCadena ("descripcion_produccion"),
                                             $this->lenguaje->getCadena ("direccion_produccion"));
                             
@@ -108,18 +109,18 @@ class consultarProduccion {
                                             }
                                      
                                         $mostrarHtml = "<tr align='center'>
-                                                <td align='left'>".$resultadoProduccion[$key]['ciudad']."</td>
+
                                                 <td align='left'>".$resultadoProduccion[$key]['fecha_produccion']."</td>
                                                 <td align='left'>".$resultadoProduccion[$key]['nombre_tipo_produccion']."</td>
                                                 <td align='left'>".$resultadoProduccion[$key]['titulo_produccion']."</td>
                                                 <td align='left'>".$resultadoProduccion[$key]['nombre_autor']."</td>
-                                                <td align='left'>".$resultadoProduccion[$key]['nombre_producto_incluye']."</td>
+
                                                 <td align='left'>".$resultadoProduccion[$key]['nombre_editorial']."</td>
                                                 <td align='left'>".$resultadoProduccion[$key]['volumen']."</td>
                                                 <td align='left'>".$resultadoProduccion[$key]['pagina']."</td>
                                                 <td align='left'>".$resultadoProduccion[$key]['codigo_isbn']."</td>
                                                 <td align='left'>".$resultadoProduccion[$key]['codigo_issn']."</td>
-                                                <td align='left'>".$resultadoProduccion[$key]['indexado']."</td>
+
                                                 <td align='left'>".$resultadoProduccion[$key]['descripcion']."</td>";                                        
                                         
                                         $mostrarHtml .= "<td>";

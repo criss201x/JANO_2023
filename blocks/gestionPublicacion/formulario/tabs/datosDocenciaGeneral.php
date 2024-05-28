@@ -65,7 +65,7 @@ class consultarDocencia {
                 {
                     if($resultadoDocencia)
                         {   //define las cabeceras de la tablas
-                            $columnas = array('Pais','Ingreso','Terminación','Nivel Programa','Vinculación','Horas Dictadas','Actividades','Institución','Tipo','Telefono','Correo');
+                            //$columnas = array('Pais','Ingreso','Terminación','Nivel Programa','Vinculación','Horas Dictadas','Actividades','Institución','Tipo','Telefono','Correo');
                             $columnas = array(  $this->lenguaje->getCadena ("pais_docencia"),
                                                 $this->lenguaje->getCadena ("fecha_inicio_docencia"),
                                                 $this->lenguaje->getCadena ("fecha_fin_docencia"),

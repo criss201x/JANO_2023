@@ -23,7 +23,6 @@ class consultarInvestigacion {
                 
 	}
 	function miForm() {
-		
             // Rescatar los datos de este bloque
             $esteBloque = $this->miConfigurador->getVariableConfiguracion ( "esteBloque" );
             $rutaBloque = $this->miConfigurador->getVariableConfiguracion("host");

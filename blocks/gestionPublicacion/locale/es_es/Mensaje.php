@@ -149,7 +149,7 @@ $this->idioma["codigo_isbn"]="Código ISBN  ";
 $this->idioma["codigo_issn"]="Código ISSN  ";
 $this->idioma["indexado"]="Indexado ";
 $this->idioma["descripcion_produccion"]="Descripción ";
-$this->idioma["direccion_produccion"]="Enlace a producto  ";
+$this->idioma["direccion_produccion"]="Enlace a obra artística  ";
 $this->idioma["fecha_produccion"]="Fecha publicación  ";
 
 $this->idioma["pais_actividad"]="País  ";

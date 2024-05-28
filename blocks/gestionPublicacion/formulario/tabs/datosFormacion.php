@@ -98,7 +98,8 @@ class consultarFormacion {
                                                 $this->lenguaje->getCadena ("cursos_temporalidad"),
                                                 $this->lenguaje->getCadena ("promedio"),
                                                 $this->lenguaje->getCadena ("graduado"),
-                                                $this->lenguaje->getCadena ("fecha_grado"));                            foreach ($resultadoTiposop as $tipokey => $value) 
+                                                $this->lenguaje->getCadena ("fecha_grado"));                            
+                            foreach ($resultadoTiposop as $tipokey => $value) 
                                 {array_push($columnas, $resultadoTiposop[$tipokey]['alias']);}
                             include('validarSoportesGeneral.php');
                                 
