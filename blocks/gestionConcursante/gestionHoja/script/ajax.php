@@ -404,7 +404,7 @@ $(function () {
           
 //controles idioma        
 if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
-                 $("#<?php echo $this->campoSeguro('certificado')?>").val('N');
+                 //$("#<?php echo $this->campoSeguro('certificado')?>").val('N');
 
                  $("#<?php echo $this->campoSeguro('certificacion')?>").val('');
                  $("#<?php echo $this->campoSeguro('certificacion')?>").removeClass("validate[required]");

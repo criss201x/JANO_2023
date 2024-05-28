@@ -130,7 +130,7 @@ class produccionForm {
                                     $atributos ['limitar'] = true;
                                     $atributos ['anchoCaja'] = 60;
                                     $atributos ['evento'] = '';
-                                    $parametronivel=array('tipo_nivel'=> 'Produccion' );
+                                    $parametronivel=array('tipo_nivel'=> 'Produccion', 'order'=> 'codigo' );
                                     $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "MostrarNivel",$parametronivel );
                                     $matrizItems = array (array (0,' '));
                                     $matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );

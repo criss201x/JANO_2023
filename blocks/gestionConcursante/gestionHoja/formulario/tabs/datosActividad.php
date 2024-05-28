@@ -534,7 +534,7 @@ class actividadForm {
                                     $atributos ['limitar'] = true;
                                     $atributos ['anchoCaja'] = 400;
                                     $atributos ['evento'] = '';
-                                    $parametronivel=array('tipo_nivel'=> 'RolInvestigador');
+                                    $parametronivel=array('tipo_nivel'=> 'RolInvestigador', 'order'=> 'codigo');
                                     $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "MostrarNivel",$parametronivel );
                                     $matrizItems = array (array (0,' '));
                                     $matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );

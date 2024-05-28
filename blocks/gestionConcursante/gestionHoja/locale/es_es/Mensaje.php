@@ -345,7 +345,7 @@ $this->idioma["institucion_certificacion"]="Institución certifica  ";
 $this->idioma["soporteIdiomaTitulo"]="Adjuntar documento en formato PDF menor a 1 Mb";
 $this->idioma["soporteIdioma"]="Soporte certificación  ";
 $this->idioma["idioma_concursoTitulo"]="Indique si es idioma para presenta las pruebas de los conculsos ";
-$this->idioma["idioma_concurso"]="Idioma para concursos";
+$this->idioma["idioma_concurso"]="Idioma para concurso";
 
 
 $this->idioma["noDefinido"]="No definido";
