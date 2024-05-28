@@ -140,7 +140,7 @@ class actividadForm {
                                     $atributos ['limitar'] = true;
                                     $atributos ['anchoCaja'] = 400;
                                     $atributos ['evento'] = '';
-                                    $parametronivel=array('tipo_nivel'=> 'TipoProductoInvestigacion');
+                                    $parametronivel=array('tipo_nivel'=> 'TipoProductoInvestigacion', 'order'=> 'codigo');
                                     $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "MostrarNivel",$parametronivel );
                                     $matrizItems = array (array (0,' '));
                                     $matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
@@ -251,7 +251,7 @@ class actividadForm {
                                     $atributos ['evento'] = ' ';
                                     if (isset ( $resultadoActividad[0]['pais_actividad'] ))
                                          {  $atributos ['seleccion'] = $resultadoActividad[0]['pais_actividad'];}
-                                    else {	$atributos ['seleccion'] = 112;}
+                                    else {	$atributos ['seleccion'] = -1;}
                                     $atributos ['deshabilitado'] = false;
                                     $atributos ['columnas'] = 1;
                                     $atributos ['tamanno'] = 1;

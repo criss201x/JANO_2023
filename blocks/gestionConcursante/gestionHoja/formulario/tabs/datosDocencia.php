@@ -444,7 +444,7 @@ class docenciaForm {
                                     $atributos ['evento'] = ' ';
                                     if (isset ( $resultadoDocencia[0]['actual'] ))
                                          {  $atributos ['seleccion'] = $resultadoDocencia[0]['actual'];}
-                                    else {  $atributos ['seleccion'] = 'N';}
+                                    else {  $atributos ['seleccion'] = -1;}
                                     $atributos ['deshabilitado'] = false;
                                     $atributos ['columnas'] = 1;
                                     $atributos ['tamanno'] = 1;

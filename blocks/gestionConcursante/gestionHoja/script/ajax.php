@@ -543,7 +543,7 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
                 $("#MarcoJefe_actividad").fadeOut(200);
 
 
-    }else if ($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Proyectos de investigación e Investigación creación'){
+    }else if ($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Proyecto de investigación e Investigación creación'){
         $("#MarcoPatente").fadeOut(200);
                 $("#MarcoNombre_ponencia").fadeOut(200);
                 $("#MarcoNombre_evento").fadeOut(200);                
@@ -608,7 +608,7 @@ if($("#<?php echo $this->campoSeguro('certificacion')?>").val()==''){
                 $("#<?php echo $this->campoSeguro('nombre_proyecto')?>").val('');                
                 $("#<?php echo $this->campoSeguro('jefe_actividad')?>").val('');
 
-            } else if($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Proyectos de investigación e Investigación creación'){
+            } else if($("#<?php echo $this->campoSeguro('tipo_producto')?>").val()=='Proyecto de investigación e Investigación creación'){
                 $("#MarcoPatente").fadeOut(200);
                 $("#MarcoNombre_ponencia").fadeOut(200);
                 $("#MarcoNombre_evento").fadeOut(200);                

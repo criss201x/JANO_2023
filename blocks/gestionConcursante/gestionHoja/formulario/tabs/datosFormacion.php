@@ -139,7 +139,7 @@ class formacionForm {
                                     $atributos ['evento'] = '';
                                     if (isset ( $resultadoFormacion[0]['codigo_modalidad'] ))
                                          {  $atributos ['seleccion'] = $resultadoFormacion[0]['codigo_modalidad'];}
-                                    else {  $atributos ['seleccion'] =  1;}
+                                    else {  $atributos ['seleccion'] =  -1;}
                                     $atributos ['deshabilitado'] = false;
                                     $atributos ['columnas'] = 1;
                                     $atributos ['tamanno'] = 1;
