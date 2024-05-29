@@ -481,7 +481,16 @@ class cerrarSoporteConcurso
                     'jefe_actividad' => $resultadoActividad[$key]['jefe_actividad'],
                     'fecha_inicio' => $resultadoActividad[$key]['fecha_inicio'],
                     'fecha_fin' => $resultadoActividad[$key]['fecha_fin'],
+                    'rol_investigacion' => $resultadoActividad[$key]['rol_investigacion'],
+                    'tipo_producto' => $resultadoActividad[$key]['tipo_producto'],
+                    'nombre_ponencia' => $resultadoActividad[$key]['nombre_ponencia'],
+                    'nombre_evento' => $resultadoActividad[$key]['nombre_evento'],
+                    'titulo_patente' => $resultadoActividad[$key]['titulo_patente'],
+                    'numero_aprobacion_patente' => $resultadoActividad[$key]['numero_aprobacion_patente'],
+                    'ano_aprobacion' => $resultadoActividad[$key]['ano_aprobacion'],
+                    'nombre_proyecto' => $resultadoActividad[$key]['nombre_proyecto'],
                 );
+
                 //busca soportes cargados
                 $consecutivo_persona = $resultadoActividad[$key]['consecutivo_persona'];
                 $tipo_dato = 'datosActividad';
@@ -590,17 +599,17 @@ class cerrarSoporteConcurso
                     'nombre_tipo_produccion' => $resultadoProduccion[$key]['nombre_tipo_produccion'],
                     'titulo_produccion' => $resultadoProduccion[$key]['titulo_produccion'],
                     'nombre_autor' => $resultadoProduccion[$key]['nombre_autor'],
-                    'nombre_producto_incluye' => $resultadoProduccion[$key]['nombre_producto_incluye'],
+                    //'nombre_producto_incluye' => $resultadoProduccion[$key]['nombre_producto_incluye'],
                     'nombre_editorial' => $resultadoProduccion[$key]['nombre_editorial'],
                     'volumen' => $resultadoProduccion[$key]['volumen'],
                     'pagina' => $resultadoProduccion[$key]['pagina'],
                     'codigo_isbn' => $resultadoProduccion[$key]['codigo_isbn'],
                     'codigo_issn' => $resultadoProduccion[$key]['codigo_issn'],
-                    'indexado' => $resultadoProduccion[$key]['indexado'],
-                    'pais_produccion' => $resultadoProduccion[$key]['pais_produccion'],
-                    'departamento_produccion' => $resultadoProduccion[$key]['departamento_produccion'],
-                    'ciudad_produccion' => $resultadoProduccion[$key]['ciudad_produccion'],
-                    'ciudad' => $resultadoProduccion[$key]['ciudad'],
+                    //'indexado' => $resultadoProduccion[$key]['indexado'],
+                    //'pais_produccion' => $resultadoProduccion[$key]['pais_produccion'],
+                    //'departamento_produccion' => $resultadoProduccion[$key]['departamento_produccion'],
+                    //'ciudad_produccion' => $resultadoProduccion[$key]['ciudad_produccion'],
+                    //'ciudad' => $resultadoProduccion[$key]['ciudad'],
                     'descripcion' => $resultadoProduccion[$key]['descripcion'],
                     'direccion_produccion' => $resultadoProduccion[$key]['direccion_produccion'],
                     'fecha_produccion' => $resultadoProduccion[$key]['fecha_produccion'],
@@ -652,6 +661,8 @@ class cerrarSoporteConcurso
                     'certificacion' => $resultadoIdioma[$key]['certificacion'],
                     'institucion_certificacion' => $resultadoIdioma[$key]['institucion_certificacion'],
                     'idioma_concurso' => $resultadoIdioma[$key]['idioma_concurso'],
+                    'tipo_examen' => $resultadoIdioma[$key]['tipo_examen'],
+                    'nivel_certificado' => $resultadoIdioma[$key]['nivel_certificado'],
                 );
                 //busca soportes cargados
                 $consecutivo_persona = $resultadoIdioma[$key]['consecutivo_persona'];
