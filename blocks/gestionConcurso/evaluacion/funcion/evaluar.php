@@ -52,11 +52,32 @@ class RegistradorEvaluacion
         $resultadoGrupo = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
 
         if ($resultadoGrupo) {
+            $calificaciones = [];
+            foreach ($_REQUEST AS $clave => $valor) {
+                if (strpos($clave, "calificacion") !== false) {
+                    array_push($calificaciones, array(
+                        'consecutivo_subcriterio' => str_replace("calificacion", "", $clave),
+                        'calificacion' => $valor
+                    ));
+                }
+            }
+
+            if (count($calificaciones) > 0) {
+                $param = array(
+                    'consecutivo_inscrito' => $_REQUEST["consecutivo_inscrito"],
+                    'calificaciones' => $calificaciones
+                );
+                $cadena_sql = $this->miSql->getCadenaSql("eliminarDetallesEvaluacion", $param);
+                array_push($SQLs, $cadena_sql);
+                $cadena_sql = $this->miSql->getCadenaSql("guardarEvaluacionDetalle", $param);
+                array_push($SQLs, $cadena_sql);		
+            }
+
             for ($i = 0; $i < $_REQUEST['numeroCriterios']; $i++) {
                 $arregloDatos = array('grupo' => $resultadoGrupo[0][0],
                     'inscrito' => $_REQUEST['consecutivo_inscrito'],
                     'id_evaluar' => $_REQUEST['id_evaluar' . $i],
-                    'puntaje' => $_REQUEST['puntaje' . $i],
+                    'puntaje' => ($_REQUEST['puntaje' . $i] == '') ? 0 : $_REQUEST['puntaje' . $i],
                     'observacion' => $_REQUEST['observaciones' . $i],
                     'fecha' => $fecha,
                     'consecutivo_concurso' => $_REQUEST['consecutivo_concurso']
@@ -66,6 +87,12 @@ class RegistradorEvaluacion
                 array_push($SQLs, str_replace('RETURNING id', '', $cadenaSql));
                 //$resultado = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "registra", $arregloDatos, "registroEvaluacion" );
             }
+
+            if (count($calificaciones) > 0) {
+                $cadena_sql = $this->miSql->getCadenaSql("guardarTotalDetalle", $_REQUEST["consecutivo_inscrito"]);
+                array_push($SQLs, $cadena_sql);
+            }
+
             //  var_dump($SQLs);//exit;
             $resultado = $esteRecursoDB->transaccion($SQLs);
 
@@ -109,11 +136,31 @@ class RegistradorEvaluacion
             $SQLs[] = $cadena_sql;
             $registroGrupo = $esteRecursoDB->ejecutarAcceso($cadena_sql, "registra", $parametro, "registroGrupoEvaluacion");
 
+            $calificaciones = [];
+            foreach ($_REQUEST AS $clave => $valor) {
+                if (strpos($clave, "calificacion") !== false) {
+                    array_push($calificaciones, array(
+                        'consecutivo_subcriterio' => str_replace("calificacion", "", $clave),
+                        'calificacion' => $valor
+                    ));
+                }
+            }
+            if (count($calificaciones) > 0) {
+                $param = array(
+                    'consecutivo_inscrito' => $_REQUEST["consecutivo_inscrito"],
+                    'calificaciones' => $calificaciones
+                );
+                $cadena_sql = $this->miSql->getCadenaSql("eliminarDetallesEvaluacion", $param);
+                array_push($SQLs, $cadena_sql);
+                $cadena_sql = $this->miSql->getCadenaSql("guardarEvaluacionDetalle", $param);
+                array_push($SQLs, $cadena_sql);
+            }
+
             for ($i = 0; $i < $_REQUEST['numeroCriterios']; $i++) {
                 $arregloDatos = array('grupo' => $registroGrupo,
                     'inscrito' => $_REQUEST['consecutivo_inscrito'],
                     'id_evaluar' => $_REQUEST['id_evaluar' . $i],
-                    'puntaje' => $_REQUEST['puntaje' . $i],
+                    'puntaje' => ($_REQUEST['puntaje' . $i] == '') ? 0 : $_REQUEST['puntaje' . $i],
                     'observacion' => $_REQUEST['observaciones' . $i],
                     'fecha' => $fecha,
                     'consecutivo_concurso' => $_REQUEST['consecutivo_concurso']
@@ -123,6 +170,12 @@ class RegistradorEvaluacion
                 array_push($SQLs, str_replace('RETURNING id', '', $cadenaSql));
                 //$resultado = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "registra", $arregloDatos, "registroEvaluacion" );
             }
+
+            if (count($calificaciones) > 0) {
+                $cadena_sql = $this->miSql->getCadenaSql("guardarTotalDetalle", $_REQUEST["consecutivo_inscrito"]);
+                array_push($SQLs, $cadena_sql);
+            }
+
             $resultado = $esteRecursoDB->transaccion($SQLs);
             if ($resultado) {
                 redireccion::redireccionar('registroEvaluacion', $arregloDatos);

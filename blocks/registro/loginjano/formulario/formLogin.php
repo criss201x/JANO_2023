@@ -45,17 +45,16 @@ class Formulario {
 //                    echo " <div><img u='image' src='" . $rutaBloque . "/imagenes/slide_" . $i . ".jpg' /></div>";
 //                }
                  ?>
-
-                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/slide_17.jpg" /></div>
-                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/slide_15.jpg" /></div>
-                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/slide_7.jpg" /></div>
-                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/slide_6.jpg" /></div>
-                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/slide_10.jpg" /></div>
-                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/slide_12.jpg" /></div>
-                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/slide_13.jpg" /></div>
-                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/slide_16.jpg" /></div>
-                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/slide_18.jpg" /></div>
-                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/slide_8.jpg" /></div>
+                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/ingenieria.jpg" /></div>
+                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/paiba2.jpg" /></div>
+                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/cienciased2.jpg" /></div>
+                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/asab.jpg" /></div>
+                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/paiba1.jpg" /></div>
+                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/cienciased1.jpg" /></div>
+                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/fcmn.jpg" /></div>
+                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/porvenir.jpg" /></div>
+                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/vivero2.jpeg" /></div>
+                <div><img u="image" src="<?php echo $rutaBloque ?>/imagenes/tecno.jpg" /></div>
             </div>
         </div>
         <header>
@@ -289,11 +288,11 @@ class Formulario {
         <section>
             <div id="fondo_texto">
                 <div id="texto">
-                    <h3>Sistema de Gestión para Concurso de Méritos</h3><BR>
-                    <h2>JANO</h2>
+                    
+                    <h2>Sistema de Gestión de Concurso Docente</h2>
                     <div id="text2" align="center">
                         <p>
-                            <a href="https://udistritaleduco-my.sharepoint.com/:f:/g/personal/concursodocente_udistrital_edu_co/EqzZ0ffqD6lOj2DrXYlvnVIBn_P3jCWTJy9rP66rxIuZww?e=bnGo2p" 
+                            <a href="https://udistritaleduco-my.sharepoint.com/:f:/g/personal/concursodocente_udistrital_edu_co/EgI69ag7MvNKoruGk5rRWz4B8LLbbfI_TaGCJjlfeSRwxw?e=KAbIwt" 
                             target="_blank" style="display: inline-block; padding: 12px 24px; text-decoration: none; background-color: #f7f7f7; color: #333; border: 2px solid #000000; border-radius: 6px; font-size: 18px;">Publicaciones<span></span></a>
                         </p>
                     </div>                    
@@ -312,12 +311,12 @@ class Formulario {
             <div id="footerRight">
                 <a href="https://www.facebook.com/UniversidadDistrital"
                    target="_blank"><img
-                        src="<?php echo $directorioImagenes ?>/facebook.png" /></a> <a
-                    href="https://plus.google.com/110031223488101566921/about?gl=co&hl=es"
+                        src="<?php echo $directorioImagenes ?>/facebook_2023.png" width="30" height="30" /></a> <a
+                    href="https://x.com/udistrital"
                     target="_blank"><img
-                        src="<?php echo $directorioImagenes ?>/google+.png" /></a> <a
-                    href="http://www.udistrital.edu.co/" target="_blank"><img
-                        src="<?php echo $directorioImagenes ?>/mail.png" /></a>
+                        src="<?php echo $directorioImagenes ?>/twitter-x-logo_2023.png "  width="30" height="30" /></a> <a
+                    href="https://www.instagram.com/udistrital_oficial" target="_blank"><img
+                        src="<?php echo $directorioImagenes ?>/instagram_icon_2023.png" width="30" height="30"/></a>
             </div>
         </footer>
 

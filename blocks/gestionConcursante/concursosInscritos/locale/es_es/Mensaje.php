@@ -12,9 +12,9 @@ $this->idioma["fecha_registro"]="Fecha Inscripción:";
 $this->idioma["nombre"]="Nombre Concurso:";
 $this->idioma["modalidad"]="Modalidad Concurso:";
 $this->idioma["codigo"]="Código perfil:";
-$this->idioma["perfil"]="Perfil:";
-$this->idioma["dependencia"]="Dependencia / Facultad:";
-$this->idioma["area"]="Área / Proyecto:";
+$this->idioma["perfil"]="Proyecto curricular:";
+$this->idioma["dependencia"]="Facultad:";
+$this->idioma["area"]="Nucleo de conocimiento:";
 $this->idioma["nivel_concurso"]="Nivel Concurso:";
 
 

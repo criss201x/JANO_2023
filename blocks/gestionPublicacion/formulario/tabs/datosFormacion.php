@@ -245,6 +245,7 @@ class consultarFormacion {
 
                         }else
                         {
+                                include('validarSoportesGeneral.php');                            
                                 $atributos["id"]="divNoEncontroFormacion";
                                 $atributos["estilo"]="";
                            //$atributos["estiloEnLinea"]="display:none"; 

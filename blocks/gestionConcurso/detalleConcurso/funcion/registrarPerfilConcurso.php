@@ -42,11 +42,14 @@ class RegistradorPerfilConcurso
         $arregloDatos = array('consecutivo_perfil' => $_REQUEST['consecutivo_perfil'],
             'consecutivo_concurso' => $_REQUEST['consecutivo_concurso'],
             'nombre' => $_REQUEST['nombrePerfil'],
-            'descripcion' => $_REQUEST['descripcion'],
-            'requisitos' => $_REQUEST['requisitos'],
             'dependencia' => $_REQUEST['dependencia'],
             'area' => $_REQUEST['area'],
             'vacantes' => $_REQUEST['vacantes'],
+            'requisitos_pregrado' => $_REQUEST['requisitos_pregrado'],
+            'requisitos_maestria' => $_REQUEST['requisitos_maestria'],
+            'requisitos_doctorado' => $_REQUEST['requisitos_doctorado'],
+            'requisitos_docencia' => $_REQUEST['requisitos_docencia'],
+            'requisitos_grupo_investigacion' => $_REQUEST['requisitos_grupo_investigacion'],
             'estado' => isset($_REQUEST['estado']) ? $_REQUEST['estado'] : ''
         );
 

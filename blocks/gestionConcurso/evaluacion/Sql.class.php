@@ -1145,6 +1145,98 @@ class Sql extends \Sql {
                                 $cadenaSql .= " AND rol_id = '".$variable['rol_id']."' ";
 			break;
 
+            case "consultarSubcriterios":
+                $cadenaSql = "SELECT ";
+                $cadenaSql .= "DISTINCT se.consecutivo_subcriterio, se.nombre nombre_subcriterio, se.puntos, ";
+                $cadenaSql .= "(SELECT ed.calificacion FROM concurso.evaluacion_detalle ed WHERE se.consecutivo_subcriterio=ed.consecutivo_subcriterio AND ed.consecutivo_inscrito=" . $variable["consecutivo_inscrito"] . ") calificacion ";
+                $cadenaSql .= "FROM concurso.item_evaluacion ie ";
+                $cadenaSql .= "INNER JOIN concurso.articulo a ON a.consecutivo_articulo=ie.consecutivo_articulo ";
+                $cadenaSql .= "INNER JOIN concurso.subcriterio_evaluacion se ON se.consecutivo_item=ie.consecutivo_item ";
+                $cadenaSql .= "WHERE ie.consecutivo_criterio=" . $variable["consecutivo_criterio"] . " AND ie.consecutivo_item=" . $variable["consecutivo_item"];
+                break;
+            
+            case "consultarItemsSubcriterios":
+                $cadenaSql = "SELECT ";
+                $cadenaSql .= "DISTINCT ie.consecutivo_item, ie.nombre nombre_item ";
+                $cadenaSql .= "FROM concurso.item_evaluacion ie ";
+                $cadenaSql .= "INNER JOIN concurso.subcriterio_evaluacion se ON se.consecutivo_item=ie.consecutivo_item ";
+                $cadenaSql .= "WHERE ie.consecutivo_criterio=" . $variable["consecutivo_criterio"] . " AND ie.consecutivo_articulo=" . $variable["consecutivo_articulo"];
+                break;
+
+            case "consultarArticulosSubcriterios":
+                $cadenaSql = "SELECT ";
+                $cadenaSql .= "DISTINCT a.consecutivo_articulo, a.nombre nombre_articulo ";
+                $cadenaSql .= "FROM concurso.articulo a ";
+                $cadenaSql .= "INNER JOIN concurso.item_evaluacion ie ON a.consecutivo_articulo=ie.consecutivo_articulo ";
+                $cadenaSql .= "WHERE ie.consecutivo_criterio=" . $variable;
+                break;
+
+            case "existDetalleEvaluacion":
+                $cadenaSql = "SELECT EXISTS(SELECT 1 as evaluado FROM concurso.evaluacion_detalle ed ";
+                $cadenaSql .= "WHERE ed.consecutivo_inscrito=" . $variable . ")";
+                break;
+
+            case "consultarEvaluacionSubcriterios":
+                $cadenaSql = "SELECT se.nombre, ed.calificacion ";
+                $cadenaSql .= "FROM concurso.evaluacion_detalle ed ";
+                $cadenaSql .= "INNER JOIN concurso.subcriterio_evaluacion se ON se.consecutivo_subcriterio=ed.consecutivo_subcriterio ";
+                $cadenaSql .= "WHERE ed.consecutivo_inscrito=" . $variable;
+                break;
+
+            case "consultarEvaluacionDetalle":
+                $cadenaSql = "SELECT ";
+                $cadenaSql .= "DISTINCT ed.consecutivo_evaluacion_detalle, ed.consecutivo_subcriterio, ed.calificacion ";
+                $cadenaSql .= "FROM concurso.evaluacion_detalle ed ";
+                $cadenaSql .= "WHERE ed.consecutivo_subcriterio=" . $variable["consecutivo_subcriterio"] . " ";
+                $cadenaSql .= "AND ed.consecutivo_inscrito=" . $variable["consecutivo_inscrito"] . " ";
+                $cadenaSql .= "AND ed.estado='A'";
+                break;
+
+            case "guardarEvaluacionDetalle":
+                $cadenaSql = "INSERT INTO ";
+                $cadenaSql .= "concurso.evaluacion_detalle ";
+                $cadenaSql .= "(consecutivo_subcriterio, consecutivo_inscrito, calificacion) ";
+                $cadenaSql .= "VALUES ";
+                foreach ($variable["calificaciones"] as $calificacion) {
+                    $cadenaSql .= " (" . $calificacion["consecutivo_subcriterio"] . ", " . $variable["consecutivo_inscrito"] . ", " . $calificacion["calificacion"] . "),";
+                }
+                $cadenaSql = rtrim($cadenaSql, ',');
+                break;
+
+            case "eliminarDetallesEvaluacion":
+                $cadenaSql = "DELETE FROM concurso.evaluacion_detalle ";
+                $cadenaSql .= "WHERE consecutivo_inscrito=".$variable["consecutivo_inscrito"];
+                break;
+
+            case "capturaSubcriterios":
+                $cadenaSql = "SELECT EXISTS( ";
+                $cadenaSql .= "SELECT DISTINCT 1 as subcriterios FROM concurso.articulo a ";
+                $cadenaSql .= "INNER JOIN concurso.item_evaluacion ie ON ie.consecutivo_articulo=a.consecutivo_articulo ";
+                $cadenaSql .= "INNER JOIN concurso.subcriterio_evaluacion se ON se.consecutivo_item=ie.consecutivo_item ";
+                $cadenaSql .= "WHERE a.estado='A' ";
+                $cadenaSql .= "AND ie.estado='A' ";
+                $cadenaSql .= "AND se.estado='A' ";
+                $cadenaSql .= "AND ie.consecutivo_criterio=" . $variable;
+                $cadenaSql .= ")";
+                break;
+
+            case "guardarTotalDetalle":
+                $cadenaSql = "INSERT INTO ";
+                $cadenaSql .= "concurso.total_detalle (consecutivo_inscrito, consecutivo_criterio, sumatoria, total_puntos, observacion) ";
+                $cadenaSql .= "SELECT ed.consecutivo_inscrito, ie.consecutivo_criterio, SUM(ed.calificacion) sumatoria, 0 total, '' observacion ";
+                $cadenaSql .= "FROM concurso.evaluacion_detalle ed ";
+                $cadenaSql .= "INNER JOIN concurso.subcriterio_evaluacion se ON ed.consecutivo_subcriterio=se.consecutivo_subcriterio ";
+                $cadenaSql .= "INNER JOIN concurso.item_evaluacion ie ON ie.consecutivo_item=se.consecutivo_item ";
+                $cadenaSql .= "WHERE ed.consecutivo_inscrito=" . $variable . " ";
+                $cadenaSql .= "GROUP BY 1, 2";
+                break;
+
+            case "consultarTotalDetalleSubcriterio":
+                $cadenaSql = "SELECT sumatoria, total_puntos FROM concurso.total_detalle ";
+                $cadenaSql .= "WHERE consecutivo_inscrito=" . $variable["consecutivo_inscrito"] . " ";
+                $cadenaSql .= "AND consecutivo_criterio=" . $variable["consecutivo_criterio"];
+                break;
+
 				/**
 				 * Clausulas genéricas. se espera que estén en todos los formularios
 				 * que utilicen esta plantilla

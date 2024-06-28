@@ -111,13 +111,31 @@ class mensajeForm {
                                     $tipo = 'warning';
                                     $mensaje = "Esta seguro de registrar la evaluación para la inscripción <b>".$_REQUEST ['consecutivo_inscrito']."</b>?";
                                     $valorVariables = "";
-                                    for($i=0; $i<$_REQUEST['numeroCriterios']; $i++)
-                                        {   $mensaje .= "<br>- ".$_REQUEST['criterio'.$i].": ".$_REQUEST['puntaje'.$i]." Puntos";
-                                           $valorVariables .='&id_evaluar'.$i.'='.$_REQUEST['id_evaluar'.$i];
-                                           $valorVariables .='&puntaje'.$i.'='.$_REQUEST['puntaje'.$i];
-                                           $valorVariables .='&observaciones'.$i.'='.$_REQUEST['observaciones'.$i];
-                                        }    
-                                    
+									$criteriosPonderados = [];
+                                    for($i=0; $i<$_REQUEST['numeroCriterios']; $i++) {
+										if ($_REQUEST['puntaje'.$i] != "") {
+											$mensaje .= "<br>- ".$_REQUEST['criterio'.$i].": ".$_REQUEST['puntaje'.$i]." Puntos";
+										} else {
+											$criteriosPonderados[$_REQUEST['id_evaluar'.$i]] = $_REQUEST['criterio'.$i];
+										}
+										$valorVariables .='&id_evaluar'.$i.'='.$_REQUEST['id_evaluar'.$i];
+										$valorVariables .='&puntaje'.$i.'='.$_REQUEST['puntaje'.$i];
+										$valorVariables .='&observaciones'.$i.'='.$_REQUEST['observaciones'.$i];
+									}
+
+									foreach ($_REQUEST as $clave => $valor) {
+										if ((strpos($clave, "calificacion") !== false || strpos($clave, "total") !== false) && $valor != "") {
+											$valorVariables .='&'.$clave.'='.$valor;
+										}
+									}
+
+									if (count($criteriosPonderados) > 0) {
+										$mensaje .= "<br><br>Los puntajes de los siguientes criterios se calculan automaticamente al ponderar los resultados de todos los aspirantes:<br>";
+										foreach ($criteriosPonderados AS $clave => $valor) {
+											$mensaje .= "- " . $valor . "<br>";
+										}
+									}
+
                                     $mensaje .= "<br>Recuerde que una vez registrado el puntaje, no se puede modificar.";
                                     $boton='botonGuardar';
                                     $esteCampo = 'calendario';

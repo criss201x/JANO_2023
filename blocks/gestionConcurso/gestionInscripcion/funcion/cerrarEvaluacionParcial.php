@@ -64,6 +64,19 @@ class cerrarEvaluacion
         //exit;
         if ($resultadoListaInscrito) {   //llama imagen progreso
             $this->progreso($esteBloque);
+
+            $cadena_sql = $this->miSql->getCadenaSql("existTotalDetalle", $_REQUEST['consecutivo_concurso']);
+            $resultadoExist = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+
+            if ($resultadoExist && $resultadoExist[0]["exists"] == "t") {
+                // Actualizar evaluacion parcial criterios con subcriterios
+                $cadena_sql = $this->miSql->getCadenaSql("actualizarTotalDetalle", $_REQUEST['consecutivo_concurso']);
+                $resultadoActualizacionDetalle = $esteRecursoDB->ejecutarAcceso($this->cadena_sql, "actualiza", $_REQUEST['consecutivo_concurso'], "actualizarTotalDetalle");
+
+                $cadena_sql = $this->miSql->getCadenaSql("actualizarEvaluarParcialPonderado", $_REQUEST['consecutivo_concurso']);
+                $resultadoActualizacionEvaluarParcialPonderado = $esteRecursoDB->ejecutarAcceso($this->cadena_sql, "actualiza", $_REQUEST['consecutivo_concurso'], "actualizarEvaluarParcialPonderado");
+            }
+
             //recorre los registros de los que se validaron
             foreach ($resultadoListaInscrito as $key => $value) {
                 $parametro['consecutivo_inscrito'] = $resultadoListaInscrito[$key]['consecutivo_inscrito'];

@@ -20,9 +20,9 @@ $this->idioma['enlaceCondor']='https://condor.udistrital.edu.co/appserv/';
 $this->idioma['enlaceProveedores']='https://portalws.udistrital.edu.co/proveedor/';
 
 
-$this->idioma['enlacegoogle']='https://plus.google.com/106543869133961089207/posts';
+$this->idioma['enlaceInstagram']='https://www.instagram.com/udistrital_oficial';
 $this->idioma['enlacefacebook']='https://www.facebook.com/UniversidadDistrital';
-$this->idioma['enlacetwitter']='https://twitter.com/udistrital';
+$this->idioma['enlacetwitter']='https://x.com/udistrital';
 
 
 

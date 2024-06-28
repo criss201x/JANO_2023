@@ -246,6 +246,7 @@ class consultarProfesional {
 
                         }else
                         {
+                                include('validarSoportesGeneral.php');                            
                                 $atributos["id"]="divNoEncontroProfesional";
                                 $atributos["estilo"]="";
                            //$atributos["estiloEnLinea"]="display:none"; 

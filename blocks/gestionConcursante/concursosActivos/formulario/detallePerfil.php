@@ -128,7 +128,7 @@ class registrarForm {
 			$atributos ['id'] = $esteCampo;
 			$atributos ["estilo"] = "jqueryui";
 			$atributos ['tipoEtiqueta'] = 'inicio';
-			$atributos ["leyenda"] = "<b>Perfil de Concurso: ".$resultadoPerfil[0]['perfil']."</b>";
+			$atributos ["leyenda"] = "<b>Detalle inscripción </b>";
 			echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
 			unset ( $atributos );
 			{
@@ -157,30 +157,55 @@ class registrarForm {
                                                         <th class='textoAzul'>Código Perfil</th>
                                                         <td class='table-tittle estilo_tr '>".$resultadoPerfil[0]['codigo']."</td>
                                                </tr>";
+								$mostrarHtml .= "<tr align='center'>
+											   <th class='textoAzul'>Facultad</th>
+											   <td class='table-tittle estilo_tr '>".$resultadoPerfil[0]['dependencia']."</td>
+									  </tr>";											   
                                 $mostrarHtml .= "<tr align='center'>
-                                                        <th class='textoAzul'>Perfil</th>
+                                                        <th class='textoAzul'>Proyecto curricular</th>
                                                         <td class='table-tittle estilo_tr '>".$resultadoPerfil[0]['perfil']."</td>
                                                </tr>";
                                 $mostrarHtml .= "<tr align='center'>
-                                                        <th class='textoAzul'>Dependencia</th>
-                                                        <td class='table-tittle estilo_tr '>".$resultadoPerfil[0]['dependencia']."</td>
-                                               </tr>";
-                                $mostrarHtml .= "<tr align='center'>
-                                                        <th class='textoAzul'>Area</td>
+                                                        <th class='textoAzul'>Nucleo de conocimiento</td>
                                                         <td class='table-tittle estilo_tr '>".$resultadoPerfil[0]['area']."</td>
                                                </tr>";
-                                $mostrarHtml .= "<tr align='center'>
-                                                        <th class='textoAzul'>Vacantes</th>
-                                                        <td class='table-tittle estilo_tr '>".$resultadoPerfil[0]['vacantes']."</td>
-                                               </tr>";
-                                $mostrarHtml .= "<tr align='center'>
+
+								$mostrarHtml .= "<tr align='center'>
+											   <th class='textoAzul'>Títulos de pregrado aceptados</th>
+											   <td class='table-tittle estilo_tr '>".substr(str_replace('*', '<br>', $resultadoPerfil[0]['requisitos_pregrado']),4)  ."</td>
+									  </tr>";
+									  
+								$mostrarHtml .= "<tr align='center'>
+											   <th class='textoAzul'>Títulos de maestría aceptados</th>
+											   <td class='table-tittle estilo_tr '>". substr(str_replace('*', '<br>', $resultadoPerfil[0]['requisitos_maestria']),4) ."</td>
+									  </tr>";
+									 
+								$mostrarHtml .= "<tr align='center'>
+											  <th class='textoAzul'>Títulos de doctorado aceptados</th>
+									 		  <td class='table-tittle estilo_tr '>". substr(str_replace('*', '<br>', $resultadoPerfil[0]['requisitos_doctorado'] ),4) ."</td>
+							 		  </tr>";
+								$mostrarHtml .= "<tr align='center'>
+											   <th class='textoAzul'>Experiencia docente certificada</th>
+											   <td class='table-tittle estilo_tr '>".$resultadoPerfil[0]['requisitos_docencia']."</td>
+									  </tr>";
+									  
+								$mostrarHtml .= "<tr align='center'>
+											   <th class='textoAzul'>Grupo de investigacion categorizado</th>
+											   <td class='table-tittle estilo_tr '>".$resultadoPerfil[0]['requisitos_grupo_investigacion']."</td>
+									  </tr>"; 
+
+								$mostrarHtml .= "<tr align='center'>
+										        <th class='textoAzul'>Numero de cargos vacantes por perfil del concurso</th>
+									  			<td class='table-tittle estilo_tr '>".$resultadoPerfil[0]['vacantes']."</td>
+							 		  </tr>";									  
+                                /*$mostrarHtml .= "<tr align='center'>
                                                         <th class='textoAzul'>Descripción</th>
                                                         <td class='table-tittle estilo_tr '>".$resultadoPerfil[0]['descripcion']."</td>
                                                </tr>";
                                 $mostrarHtml .= "<tr align='center'>
                                                         <th class='textoAzul'>Requisitos</th>
                                                         <td class='table-tittle estilo_tr '>".$resultadoPerfil[0]['requisitos']."</td>
-                                               </tr>";
+                                               </tr>";*/
 
                                 echo $mostrarHtml;
                                 unset($mostrarHtml);

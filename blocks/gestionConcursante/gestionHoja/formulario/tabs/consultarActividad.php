@@ -50,7 +50,6 @@ class consultarActividad {
 	//identifca lo roles para la busqueda de subsistemas
             $parametro=array('id_usuario'=>$_REQUEST['usuario']);    
             $cadena_sql = $this->miSql->getCadenaSql("consultarActividad", $parametro);
-            error_log($cadena_sql);
             $resultadoListaActividad = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
             //-----BUSCA LOS TIPOS DE SOPORTES PARA EL FORMUALRIO, SEGÚN LOS RELACIONADO EN LA TABLA
             $parametroTipoSop = array('dato_relaciona'=>'datosActividad',);

@@ -131,18 +131,18 @@ class pie {
                 echo $this->miFormulario->division("inicio", $atributos);
                 unset($atributos);
                 {
-                    $esteCampo = 'enlacegoogle';
+                    $esteCampo = 'enlaceInstagram';
                     $atributos ['id'] = $esteCampo;
                     //$atributos ['enlace'] = $this->lenguaje->getCadena($esteCampo);
                     $atributos ['enlace'] = '#';
                     $atributos ['columnas'] = 3;
                     $atributos ['onClick']='window.open("'.$this->lenguaje->getCadena($esteCampo).'")';
                     // $atributos ['estilo'] = 'jquery';
-                    $atributos ['enlaceImagen'] = $this->miConfigurador->getVariableConfiguracion('rutaUrlBloque') . 'imagen/google+.png';
+                    $atributos ['enlaceImagen'] = $this->miConfigurador->getVariableConfiguracion('rutaUrlBloque') . 'imagen/instagram_icon_2023.png';
                     $atributos ['ancho'] = '30px';
                     $atributos ['alto'] = '30px';
                     $tab ++;
-                   // echo $this->miFormulario->enlace($atributos);
+                    echo $this->miFormulario->enlace($atributos);
                     unset($atributos);
 
                     $esteCampo = 'enlacefacebook';
@@ -152,7 +152,7 @@ class pie {
                     $atributos ['columnas'] = 3;
                     $atributos ['onClick']='window.open("'.$this->lenguaje->getCadena($esteCampo).'")';
                     // $atributos ['estilo'] = 'jquery';
-                    $atributos ['enlaceImagen'] = $this->miConfigurador->getVariableConfiguracion('rutaUrlBloque') . 'imagen/facebook.png';
+                    $atributos ['enlaceImagen'] = $this->miConfigurador->getVariableConfiguracion('rutaUrlBloque') . 'imagen/facebook_2023.png';
                     $atributos ['ancho'] = '30px';
                     $atributos ['alto'] = '30px';
                     $tab ++;
@@ -165,7 +165,7 @@ class pie {
                     $atributos ['columnas'] = 3;
                     $atributos ['onClick']='window.open("'.$this->lenguaje->getCadena($esteCampo).'")';
                     // $atributos ['estilo'] = 'jquery';
-                    $atributos ['enlaceImagen'] = $this->miConfigurador->getVariableConfiguracion('rutaUrlBloque') . 'imagen/twitter.png';
+                    $atributos ['enlaceImagen'] = $this->miConfigurador->getVariableConfiguracion('rutaUrlBloque') . 'imagen/twitter-x-logo_2023.png';
                     $atributos ['ancho'] = '30px';
                     $atributos ['alto'] = '30px';
                     $tab ++;

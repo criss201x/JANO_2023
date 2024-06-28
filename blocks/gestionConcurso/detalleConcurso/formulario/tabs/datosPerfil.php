@@ -106,93 +106,6 @@ class perfilForm {
 				unset ( $atributos );
 				{
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-                                    $esteCampo = 'nombrePerfil';
-                                    $atributos ['id'] = $esteCampo;
-                                    $atributos ['nombre'] = $esteCampo;
-                                    $atributos ['tipo'] = 'text';
-                                    $atributos ['estilo'] = 'jqueryui';
-                                    $atributos ['marco'] = true;
-                                    $atributos ['estiloMarco'] = '';
-                                    $atributos ["etiquetaObligatorio"] = true;
-                                    $atributos ['columnas'] = 1;
-                                    $atributos ['dobleLinea'] = 0;
-                                    $atributos ['tabIndex'] = $tab;
-                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-                                    $atributos ['validar']="required, minSize[5],maxSize[255]";
-                                    if (isset ($resultadoPerfil[0] ['nombre']  )) 
-                                        { $atributos ['valor'] =  $resultadoPerfil[0]['nombre'] ;}
-                                    else{ $atributos ['valor'] = ''; }
-                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-                                    $atributos ['deshabilitado'] = false;
-                                    $atributos ['tamanno'] = 60;
-                                    $atributos ['maximoTamanno'] = '';
-                                    $atributos ['anchoEtiqueta'] = 170;
-                                    $tab ++;
-                                    // Aplica atributos globales al control
-                                    $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    echo $this->miFormulario->campoCuadroTexto ( $atributos );
-                                    unset ( $atributos );
-                                    // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------
-                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-                                    $esteCampo = 'descripcion';
-                                    $atributos ['id'] = $esteCampo;
-                                    $atributos ['nombre'] = $esteCampo;
-                                    $atributos ['tipo'] = 'text';
-                                    $atributos ['estilo'] = 'jqueryui';
-                                    $atributos ['marco'] = true;
-                                    $atributos ['estiloMarco'] = '';
-                                    $atributos ["etiquetaObligatorio"] = true;
-                                    $atributos ['columnas'] = 74;
-                                    $atributos ['filas'] = 4;
-                                    $atributos ['dobleLinea'] = 0;
-                                    $atributos ['tabIndex'] = $tab;
-                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-                                    $atributos ['validar'] = 'required, minSize[1], maxSize[3000]';
-                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-                                    $atributos ['deshabilitado'] = false;
-                                    $atributos ['tamanno'] = 60;
-                                    $atributos ['maximoTamanno'] = '';
-                                    $atributos ['anchoEtiqueta'] = 170;
-                                    if (isset ($resultadoPerfil[0]['descripcion']  )) 
-                                        { $atributos ['valor'] =  $resultadoPerfil[0]['descripcion'] ;}
-                                    else{ $atributos ['valor'] = ''; }
-                                    $tab ++;
-
-                                    // Aplica atributos globales al control
-                                    $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    echo $this->miFormulario->campoTextArea ( $atributos );
-                                    unset ( $atributos );                                                   
-                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-                                    $esteCampo = 'requisitos';
-                                    $atributos ['id'] = $esteCampo;
-                                    $atributos ['nombre'] = $esteCampo;
-                                    $atributos ['tipo'] = 'text';
-                                    $atributos ['estilo'] = 'jqueryui';
-                                    $atributos ['marco'] = true;
-                                    $atributos ['estiloMarco'] = '';
-                                    $atributos ["etiquetaObligatorio"] = true;
-                                    $atributos ['columnas'] = 74;
-                                    $atributos ['filas'] = 15;
-                                    $atributos ['dobleLinea'] = 0;
-                                    $atributos ['tabIndex'] = $tab;
-                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-                                    $atributos ['validar'] = 'required, minSize[1], maxSize[5000]';
-                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-                                    $atributos ['deshabilitado'] = false;
-                                    $atributos ['tamanno'] = 60;
-                                    $atributos ['maximoTamanno'] = '';
-                                    $atributos ['anchoEtiqueta'] = 170;
-                                    if (isset ($resultadoPerfil[0]['requisitos']  )) 
-                                        { $atributos ['valor'] =  $resultadoPerfil[0]['requisitos'] ;}
-                                    else{ $atributos ['valor'] = ''; }
-                                    $tab ++;
-                                    // Aplica atributos globales al control
-                                    $atributos = array_merge ( $atributos, $atributosGlobales );
-                                    echo $this->miFormulario->campoTextArea ( $atributos );
-                                    unset ( $atributos );                                                   
-                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'dependencia';
                                     $atributos ['id'] = $esteCampo;
                                     $atributos ['nombre'] = $esteCampo;
@@ -208,6 +121,34 @@ class perfilForm {
                                     $atributos ['validar']="required, minSize[5],maxSize[255]";
                                     if (isset ($resultadoPerfil[0] ['dependencia']  )) 
                                         { $atributos ['valor'] =  $resultadoPerfil[0]['dependencia'] ;}
+                                    else{ $atributos ['valor'] = ''; }
+                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['tamanno'] = 60;
+                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ['anchoEtiqueta'] = 170;
+                                    $tab ++;
+                                    // Aplica atributos globales al control
+                                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                                    echo $this->miFormulario->campoCuadroTexto ( $atributos );
+                                    unset ( $atributos );
+                                    // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------                                        
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $esteCampo = 'nombrePerfil';
+                                    $atributos ['id'] = $esteCampo;
+                                    $atributos ['nombre'] = $esteCampo;
+                                    $atributos ['tipo'] = 'text';
+                                    $atributos ['estilo'] = 'jqueryui';
+                                    $atributos ['marco'] = true;
+                                    $atributos ['estiloMarco'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
+                                    $atributos ['columnas'] = 1;
+                                    $atributos ['dobleLinea'] = 0;
+                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+                                    $atributos ['validar']="required, minSize[5],maxSize[255]";
+                                    if (isset ($resultadoPerfil[0] ['nombre']  )) 
+                                        { $atributos ['valor'] =  $resultadoPerfil[0]['nombre'] ;}
                                     else{ $atributos ['valor'] = ''; }
                                     $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
                                     $atributos ['deshabilitado'] = false;
@@ -247,7 +188,215 @@ class perfilForm {
                                     $atributos = array_merge ( $atributos, $atributosGlobales );
                                     echo $this->miFormulario->campoCuadroTexto ( $atributos );
                                     unset ( $atributos );
-                                    // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------     
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $esteCampo = 'requisitos_pregrado';
+                                    $atributos ['id'] = $esteCampo;
+                                    $atributos ['nombre'] = $esteCampo;
+                                    $atributos ['tipo'] = 'text';
+                                    $atributos ['estilo'] = 'jqueryui';
+                                    $atributos ['marco'] = true;
+                                    $atributos ['estiloMarco'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
+                                    $atributos ['columnas'] = 74;
+                                    $atributos ['filas'] = 10;
+                                    $atributos ['dobleLinea'] = 0;
+                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+                                    $atributos ['validar'] = 'required, minSize[1], maxSize[3000]';
+                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['tamanno'] = 60;
+                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ['anchoEtiqueta'] = 170;
+                                    if (isset ($resultadoPerfil[0]['requisitos_pregrado']  )) 
+                                        { $atributos ['valor'] =  $resultadoPerfil[0]['requisitos_pregrado'] ;}
+                                    else{ $atributos ['valor'] = ''; }
+                                    $tab ++;
+
+                                    // Aplica atributos globales al control
+                                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                                    echo $this->miFormulario->campoTextArea ( $atributos );
+                                    unset ( $atributos );                                                   
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------                                                                   
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $esteCampo = 'requisitos_maestria';
+                                    $atributos ['id'] = $esteCampo;
+                                    $atributos ['nombre'] = $esteCampo;
+                                    $atributos ['tipo'] = 'text';
+                                    $atributos ['estilo'] = 'jqueryui';
+                                    $atributos ['marco'] = true;
+                                    $atributos ['estiloMarco'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
+                                    $atributos ['columnas'] = 74;
+                                    $atributos ['filas'] = 10;
+                                    $atributos ['dobleLinea'] = 0;
+                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+                                    $atributos ['validar'] = ' minSize[1], maxSize[3000]';
+                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['tamanno'] = 60;
+                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ['anchoEtiqueta'] = 170;
+                                    if (isset ($resultadoPerfil[0]['requisitos_maestria']  )) 
+                                        { $atributos ['valor'] =  $resultadoPerfil[0]['requisitos_maestria'] ;}
+                                    else{ $atributos ['valor'] = ''; }
+                                    $tab ++;
+                                    // Aplica atributos globales al control
+                                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                                    echo $this->miFormulario->campoTextArea ( $atributos );
+                                    unset ( $atributos );                                                   
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------   
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $esteCampo = 'requisitos_doctorado';
+                                    $atributos ['id'] = $esteCampo;
+                                    $atributos ['nombre'] = $esteCampo;
+                                    $atributos ['tipo'] = 'text';
+                                    $atributos ['estilo'] = 'jqueryui';
+                                    $atributos ['marco'] = true;
+                                    $atributos ['estiloMarco'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
+                                    $atributos ['columnas'] = 74;
+                                    $atributos ['filas'] = 10;
+                                    $atributos ['dobleLinea'] = 0;
+                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+                                    $atributos ['validar'] = ' minSize[1], maxSize[3000]';
+                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['tamanno'] = 60;
+                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ['anchoEtiqueta'] = 170;
+                                    if (isset ($resultadoPerfil[0]['requisitos_doctorado']  )) 
+                                        { $atributos ['valor'] =  $resultadoPerfil[0]['requisitos_doctorado'] ;}
+                                    else{ $atributos ['valor'] = ''; }
+                                    $tab ++;
+
+                                    // Aplica atributos globales al control
+                                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                                    echo $this->miFormulario->campoTextArea ( $atributos );
+                                    unset ( $atributos );                                                   
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------    
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $esteCampo = 'requisitos_docencia';
+                                    $atributos ['id'] = $esteCampo;
+                                    $atributos ['nombre'] = $esteCampo;
+                                    $atributos ['tipo'] = 'text';
+                                    $atributos ['estilo'] = 'jqueryui';
+                                    $atributos ['marco'] = true;
+                                    $atributos ['estiloMarco'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
+                                    $atributos ['columnas'] = 74;
+                                    $atributos ['filas'] = 10;
+                                    $atributos ['dobleLinea'] = 0;
+                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+                                    $atributos ['validar'] = 'required, minSize[1], maxSize[3000]';
+                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['tamanno'] = 60;
+                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ['anchoEtiqueta'] = 170;
+                                    if (isset ($resultadoPerfil[0]['requisitos_docencia']  )) 
+                                        { $atributos ['valor'] =  $resultadoPerfil[0]['requisitos_docencia'] ;}
+                                    else{ $atributos ['valor'] = ''; }
+                                    $tab ++;
+
+                                    // Aplica atributos globales al control
+                                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                                    echo $this->miFormulario->campoTextArea ( $atributos );
+                                    unset ( $atributos );                                                   
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $esteCampo = 'requisitos_grupo_investigacion';
+                                    $atributos ['id'] = $esteCampo;
+                                    $atributos ['nombre'] = $esteCampo;
+                                    $atributos ['tipo'] = 'text';
+                                    $atributos ['estilo'] = 'jqueryui';
+                                    $atributos ['marco'] = true;
+                                    $atributos ['estiloMarco'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
+                                    $atributos ['columnas'] = 74;
+                                    $atributos ['filas'] = 10;
+                                    $atributos ['dobleLinea'] = 0;
+                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+                                    $atributos ['validar'] = 'required, minSize[1], maxSize[3000]';
+                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['tamanno'] = 60;
+                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ['anchoEtiqueta'] = 170;
+                                    if (isset ($resultadoPerfil[0]['requisitos_grupo_investigacion']  )) 
+                                        { $atributos ['valor'] =  $resultadoPerfil[0]['requisitos_grupo_investigacion'] ;}
+                                    else{ $atributos ['valor'] = ''; }
+                                    $tab ++;
+
+                                    // Aplica atributos globales al control
+                                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                                    echo $this->miFormulario->campoTextArea ( $atributos );
+                                    unset ( $atributos );                                                   
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------                                                                                                                                                                                                            
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $esteCampo = 'descripcion';
+                                    $atributos ['id'] = $esteCampo;
+                                    $atributos ['nombre'] = $esteCampo;
+                                    $atributos ['tipo'] = 'text';
+                                    $atributos ['estilo'] = 'jqueryui';
+                                    $atributos ['marco'] = true;
+                                    $atributos ['estiloMarco'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
+                                    $atributos ['columnas'] = 74;
+                                    $atributos ['filas'] = 4;
+                                    $atributos ['dobleLinea'] = 0;
+                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+                                    $atributos ['validar'] = 'required, minSize[1], maxSize[3000]';
+                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['tamanno'] = 60;
+                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ['anchoEtiqueta'] = 170;
+                                    if (isset ($resultadoPerfil[0]['descripcion']  )) 
+                                        { $atributos ['valor'] =  $resultadoPerfil[0]['descripcion'] ;}
+                                    else{ $atributos ['valor'] = ''; }
+                                    $tab ++;
+
+                                    // Aplica atributos globales al control
+                                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                                    //echo $this->miFormulario->campoTextArea ( $atributos );//se inactiva conforme a lo establecido en acuerdo 002 de 2024 del csu
+                                    unset ( $atributos );                                                   
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                                    $esteCampo = 'requisitos';
+                                    $atributos ['id'] = $esteCampo;
+                                    $atributos ['nombre'] = $esteCampo;
+                                    $atributos ['tipo'] = 'text';
+                                    $atributos ['estilo'] = 'jqueryui';
+                                    $atributos ['marco'] = true;
+                                    $atributos ['estiloMarco'] = '';
+                                    $atributos ["etiquetaObligatorio"] = true;
+                                    $atributos ['columnas'] = 74;
+                                    $atributos ['filas'] = 15;
+                                    $atributos ['dobleLinea'] = 0;
+                                    $atributos ['tabIndex'] = $tab;
+                                    $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+                                    $atributos ['validar'] = 'required, minSize[1], maxSize[5000]';
+                                    $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+                                    $atributos ['deshabilitado'] = false;
+                                    $atributos ['tamanno'] = 60;
+                                    $atributos ['maximoTamanno'] = '';
+                                    $atributos ['anchoEtiqueta'] = 170;
+                                    if (isset ($resultadoPerfil[0]['requisitos']  )) 
+                                        { $atributos ['valor'] =  $resultadoPerfil[0]['requisitos'] ;}
+                                    else{ $atributos ['valor'] = ''; }
+                                    $tab ++;
+                                    // Aplica atributos globales al control
+                                    $atributos = array_merge ( $atributos, $atributosGlobales );
+                                    //echo $this->miFormulario->campoTextArea ( $atributos );se inactiva conforme a lo establecido en acuerdo 002 de 2024 del csu
+                                    unset ( $atributos );                                                   
+                                    // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
                                     $esteCampo = 'vacantes';
                                     $atributos ['id'] = $esteCampo;

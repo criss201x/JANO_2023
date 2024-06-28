@@ -140,9 +140,9 @@ class consultarForm {
                     echo "<thead>
                             <tr align='center'>
                               <th>Código</th>
-                              <th>Perfil</th>
-                              <th>Dependencia</th>
-                              <th>Area</th>
+                              <th>Facultad</th>                              
+                              <th>Proyecto curricular</th>
+                              <th>Nucleo de conocimiento</th>
                               <th>Vacantes</th>
                               <th>Estado</th>
                               <th>Detalle</th>
@@ -169,8 +169,8 @@ class consultarForm {
 
                                 $mostrarHtml = "<tr align='center'>
                                                 <td align='left'>".$resultadoPerfiles[$key]['codigo']."</td>
-                                                <td align='left'>".$resultadoPerfiles[$key]['nombre']."</td>
                                                 <td align='left'>".$resultadoPerfiles[$key]['dependencia']."</td>
+                                                <td align='left'>".$resultadoPerfiles[$key]['nombre']."</td>
                                                 <td align='left'>".$resultadoPerfiles[$key]['area']."</td>
                                                 <td align='left'>".$resultadoPerfiles[$key]['vacantes']."</td>
                                                 <td align='left'>".$resultadoPerfiles[$key]['estado']."</td>";

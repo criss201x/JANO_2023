@@ -91,6 +91,11 @@ class Sql extends \Sql {
                                 $cadenaSql .= " dependencia, ";
                                 $cadenaSql .= " area, ";
                                 $cadenaSql .= " vacantes, ";
+                                $cadenaSql .= " requisitos_pregrado, ";
+                                $cadenaSql .= " requisitos_maestria, ";
+                                $cadenaSql .= " requisitos_doctorado, ";
+                                $cadenaSql .= " requisitos_docencia, ";
+                                $cadenaSql .= " requisitos_grupo_investigacion, ";                                                                                                                                
                                 $cadenaSql .= " estado ";
                                 $cadenaSql .= "FROM concurso.concurso_perfil ";
                                 $cadenaSql .= "WHERE consecutivo_concurso=".$variable['concurso']." ";
@@ -130,6 +135,11 @@ class Sql extends \Sql {
                                 $cadenaSql .= " p.requisitos, ";
                                 $cadenaSql .= " p.dependencia, ";
                                 $cadenaSql .= " p.area, ";
+                                $cadenaSql .= " p.requisitos_pregrado, ";
+                                $cadenaSql .= " p.requisitos_maestria, ";
+                                $cadenaSql .= " p.requisitos_doctorado, ";
+                                $cadenaSql .= " p.requisitos_docencia, ";
+                                $cadenaSql .= " p.requisitos_grupo_investigacion, ";
                                 $cadenaSql .= " p.vacantes, ";
                                 $cadenaSql .= " p.estado ";
                                 $cadenaSql .= "from concurso.concurso_perfil p, concurso.concurso c ";

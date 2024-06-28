@@ -15,15 +15,16 @@ $directorio .= $this->miConfigurador->getVariableConfiguracion("enlace");
     <!-- Slides Container -->
     <div u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 1800px; height: 500px; overflow: hidden;">
 
-        <div><img u="image" src="<?php echo $rutaBloque ?>/images/slide_10.jpg" /></div>
-        <div><img u="image" src="<?php echo $rutaBloque ?>/images/slide_12.jpg" /></div>
-        <div><img u="image" src="<?php echo $rutaBloque ?>/images/slide_13.jpg" /></div>
-        <div><img u="image" src="<?php echo $rutaBloque ?>/images/slide_16.jpg" /></div>
-        <div><img u="image" src="<?php echo $rutaBloque ?>/images/slide_18.jpg" /></div>
-                <div><img u="image" src="<?php echo $rutaBloque ?>/images/slide_8.jpg" /></div>
-        <div><img u="image" src="<?php echo $rutaBloque ?>/images/slide_7.jpg" /></div>
-        <div><img u="image" src="<?php echo $rutaBloque ?>/images/slide_15.jpg" /></div>
-        <div><img u="image" src="<?php echo $rutaBloque ?>/images/slide_6.jpg" /></div>
+        <div><img u="image" src="<?php echo $rutaBloque ?>/images/asab.jpg" /></div>
+        <div><img u="image" src="<?php echo $rutaBloque ?>/images/cienciased1.jpg" /></div>
+        <div><img u="image" src="<?php echo $rutaBloque ?>/images/cienciased2.jpg" /></div>
+        <div><img u="image" src="<?php echo $rutaBloque ?>/images/fcmn.jpg" /></div>
+        <div><img u="image" src="<?php echo $rutaBloque ?>/images/ingenieria.jpg" /></div>
+                <div><img u="image" src="<?php echo $rutaBloque ?>/images/paiba1.jpg" /></div>
+        <div><img u="image" src="<?php echo $rutaBloque ?>/images/paiba2.jpg" /></div>
+        <div><img u="image" src="<?php echo $rutaBloque ?>/images/porvenir.jpg" /></div>
+        <div><img u="image" src="<?php echo $rutaBloque ?>/images/vivero2.jpeg" /></div>
+        <div><img u="image" src="<?php echo $rutaBloque ?>/images/tecno.jpg" /></div>
 
     </div>
 </div>

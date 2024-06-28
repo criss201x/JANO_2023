@@ -39,7 +39,7 @@ $this->idioma["registro_idioma"]="Registro lengua extranjera ";
 $this->idioma["marcoListaIdioma"]="Lengua extranjera ";
 
 $this->idioma ["mensajeFormacion"] = "Mediante este formulario puede registrar formación";
-$this->idioma ["avisosAclaratoriosFa"] = "<strong>Antes de cargar los soportes requeridos por favor tener en cuenta las siguientes observaciones:</strong> <br> <ol type=”A”><li>Cuando el certificado o diploma corresponda a un título extranjero debe anexar la convalidación respectiva.</li><li>Si su profesión requiere tarjeta profesional deberá adjuntarla.</li></ol>";
+$this->idioma ["avisosAclaratoriosFa"] = "<strong>Antes de cargar los soportes requeridos por favor tener en cuenta las siguientes observaciones:</strong> <br> <ol type=”A”><li>Cuando el certificado o diploma corresponda a un título extranjero debe anexar la convalidación respectiva.</li></ol>";
 $this->idioma ["mensajeActividad"] = "¿¿¿¿¿¿¿¿¿agregar mensaje aqui????????????????";
 
 $this->idioma ["noDefinido"] = "Etiqueta no esta definida en locale/es_es/Mensaje.php";

@@ -282,6 +282,7 @@ class consultarInvestigacion {
 
                         }else
                         {
+                                include('validarSoportesGeneral.php');                            
                                 $atributos["id"]="divNoEncontroInvestigacion";
                                 $atributos["estilo"]="";
                            //$atributos["estiloEnLinea"]="display:none"; 

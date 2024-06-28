@@ -69,13 +69,11 @@ class RegistradorActividad
         );
         if ($arregloDatos['consecutivo_actividad'] == 0) {
             $cadenaSql = $this->miSql->getCadenaSql('registroActividad', $arregloDatos);
-            error_log($cadenaSql);
             $SQLs[] = $cadenaSql;
             $resultadoActividad = $esteRecursoDB->ejecutarAcceso($cadenaSql, "registra", $arregloDatos, "registroActividadAcademica");
             $_REQUEST['consecutivo_actividad'] = $resultadoActividad;
         } else {
-            $cadenaSql = $this->miSql->getCadenaSql('actualizarActividad', $arregloDatos);            
-            error_log($cadenaSql);
+            $cadenaSql = $this->miSql->getCadenaSql('actualizarActividad', $arregloDatos);
             $SQLs[] = $cadenaSql;
             $resultadoActividad = $esteRecursoDB->ejecutarAcceso($cadenaSql, "actualiza", $arregloDatos, "actualizarActividadAcademica");
         }

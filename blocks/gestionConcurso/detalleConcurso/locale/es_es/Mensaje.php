@@ -80,16 +80,26 @@ $this->idioma["soporteAutorizacionTitulo"]="Adjuntar Documento de autorización 
 
 
 $this->idioma["nuevoPerfil"]="Registrar nuevo Perfil ";
-$this->idioma["nombrePerfil"]="Nombre: "; 
+$this->idioma["nombrePerfil"]="Proyecto curricular: "; 
 $this->idioma["nombrePerfilTitulo"]="Ingrese el nombre del perfil";
 $this->idioma["descripcion"]="Descripción: "; 
 $this->idioma["descripcionTitulo"]="Ingrese breve descripción del perfil";
+$this->idioma["requisitos_pregrado"]="Títulos de pregrado aceptados: "; 
+$this->idioma["requisitos_pregradoTitulo"]="Ingrese los títulos de pregrado aceptados";
+$this->idioma["requisitos_maestria"]="Títulos de maestría aceptados: "; 
+$this->idioma["requisitos_maestriaTitulo"]="Ingrese los títulos de maestría aceptados";
+$this->idioma["requisitos_doctorado"]="Títulos de doctorado aceptados: "; 
+$this->idioma["requisitos_doctoradoTitulo"]="Ingrese los títulos de doctorado aceptados";
+$this->idioma["requisitos_docencia"]="Experiencia docente certificada: "; 
+$this->idioma["requisitos_docenciaTitulo"]="Ingrese los requisitos de experiencia docente";
+$this->idioma["requisitos_grupo_investigacion"]="Grupo de investigación categorizado: "; 
+$this->idioma["requisitos_grupo_investigacionTitulo"]="Ingrese los requisitos de grupo de investigacion";
 $this->idioma["requisitos"]="Requisitos: "; 
 $this->idioma["requisitosTitulo"]="Ingrese los requisitos para el perfil";
-$this->idioma["dependencia"]="Dependencia / Facultad"; 
+$this->idioma["dependencia"]="Facultad"; 
 $this->idioma["dependenciaTitulo"]="Ingrese el nombre de la Dependencia o Facultad donde se ubica el perfil";
-$this->idioma["area"]="Área / Proyecto"; 
-$this->idioma["areaTitulo"]="Ingrese el nombre del Área o Proyecto Curricular donde se ubica el perfil";
+$this->idioma["area"]="Nucleo de conocimiento"; 
+$this->idioma["areaTitulo"]="Ingrese el nombre del Área o nucleo de conocimiento";
 $this->idioma["vacantes"]="Vacantes: "; 
 $this->idioma["vacantesTitulo"]="Ingrese la cantidad de vacantes para el perfil";
 

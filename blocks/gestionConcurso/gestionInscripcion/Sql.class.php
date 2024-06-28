@@ -975,6 +975,7 @@ class Sql extends \Sql {
                                 $cadenaSql.=" prod.fecha_produccion";
                                 $cadenaSql.=" FROM concurso.produccion_academica prod ";
                                 //$cadenaSql.=" INNER JOIN general.ciudad city ON city.id_ciudad=prod.ciudad_produccion";
+                                $cadenaSql.=" INNER join general.nivel n on prod.nombre_tipo_produccion = n.nombre and n.estado = 'A'";
                                 $cadenaSql.=" WHERE prod.consecutivo_persona='".$variable['consecutivo_persona']."'";
                                 $cadenaSql.=" ORDER BY prod.fecha_produccion DESC";
                             break;

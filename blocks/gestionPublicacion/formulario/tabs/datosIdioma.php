@@ -234,6 +234,7 @@ class consultarIdioma {
 
                         }else
                         {
+                                include('validarSoportesGeneral.php');                            
                                 $atributos["id"]="divNoEncontroIdioma";
                                 $atributos["estilo"]="";
                            //$atributos["estiloEnLinea"]="display:none"; 

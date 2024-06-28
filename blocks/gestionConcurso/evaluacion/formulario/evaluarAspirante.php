@@ -246,6 +246,8 @@ class registrarForm {
                                                                     ||($resultadoRoles[$key]['rol']=='Personal')){
                                                                     $rol.="'".$resultadoRoles[$key]['cod_rol']."'";
  								    $valorPuntaje="decimal";
+								}else{
+									$rol.=$resultadoRoles[$key]['cod_rol'];
 								}
                                                                 
                                                                 if(($key+1) < count($resultadoRoles))
@@ -267,6 +269,18 @@ class registrarForm {
 
 								if($resultadoCriterios){
 									foreach($resultadoCriterios as $key=>$value ){
+
+										$esteCampo = "marcoArticulo".$value["consecutivo_criterio"];
+										$atributos ['id'] = $esteCampo;
+										$atributos ["estilo"] = "jqueryui";
+										$atributos ['tipoEtiqueta'] = 'inicio';
+										$atributos ["leyenda"] =  $value["criterio"];
+										echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
+										unset ( $atributos );
+
+										$cadena_sql = $this->miSql->getCadenaSql("capturaSubcriterios", $value["consecutivo_criterio"]);
+										$resultadoCapturaSubcriterios = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+										$capturaSubcriterio = $resultadoCapturaSubcriterios[0]["exists"] == "t";
                                                                             
 										// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
 										$esteCampo = 'puntaje'.$key;
@@ -276,18 +290,20 @@ class registrarForm {
 										$atributos ['estilo'] = 'jqueryui';
 										$atributos ['marco'] = true;
 										$atributos ['estiloMarco'] = '';
-										$atributos ["etiquetaObligatorio"] = true;
+										$atributos ["etiquetaObligatorio"] = !$capturaSubcriterio;
 										$atributos ['columnas'] = 2;
 										$atributos ['dobleLinea'] = 0;
 										$atributos ['tabIndex'] = $tab;
-										$atributos ['etiqueta'] = "<b>".$resultadoCriterios[$key]['criterio']."</b>";
-										$atributos ['validar']="required, custom[number], min[0], max[".$resultadoCriterios[$key]['maximo_puntos']."]";
+										$atributos ['etiqueta'] = "Total puntos (maximo ".number_format($resultadoCriterios[$key]['maximo_puntos'],0)." puntos):";
+										if (!$capturaSubcriterio) {
+											$atributos ['validar']="required, custom[number], min[0], max[".$resultadoCriterios[$key]['maximo_puntos']."]";
+										}
 										$atributos ['valor'] = '';
-										$atributos ['titulo'] = "Puntaje para ".$resultadoCriterios[$key]['criterio'];
-										$atributos ['deshabilitado'] = false;
+										$atributos ['titulo'] = $capturaSubcriterio ? "Este puntaje se calcula una vez se realice el cierre de la fase y se capturen los totales para todos los aspirantes, el valor asignado sera ponderado de acuerdo con el aspirante que mas puntos acumule para este criterio" : "Puntaje para ".$resultadoCriterios[$key]['criterio'];
+										$atributos ['deshabilitado'] = $capturaSubcriterio;
 										$atributos ['tamanno'] = 8;
 										$atributos ['maximoTamanno'] = '';
-										$atributos ['anchoEtiqueta'] = 350;
+										$atributos ['anchoEtiqueta'] = 250;
 										$tab ++;
 										// Aplica atributos globales al control
 										$atributos = array_merge ( $atributos, $atributosGlobales );
@@ -295,7 +311,22 @@ class registrarForm {
 										unset ( $atributos );
 										// ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------
 
-										echo "<label style='padding: 8px 5px;'>"."/ ".number_format($resultadoCriterios[$key]['maximo_puntos'],0)." puntos </label>";
+										if ($capturaSubcriterio) {
+											echo "<label style='padding: 8px 5px;'>Sumatoria puntos de subcriterios: <span id='totalCriterio".$value["consecutivo_criterio"]."'>0</span> </label>";
+											// ////////////////Hidden////////////
+											$esteCampo = 'subtotalCriterio' . $value["consecutivo_criterio"];
+											$atributos ["id"] = $esteCampo;
+											$atributos ["tipo"] = "hidden";
+											$atributos ['estilo'] = 'subtotalCriterio' . $value["consecutivo_criterio"];
+											$atributos ['validar'] = 'required';
+											$atributos ["obligatorio"] = true;
+											$atributos ['marco'] = true;
+											$atributos ["etiqueta"] = "";
+											$atributos ['valor'] = 0;
+											$atributos = array_merge ( $atributos, $atributosGlobales );
+											echo $this->miFormulario->campoCuadroTexto ( $atributos );
+											unset ( $atributos );
+										}
 
 										// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
 										$esteCampo = 'observaciones'.$key;
@@ -354,8 +385,122 @@ class registrarForm {
 										echo $this->miFormulario->campoCuadroTexto ( $atributos );
 										unset ( $atributos );
 										// ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------
-                                                                            
-                                                                                
+                                              
+										$cadena_sql = $this->miSql->getCadenaSql("consultarArticulosSubcriterios", $value["consecutivo_criterio"]);
+										$resultadoArticulos = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+
+										if ($resultadoArticulos) {
+											foreach ($resultadoArticulos AS $articulo) {
+												echo "<h4><b>".$articulo["nombre_articulo"]."</b></h4>";
+												$parametro = array(
+													'consecutivo_criterio' => $value['consecutivo_criterio'],
+													'consecutivo_articulo' => $articulo['consecutivo_articulo'],
+												);
+												$cadena_sql = $this->miSql->getCadenaSql("consultarItemsSubcriterios", $parametro);;
+												$resultadoItems = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+
+												if ($resultadoItems) {
+													foreach ($resultadoItems AS $item) {
+														echo "<h5>".$item["nombre_item"]."</h5>";
+
+														$parametro = array(
+															'consecutivo_criterio' => $value['consecutivo_criterio'],
+															'consecutivo_item' => $item['consecutivo_item'],
+															'consecutivo_inscrito' => $_REQUEST["consecutivo_inscrito"]
+														);
+														$cadena_sql = $this->miSql->getCadenaSql("consultarSubcriterios", $parametro);;
+					                					$resultadoSubcriterios = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+
+														if ($resultadoSubcriterios) {
+															echo "<div class='cell-border'><table id='tablaSubcriterios".$item["consecutivo_item"]."' class='table table-striped table-bordered' style='width: 80%'>";
+															echo "<thead>";
+															echo "<tr align='center'>";
+															echo "<th style='width: 70%;'>Subcriterio</th>";
+															echo "<th style='width: 10%;'>Puntos por cada item</th>";
+															echo "<th style='width: 20%;'>Subtotal puntos por subcriterio</th>";
+															echo "</tr>";
+															echo "</thead>";
+															echo "<tbody>";
+
+															foreach ($resultadoSubcriterios AS $subcriterio) {
+																$filtroEvaluacion = array (
+																	"consecutivo_subcriterio" => $subcriterio["consecutivo_subcriterio"],
+																	"consecutivo_inscrito" => $_REQUEST["consecutivo_inscrito"]
+																);
+
+																$cadena_sql = $this->miSql->getCadenaSql("consultarEvaluacionDetalle", $filtroEvaluacion);
+																$resultadoEvaluacionDetalle = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+
+																echo "<tr align='center'>";
+																echo "<td align='left'>".$subcriterio["nombre_subcriterio"]."</td>";
+																echo "<td align='left'>".$subcriterio["puntos"]."</td>";
+																echo "<td align='left'>";
+
+																// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+																$esteCampo = 'calificacion'.$subcriterio["consecutivo_subcriterio"];
+																$atributos ['id'] = $esteCampo;
+																$atributos ['nombre'] = $esteCampo;
+																$atributos ['tipo'] = 'text';
+																$atributos ['estilo'] = 'jqueryui';
+																$atributos ['marco'] = true;
+																$atributos ['estiloMarco'] = ' number'.$item["consecutivo_item"];
+																$atributos ["etiquetaObligatorio"] = true;
+																$atributos ['columnas'] = 2;
+																$atributos ['dobleLinea'] = 0;
+																$atributos ['tabIndex'] = $tab;
+																$atributos ['validar']="custom[number], min[0]";
+																$atributos ['valor'] = $resultadoEvaluacionDetalle ? $resultadoEvaluacionDetalle[0]["calificacion"] : '';
+																$atributos ['titulo'] = "Total puntos del subcriterio, p.e. si el aspirante cumple con este criterio 2 veces, debera ingresar " . ($subcriterio["puntos"]*2);
+																$atributos ['deshabilitado'] = false;
+																$atributos ['maximoTamanno'] = '';
+																$atributos ['evento'] = 'oninput="calcularTotal('.$item["consecutivo_item"].','.$value["consecutivo_criterio"].')"';
+																$tab ++;
+																// Aplica atributos globales al control
+																$atributos = array_merge ( $atributos, $atributosGlobales );
+																echo $this->miFormulario->campoCuadroTexto ( $atributos );
+																unset ( $atributos );
+																// ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------
+							
+																echo "</td>";
+																echo "</tr>";
+															}
+
+															echo "</tbody>";
+															echo "<tfoot>";
+															echo "<th colspan='2' style='text-align:right;'>Total:</th>";
+															// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+															$esteCampo = 'total'.$item["consecutivo_item"];
+															$atributos ['id'] = $esteCampo;
+															$atributos ['nombre'] = $esteCampo;
+															$atributos ['tipo'] = 'text';
+															$atributos ['estilo'] = 'jqueryui';
+															$atributos ['marco'] = true;
+															$atributos ['estiloMarco'] = 'subtotal'.$value["consecutivo_criterio"].' total'.$item["consecutivo_item"];
+															$atributos ["etiquetaObligatorio"] = true;
+															$atributos ['columnas'] = 2;
+															$atributos ['dobleLinea'] = 0;
+															$atributos ['tabIndex'] = $tab;
+															$atributos ['validar']="required, custom[number], min[0]";
+															$atributos ['valor'] = 0;
+															$atributos ['deshabilitado'] = true;
+															$atributos ['tamanno'] = 8;
+															$atributos ['maximoTamanno'] = '';
+															$atributos ['anchoEtiqueta'] = 350;
+															$tab ++;
+															// Aplica atributos globales al control
+															$atributos = array_merge ( $atributos, $atributosGlobales );
+															echo "<th>".$this->miFormulario->campoCuadroTexto ( $atributos )."</th>";
+															unset ( $atributos );
+															// ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------
+
+															echo "</tfoot>";
+															echo "</table></div>";
+														}
+													}
+												}
+											}
+										}
+                                        echo $this->miFormulario->marcoAgrupacion ( 'fin' );                                         
 									}
 
 									echo "</div>";

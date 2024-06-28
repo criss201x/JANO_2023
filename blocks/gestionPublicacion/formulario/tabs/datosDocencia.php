@@ -252,6 +252,7 @@ class consultarDocencia {
 
                         }else
                         {
+                                include('validarSoportesGeneral.php');                            
                                 $atributos["id"]="divNoEncontroDocencia";
                                 $atributos["estilo"]="";
                            //$atributos["estiloEnLinea"]="display:none"; 

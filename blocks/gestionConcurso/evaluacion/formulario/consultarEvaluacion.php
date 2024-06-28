@@ -249,6 +249,12 @@ class registrarForm {
 								if($resultado[$key]['observacion']==""){
 									$resultado[$key]['observacion']="Sin observaciones";
 								}
+								if ($resultado[$key]['puntaje_parcial'] == 0) {
+									$cadena_sql = $this->miSql->getCadenaSql("capturaSubcriterios", $value["consecutivo_criterio"]);
+									$resultadoCapturaSubcriterios = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+									$capturaSubcriterio = $resultadoCapturaSubcriterios[0]["exists"] == "t";
+									$resultado[$key]['puntaje_parcial'] = $capturaSubcriterio ? 'El puntaje de este criterio se calculara una vez finalice la fase actual y se pondere el total acumulado contra los demas aspirantes' : $resultado[$key]['puntaje_parcial'];
+								}
                                                                 
                                                         $mostrarHtml .= "<tr align='center'>
                                                                            <td align='left'>".$resultado[$key]['criterio']."</td>
@@ -265,8 +271,110 @@ class registrarForm {
  	 					 echo "</table></div>";
 
 					}
-					echo $this->miFormulario->marcoAgrupacion ( 'fin' );
 
+					$cadena_sql = $this->miSql->getCadenaSql("existDetalleEvaluacion", $_REQUEST['consecutivo_inscrito']);
+					$resultadoExist = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+
+					if ($resultadoExist && $resultadoExist[0]["exists"] == "t") {
+						$esteCampo = "marcoSubcriteriosEvaluados";
+			 			$atributos ['id'] = $esteCampo;
+			 			$atributos ["estilo"] = "jqueryui";
+		 				$atributos ['tipoEtiqueta'] = 'inicio';
+		 				$atributos ["leyenda"] =  $this->lenguaje->getCadena ( $esteCampo );
+		 				echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
+			 			unset ( $atributos );
+
+						 foreach($resultado as $criterio) {
+							$cadena_sql = $this->miSql->getCadenaSql("consultarArticulosSubcriterios", $criterio["id_criterio"]);
+							$resultadoArticulos = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+
+							if ($resultadoArticulos) {
+
+								$parametro = array(
+									'consecutivo_criterio' => $criterio["id_criterio"],
+									'consecutivo_inscrito' => $_REQUEST["consecutivo_inscrito"]
+								);
+								$cadena_sql = $this->miSql->getCadenaSql("consultarTotalDetalleSubcriterio", $parametro);
+								$resultadoTotal = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+
+								$total = '';
+								if ($resultadoTotal) {
+									$total = '<br>Total puntos: <b>' . number_format($resultadoTotal[0]["sumatoria"],0) . '</b>';
+								}
+
+								$esteCampo = "marcoSubcriteriosCriterio".$criterio["id_criterio"];
+								$atributos ['id'] = $esteCampo;
+								$atributos ["estilo"] = "jqueryui";
+								$atributos ['tipoEtiqueta'] = 'inicio';
+								$atributos ["leyenda"] =  $criterio["criterio"] . $total;
+								echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
+								unset ( $atributos );
+
+								foreach ($resultadoArticulos AS $articulo) {
+    								echo "<h4><b>".$articulo["nombre_articulo"]."</b></h4>";
+									$parametro = array(
+										'consecutivo_criterio'=>$criterio["id_criterio"],
+										'consecutivo_articulo'=>$articulo['consecutivo_articulo'],
+									);
+									$cadena_sql = $this->miSql->getCadenaSql("consultarItemsSubcriterios", $parametro);;
+									$resultadoItems = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+
+    								if ($resultadoItems) {
+										foreach ($resultadoItems AS $item) {
+											echo "<h5>".$item["nombre_item"]."</h5>";
+
+											$parametro=array(
+												'consecutivo_criterio'=>$criterio["id_criterio"],
+												'consecutivo_item'=>$item['consecutivo_item'],
+												'consecutivo_inscrito'=>$_REQUEST["consecutivo_inscrito"]
+											);
+											$cadena_sql = $this->miSql->getCadenaSql("consultarSubcriterios", $parametro);;
+											$resultadoSubcriterios = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+
+            								if ($resultadoSubcriterios) {
+												echo "<div class='cell-border'><table id='tablaSubcriterios".$item["consecutivo_item"]."' class='table table-striped table-bordered' style='width: 95%'>";
+												echo "<thead>";
+												echo "<tr align='center'>";
+												echo "<th style='width: 80%;'>Subcriterio</th>";
+												echo "<th style='width: 8%;'>Puntos por cada item</th>";
+												echo "<th style='width: 12%;'>Total puntos por subcriterio</th>";
+												echo "</tr>";
+												echo "</thead>";
+												echo "<tbody>";
+
+												$total = 0;
+												foreach ($resultadoSubcriterios AS $subcriterio) {
+													$filtroEvaluacion = array (
+														"consecutivo_subcriterio" => $subcriterio["consecutivo_subcriterio"],
+														"consecutivo_inscrito" => $_REQUEST["consecutivo_inscrito"]
+													);
+													$cadena_sql = $this->miSql->getCadenaSql("consultarEvaluacionDetalle", $filtroEvaluacion);
+													$resultadoEvaluacionDetalle = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+													echo "<tr align='center'>";
+													echo "<td align='left'>".$subcriterio["nombre_subcriterio"]."</td>";
+													echo "<td align='left'>".$subcriterio["puntos"]."</td>";
+													echo "<td align='left'>".($subcriterio["calificacion"] ? $subcriterio["calificacion"] : 0)."</td>";
+													echo "</tr>";
+													$total += $subcriterio["calificacion"];
+												}
+
+												echo "</tbody>";
+												echo "<tfoot>";
+												echo "<th colspan='2' style='text-align:right;'>Total:</th>";
+												echo "<th><span>".$total."</span></th>";
+												echo "</tfoot>";
+												echo "</table></div>";
+            								}
+        								}
+    								}
+								}
+								echo $this->miFormulario->marcoAgrupacion ( 'fin' );	
+							}
+						}
+						echo $this->miFormulario->marcoAgrupacion ( 'fin' );
+					}
+
+					echo $this->miFormulario->marcoAgrupacion ( 'fin' );
 
 			}
 

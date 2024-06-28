@@ -104,12 +104,15 @@ class consultarPerfil {
                                 echo "<div class='cell-border'><table id='tablaConsultaPerfil' class='table table-striped table-bordered'>";
                                 echo "<thead>
                                         <tr align='center'>
-                                            <th>Dependencia</th>                                            
-                                            <th>Área</th> 
-                                            <th>Código</th>                                            
-                                            <th>Nombre</th>
-                                            <th>Descripción</th>
-                                            <th>Requisitos</th>
+                                            <th>Facultad</th>            
+                                            <th>Código</th>                                                                                                                        
+                                            <th>Proyecto curricular</th> 
+                                            <th>Nucleo de conocimiento</th>                                                                                                                        
+                                            <th>Requisitos pregrado</th>
+                                            <th>Requisitos maestría </th>
+                                            <th>Requisitos doctorado</th>
+                                            <th>Requisitos experiencia docente</th>
+                                            <th>Requisitos grupo investigacion</th>
                                             <th>Vacantes</th>                                            
                                             <th>Estado</th>
                                             <th>Editar</th>
@@ -153,11 +156,14 @@ class consultarPerfil {
                                         
                                         $mostrarHtml = "<tr align='center'>
                                                 <td align='left'>".$resultadoListaPerfil[$key]['dependencia']."</td>    
-                                                <td align='left'>".$resultadoListaPerfil[$key]['area']."</td>    
-                                                <td align='left'>".$resultadoListaPerfil[$key]['codigo']."</td>    
+                                                <td align='left'>".$resultadoListaPerfil[$key]['codigo']."</td>  
                                                 <td align='left'>".$resultadoListaPerfil[$key]['nombre']."</td>
-                                                <td align='left'>".$resultadoListaPerfil[$key]['descripcion']."</td>
-                                                <td align='left'>".$resultadoListaPerfil[$key]['requisitos']."</td>
+                                                <td align='left'>".$resultadoListaPerfil[$key]['area']."</td>    
+                                                <td align='left'>".$resultadoListaPerfil[$key]['requisitos_pregrado']."</td>
+                                                <td align='left'>".$resultadoListaPerfil[$key]['requisitos_maestria']."</td>
+                                                <td align='left'>".$resultadoListaPerfil[$key]['requisitos_doctorado']."</td>
+                                                <td align='left'>".$resultadoListaPerfil[$key]['requisitos_docencia']."</td>
+                                                <td align='left'>".$resultadoListaPerfil[$key]['requisitos_grupo_investigacion']."</td>
                                                 <td align='left'>".$resultadoListaPerfil[$key]['vacantes']."</td>    
                                                 <td align='left'>".$resultadoListaPerfil[$key]['nom_estado']."</td>";
                                         $mostrarHtml .= "<td>";
