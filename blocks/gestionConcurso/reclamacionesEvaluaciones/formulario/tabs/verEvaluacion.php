@@ -124,11 +124,17 @@ class registrarForm {
 				$cadena_sql = $this->miSql->getCadenaSql("consultaInscripcion", $parametro);
 				$resultadoInscripcion= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
 
+				$cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial", $_REQUEST['consecutivo_perfil']);
+				$perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+	
+
 				//buscar grupo del evaluador
 				$parametro=array(
 					'reclamacion'=>$_REQUEST['reclamacion'],
-					'usuario'=>$_REQUEST['usuario']
+					'usuario'=>$_REQUEST['usuario'],
+					'tipoEvaluacion' => ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar'
 				);
+				
 				$cadena_sql = $this->miSql->getCadenaSql("consultarDetalleReclamacion2", $parametro);
 				$evaluacionParcialReclamacion= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
 				//var_dump($evaluacionParcialReclamacion);

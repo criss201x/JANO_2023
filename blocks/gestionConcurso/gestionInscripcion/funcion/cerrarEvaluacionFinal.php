@@ -65,8 +65,12 @@ class cerrarEvaluacionFinal
             $this->progreso($esteBloque);
             //recorre los registros de los que se validaron
             foreach ($resultadoListaReclamo as $key => $value) {
+                $cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial", $resultadoListaReclamo[$key]['consecutivo_inscrito']);
+                $perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+
                 $parametro['consecutivo_inscrito'] = $resultadoListaReclamo[$key]['consecutivo_inscrito'];
                 $parametro['id_reclamacion'] = $resultadoListaReclamo[$key]['reclamo'];
+                $parametro['tipoEvaluacion'] = ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar';
                 $cadena_sql = $this->miSql->getCadenaSql("consultarDetalleEvaluacionParcial", $parametro);
                 $SQLs[] = $cadena_sql;
                 $resultadoParcial = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
@@ -178,8 +182,10 @@ class cerrarEvaluacionFinal
                     $this->cadena_sql = $this->miSql->getCadenaSql("actualizarEtapaInscrito", $parametroEtp);
                     $SQLs[] = $this->cadena_sql;
                     $resultadoUpd = $esteRecursoDB->ejecutarAcceso($this->cadena_sql, "actualiza", $parametroEtp, "actualizarEtapaInscrito");
-                    $porcetaje_fase = ($fase['puntos'] * 100) / $resultadoCriterio[0]['maximo_fase'];
-                    $puntos_aprueba = ($resultadoCriterio[0]['maximo_fase'] * $_REQUEST['porcentaje_aprueba']) / 100;
+                    $resultadoTipopuntaje =  ($perfilEspecial)? $resultadoCriterio[0]['maximo_fase_especial']: $resultadoCriterio[0]['maximo_fase']; 
+
+                    $porcetaje_fase = ($fase['puntos'] * 100) / $resultadoTipopuntaje;
+                    $puntos_aprueba = ($resultadoTipopuntaje * $_REQUEST['porcentaje_aprueba']) / 100;
                     if (!in_array("NO", $fase['aprobo']) && $porcetaje_fase >= $_REQUEST['porcentaje_aprueba']) {
                         $parametro['faseDesc'] = ',con ' . $fase['puntos'] . ' puntos y un minimo para aprobar de ' . $puntos_aprueba . ' puntos;';
                         $parametro['faseDesc'] .= 'Porcentaje total de  ' . number_format($porcetaje_fase, 2) . '%, correspondiente a la reclamación ' . $parametro['id_reclamacion'];

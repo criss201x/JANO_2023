@@ -51,6 +51,7 @@ class faseEvaluado{
             $cadena_sql = $this->miSql->getCadenaSql("listadoCierreEvaluacion", $parametro);
             $resultadoListaFase= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
             //consulta los creterios de evaluación de la fase
+            
             $parametroEtp=array('consecutivo_concurso'=>$_REQUEST['consecutivo_concurso']);   
             $cadena_sql = $this->miSql->getCadenaSql("consultaCriterioFase", $parametroEtp);
             $criterioFase= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");

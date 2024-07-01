@@ -65,11 +65,18 @@ class cerrarElegibles
             $this->progreso($esteBloque);
             //recorre los registros de los que se validaron
             $puntos_aprueba = ($resultadoCriterio[0]['maximo_fase'] * $_REQUEST['porcentaje_aprueba_concurso']) / 100;
+            $puntos_aprueba_especial = ($resultadoCriterio[0]['maximo_fase_especial'] * $_REQUEST['porcentaje_aprueba_concurso']) / 100;
 
             foreach ($resultadoListaElegibles as $key => $value) {
                 //verifica que haya pasado todas las etapas
+                $cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial", $resultadoListaElegibles[$key]['consecutivo_inscrito']);
+                $perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+                
                 if ($resultadoListaElegibles[$key]['aprobado'] == $resultadoFases[0]['fases_evalua']) {
+
+                                        
                     $parametro['consecutivo_inscrito'] = $resultadoListaElegibles[$key]['consecutivo_inscrito'];
+                    $parametro['tipoEvaluacion'] = ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar';
                     $cadena_sql = $this->miSql->getCadenaSql("consultarDetalleEvaluacionParcial", $parametro);
                     $SQLs[] = $cadena_sql;
                     $resultadoParcial = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
@@ -92,8 +99,9 @@ class cerrarElegibles
                                 $puntaje[$pos]['id_inscrito'] = $resultadoParcial[$parc]['id_inscrito'];
                             }
                         }
+                        $tipoPuntos_aprueba = ($perfilEspecial)? $puntos_aprueba_especial:$puntos_aprueba;
 
-                        $fase = array('puntos' => 0, 'Paprueba' => $puntos_aprueba, 'aprobo' => array());
+                        $fase = array('puntos' => 0, 'Paprueba' => $tipoPuntos_aprueba, 'aprobo' => array());
                         $evaluacion = array();
                         $promedio = 0;
                         //calcula puntajes ya crea el arreglo para guardar
@@ -141,9 +149,11 @@ class cerrarElegibles
                     }
                     //se valida si pasa todos las evaluaciones y alcanza el porcentaje de aprobacion
                     if (isset($fase)) {
-                        $porcetaje_fase = ($fase['puntos'] * 100) / $resultadoCriterio[0]['maximo_fase'];
+                        $resultadoTipopuntaje =  ($perfilEspecial)? $resultadoCriterio[0]['maximo_fase_especial']: $resultadoCriterio[0]['maximo_fase'];            
+                        
+                        $porcetaje_fase = ($fase['puntos'] * 100) / $resultadoTipopuntaje;
                         if (!in_array("NO", $fase['aprobo']) && $porcetaje_fase >= $_REQUEST['porcentaje_aprueba_concurso']) {
-                            $parametro['faseDesc'] = ',con ' . $fase['puntos'] . ' puntos y un minimo para aprobar de ' . $puntos_aprueba . ' puntos;';
+                            $parametro['faseDesc'] = ',con ' . $fase['puntos'] . ' puntos y un minimo para aprobar de ' . $tipoPuntos_aprueba . ' puntos;';
                             $parametro['faseDesc'] .= 'Porcentaje total de  ' . number_format($porcetaje_fase, 2) . '%, correspondiente al total de las Evaluaciones';
                             $parametro['inscripcion'] = $resultadoListaElegibles[$key]['consecutivo_inscrito'];
                             $this->pasaFase($parametro, $esteRecursoDB);

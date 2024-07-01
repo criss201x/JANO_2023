@@ -59,6 +59,10 @@ class fasesEvaluacion {
                 $cadena_sql = $this->miSql->getCadenaSql("listadoCierreEvaluacion", $parametro);
                 $resultadoListaFase= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
                 //fases de evaluacion
+                $cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial", $resultadoListaFase[$fase]['consecutivo_perfil']);
+                $perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+                $parametro['tipoEvaluacion'] = ($perfilEspecial) ? 'evaluacion_perfil_especial': 'concurso_evaluar';
+
                 $cadena_sql = $this->miSql->getCadenaSql("consultaCriterioFase", $parametro);
                 $criterioFase= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
                // var_dump($criterioFase);

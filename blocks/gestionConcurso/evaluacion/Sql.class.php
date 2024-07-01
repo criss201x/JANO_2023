@@ -192,7 +192,7 @@ class Sql extends \Sql {
 			$cadenaSql.=" ce.consecutivo_criterio, ";
 			$cadenaSql.=" ceval.consecutivo_criterio AS id_criterio, ";
 			$cadenaSql.=" ceval.nombre AS criterio";
-			$cadenaSql.=" FROM concurso.evaluacion_parcial ep, concurso.concurso_evaluar ce, concurso.criterio_evaluacion ceval, concurso.evaluacion_grupo eg ";
+			$cadenaSql.=" FROM concurso.evaluacion_parcial ep, concurso.".$variable['tipoEvaluacion']." ce, concurso.criterio_evaluacion ceval, concurso.evaluacion_grupo eg ";
 			$cadenaSql.=" WHERE ";
 			$cadenaSql.=" ep.id_inscrito=".$variable['inscrito'];
 			$cadenaSql.=" AND ep.id_evaluar = ce.consecutivo_evaluar ";
@@ -238,7 +238,7 @@ class Sql extends \Sql {
  				$cadenaSql.=" FROM concurso.jurado_criterio jc  ";
 				$cadenaSql.=" INNER JOIN concurso.criterio_evaluacion ce ON jc.id_criterio=ce.consecutivo_criterio  ";
 				$cadenaSql.=" INNER JOIN concurso.factor_evaluacion f ON ce.consecutivo_factor=f.consecutivo_factor ";
-				$cadenaSql.=" INNER JOIN concurso.concurso_evaluar ev ON ev.consecutivo_criterio=ce.consecutivo_criterio AND ev.estado='A' ";
+				$cadenaSql.=" INNER JOIN concurso.".$variable['tipoEvaluacion']."  ev ON ev.consecutivo_criterio=ce.consecutivo_criterio AND ev.estado='A' ";
 				$cadenaSql.=" INNER JOIN concurso.concurso_calendario cal ON ev.consecutivo_calendario=cal.consecutivo_calendario ";
 				$cadenaSql.=" WHERE ";
 				$cadenaSql.=" jc.estado='A' "; 
@@ -253,6 +253,15 @@ class Sql extends \Sql {
 				//echo $cadenaSql;
 		break;
 
+		case "validarPerfilEspecial":
+            $cadenaSql=" SELECT ";
+            $cadenaSql.=" epe.consecutivo_evaluar , epe.consecutivo_concurso , epe.consecutivo_criterio , epe.maximo_puntos , epe.estado , epe.puntos_aprueba , epe.consecutivo_calendario , epe.consecutivo_perfil ";
+            $cadenaSql.=" FROM concurso.evaluacion_perfil_especial epe  ";
+            $cadenaSql.=" WHERE ";
+            $cadenaSql.=" epe.consecutivo_perfil=".$variable.";";                             
+            //echo $cadenaSql;
+        break;
+
 		case "verificarEvaluacionParcialJurado":
 			
                                 $cadenaSql=" SELECT DISTINCT ";
@@ -265,7 +274,7 @@ class Sql extends \Sql {
 				$cadenaSql.=" cal.consecutivo_calendario, ";
 				$cadenaSql.=" cal.fecha_inicio, ";
 				$cadenaSql.=" cal.fecha_fin ";
-				$cadenaSql.=" FROM concurso.concurso_evaluar ev ";
+				$cadenaSql.=" FROM concurso.".$variable['tipoEvaluacion']." ev ";
 				$cadenaSql.=" INNER JOIN concurso.concurso_calendario cal ON ev.consecutivo_calendario=cal.consecutivo_calendario AND ev.consecutivo_concurso=cal.consecutivo_concurso  ";
 				$cadenaSql.=" INNER JOIN concurso.concurso_perfil prf ON prf.consecutivo_concurso=cal.consecutivo_concurso AND prf.estado='A' ";
 				$cadenaSql.=" INNER JOIN concurso.concurso_inscrito ins ON ins.consecutivo_perfil=prf.consecutivo_perfil AND ins.estado='A' ";

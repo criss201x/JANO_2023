@@ -107,7 +107,7 @@ class Sql extends \Sql {
                                 $cadenaSql.=" crt.estado, ";
                                 $cadenaSql.=" eval.maximo_puntos ";
                                 $cadenaSql.=" FROM concurso.criterio_evaluacion crt ";
-                                $cadenaSql.=" INNER JOIN concurso.concurso_evaluar eval  ";
+                                $cadenaSql.=" INNER JOIN concurso.".$variable['tipoEvaluacion']." eval  ";
                                 $cadenaSql.=" ON crt.consecutivo_criterio=eval.consecutivo_criterio  ";
                                 $cadenaSql.=" AND eval.estado='A' ";
                                 $cadenaSql.=" WHERE "; 
@@ -121,7 +121,26 @@ class Sql extends \Sql {
                                    }
                                 $cadenaSql.=" ORDER BY eval.consecutivo_evaluar ASC ";
                             break; 
+
+                            case "validarPerfilEspecial":
+                                $cadenaSql=" SELECT ";
+                                $cadenaSql.=" epe.consecutivo_evaluar , epe.consecutivo_concurso , epe.consecutivo_criterio , epe.maximo_puntos , epe.estado , epe.puntos_aprueba , epe.consecutivo_calendario , epe.consecutivo_perfil ";
+                                $cadenaSql.=" FROM concurso.evaluacion_perfil_especial epe  ";
+                                $cadenaSql.=" WHERE ";
+                                $cadenaSql.=" epe.consecutivo_perfil=".$variable.";";                             
                     
+                            break;
+                    
+                            case "validarPerfilEspecial2":
+                                $cadenaSql=" SELECT ";
+                                $cadenaSql.=" epe.consecutivo_evaluar , epe.consecutivo_concurso , epe.consecutivo_criterio , epe.maximo_puntos , epe.estado , epe.puntos_aprueba , epe.consecutivo_calendario , epe.consecutivo_perfil ";
+                                $cadenaSql.=" FROM concurso.evaluacion_perfil_especial epe  ";
+                                $cadenaSql.=" inner join concurso.concurso_inscrito ci on epe.consecutivo_perfil = ci.consecutivo_perfil ";
+                                $cadenaSql.=" WHERE ";
+                                $cadenaSql.=" ci.consecutivo_inscrito =".$variable.";";                             
+                    
+                            break;
+
                         case "consultarInscritoConcurso":
                                 $cadenaSql="SELECT DISTINCT ";
                                 $cadenaSql.="insc.consecutivo_inscrito, ";
@@ -385,7 +404,7 @@ class Sql extends \Sql {
                                 $cadenaSql.="FROM concurso.concurso_perfil prf  ";
                                 $cadenaSql.="INNER JOIN concurso.concurso_inscrito insc ON prf.consecutivo_perfil=insc.consecutivo_perfil  AND prf.estado='A' ";
                                 $cadenaSql.="INNER JOIN concurso.persona bas ON bas.consecutivo=insc.consecutivo_persona ";
-                                $cadenaSql.="INNER JOIN concurso.concurso_evaluar eval ON eval.consecutivo_concurso=prf.consecutivo_concurso ";
+                                $cadenaSql.="INNER JOIN concurso.".$variable['tipoEvaluacion']." eval ON eval.consecutivo_concurso=prf.consecutivo_concurso ";
                                 
                                 $cadenaSql.="LEFT OUTER JOIN concurso.evaluacion_promedio prmd ON prmd.id_inscrito = insc.consecutivo_inscrito AND prmd.id_calendario=eval.consecutivo_calendario   ";
                                 if(isset($variable['estado_evaluar']) &&  $variable['estado_evaluar']!='' )
@@ -504,7 +523,7 @@ class Sql extends \Sql {
 	 			$cadenaSql.="'' nueva_obs, ";
 	 			$cadenaSql.="ef.puntaje_final, ";
 	 			$cadenaSql.="ef.aprobo ";
-	 			$cadenaSql.="FROM  concurso.concurso_evaluar ce ";
+	 			$cadenaSql.="FROM  concurso.".$variable['tipoEvaluacion']." ce "; 
 	 			$cadenaSql.="INNER JOIN  concurso.criterio_evaluacion ceval ON ce.consecutivo_criterio=ceval.consecutivo_criterio ";
                                 $cadenaSql.="INNER JOIN concurso.evaluacion_parcial ep ON ep.id_evaluar = ce.consecutivo_evaluar AND ep.estado='A' AND ep.id_reclamacion IS NULL ";
 	 			$cadenaSql.="INNER JOIN concurso.evaluacion_grupo eg ON ep.id_grupo=eg.id ";
@@ -514,7 +533,7 @@ class Sql extends \Sql {
                                 $cadenaSql.="AND ep.id_inscrito='".$variable['consecutivo_inscrito']."'";
                                 $cadenaSql.="AND ce.consecutivo_criterio  "; 
 	 			$cadenaSql.="IN(select distinct criterio.consecutivo_criterio  ";
-                                   $cadenaSql.="from concurso.concurso_evaluar ce, concurso.criterio_evaluacion criterio, concurso.evaluacion_parcial ep  ";
+                                   $cadenaSql.="from concurso.".$variable['tipoEvaluacion']." ce, concurso.criterio_evaluacion criterio, concurso.evaluacion_parcial ep  ";
                                     $cadenaSql.="WHERE ce.consecutivo_criterio=criterio.consecutivo_criterio ";
                                     $cadenaSql.="and ep.id_evaluar=ce.consecutivo_evaluar and id_inscrito='".$variable['consecutivo_inscrito']."' ";
                                     $cadenaSql.="and  ce.consecutivo_evaluar IN (".$variable['criterios'].") ";
@@ -541,7 +560,7 @@ class Sql extends \Sql {
 	 			$cadenaSql.="epnew.observacion nueva_obs, ";
 	 			$cadenaSql.="ef.puntaje_final, ";
 	 			$cadenaSql.="ef.aprobo ";
-	 			$cadenaSql.="FROM  concurso.concurso_evaluar ce ";
+	 			$cadenaSql.="FROM  concurso.".$variable['tipoEvaluacion']." ce ";
 	 			$cadenaSql.="INNER JOIN  concurso.criterio_evaluacion ceval ON ce.consecutivo_criterio=ceval.consecutivo_criterio ";
 	 			$cadenaSql.="INNER JOIN concurso.evaluacion_parcial ep ON ep.id_evaluar = ce.consecutivo_evaluar AND ep.id_reclamacion IS NOT NULL   ";
                                             $cadenaSql.=" AND ep.estado= ";
@@ -562,7 +581,7 @@ class Sql extends \Sql {
                                 $cadenaSql.="AND ep.id_inscrito='".$variable['consecutivo_inscrito']."'";
                                 $cadenaSql.="AND ce.consecutivo_criterio  ";
 	 			$cadenaSql.="IN(select distinct criterio.consecutivo_criterio  ";
-                                    $cadenaSql.="from concurso.concurso_evaluar ce, concurso.criterio_evaluacion criterio, concurso.evaluacion_parcial ep  ";
+                                    $cadenaSql.="from concurso.".$variable['tipoEvaluacion']." ce, concurso.criterio_evaluacion criterio, concurso.evaluacion_parcial ep  ";
                                     $cadenaSql.="WHERE ce.consecutivo_criterio=criterio.consecutivo_criterio ";
                                     $cadenaSql.="and ep.id_evaluar=ce.consecutivo_evaluar and id_inscrito='".$variable['consecutivo_inscrito']."' ";
                                     $cadenaSql.=" and  ce.consecutivo_evaluar IN (".$variable['criterios'].") ";

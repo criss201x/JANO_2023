@@ -170,13 +170,16 @@ class consultarInscrito {
                         			<td align='left' width='10%'>".$resultadoListaInscrito[$key]['codigo']."</td>
                         			<td align='left'>".$resultadoListaInscrito[$key]['perfil']."</td>";
                                         $mostrarHtml .= "<td  width='8%'>";
-
+                                        $cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial", $resultadoListaInscrito[$key]['consecutivo_perfil']);
+                                        $perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+                                        
                                         //consultar grupo de concurso y jurado (con evaluador y perfil)
                                         $parametro=array(
                                                 'consecutivo_concurso'=>$resultadoListaInscrito[$key]['consecutivo_concurso'], 
                                                 'jurado'=>$this->miSesion->getSesionUsuarioId(),
                                                 'perfil'=>$resultadoListaInscrito[$key]['consecutivo_perfil'],
                                                 'inscrito'=>$resultadoListaInscrito[$key]['id_inscrito'],
+                                                'tipoEvaluacion'=> ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar',
                                                 'hoy'=>date("Y-m-d"),
                                                 );
                                         

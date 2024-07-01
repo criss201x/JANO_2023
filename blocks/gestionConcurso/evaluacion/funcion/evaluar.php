@@ -48,7 +48,7 @@ class RegistradorEvaluacion
         );
 
         $cadena_sql = $this->miSql->getCadenaSql("consultarGrupo", $parametro);
-        $SQLs[] = $cadena_sql;
+        //$SQLs[] = $cadena_sql;
         $resultadoGrupo = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
 
         if ($resultadoGrupo) {

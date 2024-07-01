@@ -79,7 +79,10 @@ class cerrarEvaluacion
 
             //recorre los registros de los que se validaron
             foreach ($resultadoListaInscrito as $key => $value) {
+                $cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial", $resultadoListaInscrito[$key]['consecutivo_inscrito']);
+                $perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");                
                 $parametro['consecutivo_inscrito'] = $resultadoListaInscrito[$key]['consecutivo_inscrito'];
+                $parametro['tipoEvaluacion'] = ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar';                
                 $cadena_sql = $this->miSql->getCadenaSql("consultarDetalleEvaluacionParcial", $parametro);
                 $SQLs[] = $cadena_sql;
                 $resultadoParcial = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
@@ -165,7 +168,8 @@ class cerrarEvaluacion
                 //se valida si pasa todos las evaluaciones y alcanza el porcentaje de aprobacion
                 if (isset($fase)) {
                     $porcetaje_fase = ($fase['puntos'] * 100) / $resultadoCriterio[0]['maximo_fase'];
-                    $puntos_aprueba = ($resultadoCriterio[0]['maximo_fase'] * $_REQUEST['porcentaje_aprueba']) / 100;
+                    $resultadoTipopuntaje =  ($perfilEspecial)? $resultadoCriterio[0]['maximo_fase_especial']: $resultadoCriterio[0]['maximo_fase'];                     
+                    $puntos_aprueba = ($resultadoTipopuntaje * $_REQUEST['porcentaje_aprueba']) / 100;
                     if (!in_array("NO", $fase['aprobo']) && $porcetaje_fase >= $_REQUEST['porcentaje_aprueba']) {
                         $parametro['faseDesc'] = ',con ' . $fase['puntos'] . ' puntos y un minimo para aprobar de ' . $puntos_aprueba . ' puntos';
                         $parametro['faseDesc'] .= 'Porcentaje total de  ' . number_format($porcetaje_fase, 2) . '%';

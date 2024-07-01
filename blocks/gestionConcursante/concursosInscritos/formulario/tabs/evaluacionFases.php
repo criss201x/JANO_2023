@@ -38,15 +38,20 @@ class fasesEvaluacion {
             //$conexion="estructura";
             $conexion="reportes";
             $esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
-            
+
+            $cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial", $_REQUEST['consecutivo_perfil']);
+            $perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+                        
             $hoy=date("Y-m-d");
             //identifca lo roles para la busqueda de subsistemas
             $parametro=array('consecutivo_concurso'=>$_REQUEST['consecutivo_concurso'],
                              'consecutivo_inscrito'=>$_REQUEST['consecutivo_inscrito'],
                              'tipo_dato'=>'evaluacionFases',
-                             'fase'=>'evaluacion');    
+                             'fase'=>'evaluacion',
+                             'tipoEvaluacion'=> ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar',);    
             $cadena_sql = $this->miSql->getCadenaSql("consultarFasesEvaluacion", $parametro);
             $resultadoFases = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+            
             
             
         if($resultadoFases)    

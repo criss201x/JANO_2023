@@ -540,11 +540,23 @@ class Sql extends \Sql {
                                 $cadenaSql.="ORDER BY aprobado DESC ";
                             break;
 
+                        case "validarPerfilEspecial":
+                                $cadenaSql=" SELECT ";
+                                $cadenaSql.=" epe.consecutivo_evaluar , epe.consecutivo_concurso , epe.consecutivo_criterio , epe.maximo_puntos , epe.estado , epe.puntos_aprueba , epe.consecutivo_calendario , epe.consecutivo_perfil ";
+                                $cadenaSql.=" FROM concurso.evaluacion_perfil_especial epe  ";
+                                $cadenaSql.=" inner join concurso.concurso_inscrito ci on epe.consecutivo_perfil = ci.consecutivo_perfil ";
+                                $cadenaSql.=" WHERE ";
+                                $cadenaSql.=" ci.consecutivo_inscrito =".$variable.";";                             
+                    
+                            break;
+
                         case "consultarCriteriosEtapa":
                                 $cadenaSql="SELECT ";
                                 $cadenaSql.="COUNT(eval.consecutivo_criterio) criterios, ";
-                                $cadenaSql.="SUM(eval.maximo_puntos) maximo_fase ";
+                                $cadenaSql.="SUM(eval.maximo_puntos) maximo_fase, ";
+                                $cadenaSql.="SUM(pe.maximo_puntos) maximo_fase_especial ";
                                 $cadenaSql.="FROM concurso.concurso_evaluar eval ";
+                                $cadenaSql.="LEFT JOIN concurso.evaluacion_perfil_especial pe on eval.consecutivo_evaluar = pe.consecutivo_evaluar ";
                                 $cadenaSql.="WHERE ";
                                 $cadenaSql.=" eval.estado='A' ";
                                 if(isset($variable['consecutivo_calendario']) &&  $variable['consecutivo_calendario']!='' )
@@ -598,7 +610,7 @@ class Sql extends \Sql {
                                 $cadenaSql.="eval.consecutivo_calendario, ";
                                 
                                 $cadenaSql.="(SELECT count (DISTINCT jur.id_usuario) asignado ";
-                                $cadenaSql.="FROM concurso.concurso_evaluar cev ";
+                                $cadenaSql.="FROM concurso.".$variable['tipoEvaluacion']." cev ";
                                 $cadenaSql.="INNER JOIN concurso.jurado_criterio jcrt ON jcrt.id_criterio=cev.consecutivo_criterio AND jcrt.estado=cev.estado  ";
                                 $cadenaSql.="INNER JOIN public.jano_usuario_subsistema usu ON usu.rol_id=jcrt.id_jurado_rol AND usu.estado='1' ";
                                 $cadenaSql.="INNER JOIN concurso.jurado_inscrito jur ON jur.estado='A' AND usu.id_usuario=jur.id_usuario AND jur.id_jurado_rol=jcrt.id_jurado_rol ";
@@ -614,7 +626,7 @@ class Sql extends \Sql {
                                 $cadenaSql.=") jurados, ";
                                 $cadenaSql.="gr.id_evaluador ";
                                 $cadenaSql.="FROM concurso.evaluacion_parcial parc ";
-                                $cadenaSql.="INNER JOIN concurso.concurso_evaluar eval ON eval.consecutivo_evaluar=parc.id_evaluar AND eval.estado='A' ";
+                                $cadenaSql.="INNER JOIN concurso.".$variable['tipoEvaluacion']." eval ON eval.consecutivo_evaluar=parc.id_evaluar AND eval.estado='A' ";
                                 $cadenaSql.="INNER JOIN concurso.evaluacion_grupo gr ON gr.id=parc.id_grupo ";
                                 $cadenaSql.="WHERE";
                                 $cadenaSql.=" eval.consecutivo_concurso='".$variable['consecutivo_concurso']."' ";

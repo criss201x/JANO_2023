@@ -125,7 +125,7 @@ class registrarForm {
 				echo "<thead>
                                         <tr align='center'>
                                             <th>Concurso</th>
-                                            <th>Perfil</th>
+                                            <th>Proyecto curricular</th>
                                             <th>Modalidad</th>
                                         </tr>
                                     </thead>
@@ -253,17 +253,20 @@ class registrarForm {
                                                                 if(($key+1) < count($resultadoRoles))
                                                                         { $rol.=",";}
 							}
-							$parametro=array(
-	 						 'rol'=>$rol,
-							 'consecutivo_concurso'=>$_REQUEST['consecutivo_concurso'],
-							 'factor'=> 'Competencias profesionales y comunicativas',
-                                                         'hoy'=>date("Y-m-d"),
-	 					 	);
-                                                               //Consultar criterios de evaluación asociados al rol DOCENCIA o ILUD
-								$cadena_sql = $this->miSql->getCadenaSql("consultaCriteriosRol", $parametro);
-		 					 	$resultadoCriterios= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
-								//var_dump($resultadoCriterios);
 
+							  	
+								$cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial", $_REQUEST['consecutivo_perfil']);
+								$perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+								$parametro=array(
+									'rol'=>$rol,
+								   'consecutivo_concurso'=>$_REQUEST['consecutivo_concurso'],
+								   'factor'=> 'Competencias profesionales y comunicativas',
+									'hoy'=>date("Y-m-d"),
+									'tipoEvaluacion'=> ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar',
+									);
+
+								$cadena_sql = $this->miSql->getCadenaSql("consultaCriteriosRol", $parametro);
+								$resultadoCriterios= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");								
 								$totalPuntos=0;
 								$tab=1;
 
@@ -282,80 +285,6 @@ class registrarForm {
 										$resultadoCapturaSubcriterios = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
 										$capturaSubcriterio = $resultadoCapturaSubcriterios[0]["exists"] == "t";
                                                                             
-										// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-										$esteCampo = 'puntaje'.$key;
-										$atributos ['id'] = $esteCampo;
-										$atributos ['nombre'] = $esteCampo;
-										$atributos ['tipo'] = 'text';
-										$atributos ['estilo'] = 'jqueryui';
-										$atributos ['marco'] = true;
-										$atributos ['estiloMarco'] = '';
-										$atributos ["etiquetaObligatorio"] = !$capturaSubcriterio;
-										$atributos ['columnas'] = 2;
-										$atributos ['dobleLinea'] = 0;
-										$atributos ['tabIndex'] = $tab;
-										$atributos ['etiqueta'] = "Total puntos (maximo ".number_format($resultadoCriterios[$key]['maximo_puntos'],0)." puntos):";
-										if (!$capturaSubcriterio) {
-											$atributos ['validar']="required, custom[number], min[0], max[".$resultadoCriterios[$key]['maximo_puntos']."]";
-										}
-										$atributos ['valor'] = '';
-										$atributos ['titulo'] = $capturaSubcriterio ? "Este puntaje se calcula una vez se realice el cierre de la fase y se capturen los totales para todos los aspirantes, el valor asignado sera ponderado de acuerdo con el aspirante que mas puntos acumule para este criterio" : "Puntaje para ".$resultadoCriterios[$key]['criterio'];
-										$atributos ['deshabilitado'] = $capturaSubcriterio;
-										$atributos ['tamanno'] = 8;
-										$atributos ['maximoTamanno'] = '';
-										$atributos ['anchoEtiqueta'] = 250;
-										$tab ++;
-										// Aplica atributos globales al control
-										$atributos = array_merge ( $atributos, $atributosGlobales );
-										echo $this->miFormulario->campoCuadroTexto ( $atributos );
-										unset ( $atributos );
-										// ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------
-
-										if ($capturaSubcriterio) {
-											echo "<label style='padding: 8px 5px;'>Sumatoria puntos de subcriterios: <span id='totalCriterio".$value["consecutivo_criterio"]."'>0</span> </label>";
-											// ////////////////Hidden////////////
-											$esteCampo = 'subtotalCriterio' . $value["consecutivo_criterio"];
-											$atributos ["id"] = $esteCampo;
-											$atributos ["tipo"] = "hidden";
-											$atributos ['estilo'] = 'subtotalCriterio' . $value["consecutivo_criterio"];
-											$atributos ['validar'] = 'required';
-											$atributos ["obligatorio"] = true;
-											$atributos ['marco'] = true;
-											$atributos ["etiqueta"] = "";
-											$atributos ['valor'] = 0;
-											$atributos = array_merge ( $atributos, $atributosGlobales );
-											echo $this->miFormulario->campoCuadroTexto ( $atributos );
-											unset ( $atributos );
-										}
-
-										// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-										$esteCampo = 'observaciones'.$key;
-										$atributos ['id'] = $esteCampo;
-										$atributos ['nombre'] = $esteCampo;
-										$atributos ['tipo'] = 'text';
-										$atributos ['estilo'] = 'jqueryui';
-										$atributos ['marco'] = true;
-										$atributos ['estiloMarco'] = '';
-										$atributos ["etiquetaObligatorio"] = true;
-										$atributos ['columnas'] = 140;
-										$atributos ['filas'] = 3;
-										$atributos ['dobleLinea'] = 0;
-										$atributos ['tabIndex'] = $tab;
-										$atributos ['etiqueta'] = "Observaciones";
-										$atributos ['validar'] = 'maxSize[3000]';
-										$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-										$atributos ['deshabilitado'] = false;
-										$atributos ['tamanno'] = 60;
-										$atributos ['maximoTamanno'] = '';
-										$atributos ['anchoEtiqueta'] = 170;
-										$tab ++;
-
-										// Aplica atributos globales al control
-										$atributos = array_merge ( $atributos, $atributosGlobales );
-										echo $this->miFormulario->campoTextArea ( $atributos );
-										unset ( $atributos );
-										// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-
 										// ////////////////Hidden////////////
 										$esteCampo = 'id_evaluar'.$key;
 										$atributos ["id"] = $esteCampo;
@@ -500,6 +429,80 @@ class registrarForm {
 												}
 											}
 										}
+										// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+										$esteCampo = 'puntaje'.$key;
+										$atributos ['id'] = $esteCampo;
+										$atributos ['nombre'] = $esteCampo;
+										$atributos ['tipo'] = 'text';
+										$atributos ['estilo'] = 'jqueryui';
+										$atributos ['marco'] = true;
+										$atributos ['estiloMarco'] = '';
+										$atributos ["etiquetaObligatorio"] = !$capturaSubcriterio;
+										$atributos ['columnas'] = 2;
+										$atributos ['dobleLinea'] = 0;
+										$atributos ['tabIndex'] = $tab;
+										$atributos ['etiqueta'] = "Total puntos (maximo ".number_format($resultadoCriterios[$key]['maximo_puntos'],0)." puntos):";
+										if (!$capturaSubcriterio) {
+											$atributos ['validar']="required, custom[number], min[0], max[".$resultadoCriterios[$key]['maximo_puntos']."]";
+										}
+										$atributos ['valor'] = '';
+										$atributos ['titulo'] = $capturaSubcriterio ? "Este puntaje se calcula una vez se realice el cierre de la fase y se capturen los totales para todos los aspirantes, el valor asignado sera ponderado de acuerdo con el aspirante que mas puntos acumule para este criterio" : "Puntaje para ".$resultadoCriterios[$key]['criterio'];
+										$atributos ['deshabilitado'] = $capturaSubcriterio;
+										$atributos ['tamanno'] = 8;
+										$atributos ['maximoTamanno'] = '';
+										$atributos ['anchoEtiqueta'] = 250;
+										$tab ++;
+										// Aplica atributos globales al control
+										$atributos = array_merge ( $atributos, $atributosGlobales );
+										echo $this->miFormulario->campoCuadroTexto ( $atributos );
+										unset ( $atributos );
+										// ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------
+
+										if ($capturaSubcriterio) {
+											echo "<label style='padding: 8px 5px;'>Sumatoria puntos de subcriterios: <span id='totalCriterio".$value["consecutivo_criterio"]."'>0</span> </label>";
+											// ////////////////Hidden////////////
+											$esteCampo = 'subtotalCriterio' . $value["consecutivo_criterio"];
+											$atributos ["id"] = $esteCampo;
+											$atributos ["tipo"] = "hidden";
+											$atributos ['estilo'] = 'subtotalCriterio' . $value["consecutivo_criterio"];
+											$atributos ['validar'] = 'required';
+											$atributos ["obligatorio"] = true;
+											$atributos ['marco'] = true;
+											$atributos ["etiqueta"] = "";
+											$atributos ['valor'] = 0;
+											$atributos = array_merge ( $atributos, $atributosGlobales );
+											echo $this->miFormulario->campoCuadroTexto ( $atributos );
+											unset ( $atributos );
+										}
+
+										// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+										$esteCampo = 'observaciones'.$key;
+										$atributos ['id'] = $esteCampo;
+										$atributos ['nombre'] = $esteCampo;
+										$atributos ['tipo'] = 'text';
+										$atributos ['estilo'] = 'jqueryui';
+										$atributos ['marco'] = true;
+										$atributos ['estiloMarco'] = '';
+										$atributos ["etiquetaObligatorio"] = true;
+										$atributos ['columnas'] = 140;
+										$atributos ['filas'] = 3;
+										$atributos ['dobleLinea'] = 0;
+										$atributos ['tabIndex'] = $tab;
+										$atributos ['etiqueta'] = "Observaciones";
+										$atributos ['validar'] = 'maxSize[3000]';
+										$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+										$atributos ['deshabilitado'] = false;
+										$atributos ['tamanno'] = 60;
+										$atributos ['maximoTamanno'] = '';
+										$atributos ['anchoEtiqueta'] = 170;
+										$tab ++;
+
+										// Aplica atributos globales al control
+										$atributos = array_merge ( $atributos, $atributosGlobales );
+										echo $this->miFormulario->campoTextArea ( $atributos );
+										unset ( $atributos );
+										// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+
                                         echo $this->miFormulario->marcoAgrupacion ( 'fin' );                                         
 									}
 

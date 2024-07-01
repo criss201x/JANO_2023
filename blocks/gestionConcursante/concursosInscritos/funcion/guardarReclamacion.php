@@ -51,6 +51,11 @@ class RegistradorValidacion
         $SQLs[] = $cadenaSql;
         $resultado = $esteRecursoDB->ejecutarAcceso($cadenaSql, "registra", $arregloDatos, "registroReclamacion");
 
+        $cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial", $_REQUEST['consecutivo_perfil']);
+        $perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+        
+
+
         if ($resultado) {
             //de acuerdo a la etapa, se debe referenciar la validación o la evaluación
 
@@ -61,7 +66,8 @@ class RegistradorValidacion
                     'consecutivo_concurso' => $_REQUEST['consecutivo_concurso'],
                     'consecutivo_calendario' => $_REQUEST['consecutivo_calendario'],
                     'consecutivo_inscrito' => $_REQUEST['consecutivo_inscrito'],
-                    'reclamacion' => $resultado
+                    'reclamacion' => $resultado,
+                    'tipoEvaluacion'=> ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar'
                 );
                 //se referencia la reclamación en la tabla concurso.valida_requisito
                 $cadenaSql = $this->miSql->getCadenaSql('actualizaValidacion', $arregloDatos);
@@ -78,7 +84,8 @@ class RegistradorValidacion
                     'consecutivo_concurso' => $_REQUEST['consecutivo_concurso'],
                     'consecutivo_calendario' => $_REQUEST['consecutivo_calendario'],
                     'consecutivo_inscrito' => $_REQUEST['consecutivo_inscrito'],
-                    'reclamacion' => $resultado
+                    'reclamacion' => $resultado,
+                    'tipoEvaluacion'=> ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar'
                 );
                 //se referencia la reclamación en la tabla concurso.evaluacion_parcial
                 $cadenaSql = $this->miSql->getCadenaSql('actualizaEvaluacion', $arregloDatos);
@@ -95,7 +102,8 @@ class RegistradorValidacion
                     'consecutivo_concurso' => $_REQUEST['consecutivo_concurso'],
                     'consecutivo_calendario' => $_REQUEST['consecutivo_calendario'],
                     'consecutivo_inscrito' => $_REQUEST['consecutivo_inscrito'],
-                    'reclamacion' => $resultado
+                    'reclamacion' => $resultado,
+                    'tipoEvaluacion'=> ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar'
                 );
                 //se referencia la reclamación en la tabla concurso.evaluacion_parcial
                 $cadenaSql = $this->miSql->getCadenaSql('actualizaEvaluacionCompetencias', $arregloDatos);
@@ -112,7 +120,8 @@ class RegistradorValidacion
                     'consecutivo_concurso' => $_REQUEST['consecutivo_concurso'],
                     'consecutivo_calendario' => $_REQUEST['consecutivo_calendario'],
                     'consecutivo_inscrito' => $_REQUEST['consecutivo_inscrito'],
-                    'reclamacion' => $resultado
+                    'reclamacion' => $resultado,
+                    'tipoEvaluacion'=> ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar'
                 );
                 //se referencia la reclamación en la tabla concurso.evaluacion_parcial
                 $cadenaSql = $this->miSql->getCadenaSql('actualizaEvaluacionHojaVida', $arregloDatos);

@@ -79,20 +79,28 @@ class consultaForm {
 			// $variable .= "&id_concurso=".$_REQUEST['id_concurso'];
 			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 
+			$cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial", $_REQUEST['consecutivo_perfil']);
+			$perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+			
+			$arregloDatos = array(
+				'consecutivo_inscrito' => $_REQUEST ['consecutivo_inscrito'],
+				'tipoEvaluacion' => ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar'
+			);
+
 			$cadena_sql = $this->miSql->getCadenaSql ( "consultarValidacion", $_REQUEST ['consecutivo_inscrito'] );
 			$resultadoValidacion = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
 
-			$cadena_sql = $this->miSql->getCadenaSql ( "consultarEvaluacionILUD", $_REQUEST ['consecutivo_inscrito'] );
+			$cadena_sql = $this->miSql->getCadenaSql ( "consultarEvaluacionILUD", $arregloDatos );
 			$resultadoEvaluacionILUD = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
 
-			$cadena_sql = $this->miSql->getCadenaSql ( "consultarEvaluacionCompetencias", $_REQUEST ['consecutivo_inscrito'] );
+			$cadena_sql = $this->miSql->getCadenaSql ( "consultarEvaluacionCompetencias", $arregloDatos );
 			$resultadoEvaluaciones = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
 			// var_dump($resultadoEvaluaciones);
 
-			$cadena_sql = $this->miSql->getCadenaSql ( "consultarEvaluacionHoja", $_REQUEST ['consecutivo_inscrito'] );
+			$cadena_sql = $this->miSql->getCadenaSql ( "consultarEvaluacionHoja", $arregloDatos);
 			$resultadoEvaluacionesHoja = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
 
-			$cadena_sql = $this->miSql->getCadenaSql ( "consultarEvaluacionFinal", $_REQUEST ['consecutivo_inscrito'] );
+			$cadena_sql = $this->miSql->getCadenaSql ( "consultarEvaluacionFinal", $arregloDatos);
 			$resultadoEvaluacionFinal = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
 
 			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------

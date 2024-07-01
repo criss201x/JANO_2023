@@ -403,7 +403,7 @@ break;
 			$cadenaSql.=" ce.consecutivo_criterio, ";
 			$cadenaSql.=" ceval.consecutivo_criterio AS id_criterio, ";
 			$cadenaSql.=" ceval.nombre AS criterio";
-			$cadenaSql.=" FROM concurso.evaluacion_parcial ep, concurso.concurso_evaluar ce, concurso.criterio_evaluacion ceval, concurso.evaluacion_grupo eg ";
+			$cadenaSql.=" FROM concurso.evaluacion_parcial ep, concurso.".$variable['tipoEvaluacion']." ce, concurso.criterio_evaluacion ceval, concurso.evaluacion_grupo eg ";
 			$cadenaSql.=" WHERE ";
 			$cadenaSql.=" ep.id_inscrito=".$variable['inscrito'];
 			$cadenaSql.=" AND ep.id_evaluar = ce.consecutivo_evaluar ";
@@ -412,6 +412,15 @@ break;
 			$cadenaSql.=" AND ep.id_grupo=".$variable['grupo'];
 			//echo $cadenaSql;
 		break;
+
+   		case "validarPerfilEspecial":
+            $cadenaSql=" SELECT ";
+            $cadenaSql.=" epe.consecutivo_evaluar , epe.consecutivo_concurso , epe.consecutivo_criterio , epe.maximo_puntos , epe.estado , epe.puntos_aprueba , epe.consecutivo_calendario , epe.consecutivo_perfil ";
+            $cadenaSql.=" FROM concurso.evaluacion_perfil_especial epe  ";
+            $cadenaSql.=" WHERE ";
+            $cadenaSql.=" epe.consecutivo_perfil=".$variable.";";                             
+            //echo $cadenaSql;
+        break;
 
 		case "consultaRolesUsuario":
 				$cadenaSql=" SELECT ";
@@ -432,7 +441,7 @@ break;
 		case "consultaCriteriosRol":
 				$cadenaSql=" SELECT jc.id, jc.id_jurado_rol, jc.id_criterio, f.nombre, ";
 				$cadenaSql.=" ce.consecutivo_criterio, ce.consecutivo_factor, ev.consecutivo_evaluar AS id_evaluar, ce.nombre AS criterio, ev.maximo_puntos";
-				$cadenaSql.=" FROM concurso.jurado_criterio jc, concurso.criterio_evaluacion ce, concurso.concurso_evaluar ev, concurso.factor_evaluacion f";
+				$cadenaSql.=" FROM concurso.jurado_criterio jc, concurso.criterio_evaluacion ce, concurso.".$variable['tipoEvaluacion']." ev, concurso.factor_evaluacion f";
 				$cadenaSql.=" WHERE ";
 				$cadenaSql.=" id_jurado_rol=".$variable['rol'];
 				$cadenaSql.=" AND jc.id_criterio=ce.consecutivo_criterio ";

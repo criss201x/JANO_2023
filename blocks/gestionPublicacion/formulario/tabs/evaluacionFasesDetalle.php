@@ -55,6 +55,10 @@ class fasesEvaluacion {
             foreach($resultadoFases as $fase => $value)    
                 {
                 //identifca lo roles para la busqueda de subsistemas
+                $cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial2", $_REQUEST['consecutivo_inscrito']);
+                $perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+    
+                $parametro['tipoEvaluacion']= ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar';
                 $parametro['consecutivo_calendario']=$resultadoFases[$fase]['consecutivo_calendario'];
                 $cadena_sql = $this->miSql->getCadenaSql("consultaCriterioFase", $parametro);
                 $criterioFase= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");

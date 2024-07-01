@@ -38,10 +38,14 @@ class RegistradorEvaluacion
         $esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
 
         $fecha = date("Y-m-d H:i:s");
+        $cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial2", $_REQUEST['consecutivo_inscrito']);
+        $perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+
 
         $parametro = array(
             'reclamacion' => $_REQUEST['reclamacion'],
-            'usuario' => $_REQUEST['usuario']
+            'usuario' => $_REQUEST['usuario'],
+            'tipoEvaluacion'=> ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar'
         );
         $cadena_sql = $this->miSql->getCadenaSql("consultarDetalleReclamacion2", $parametro);
         $SQLs[] = $cadena_sql;

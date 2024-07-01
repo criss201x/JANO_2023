@@ -212,12 +212,15 @@ class registrarForm {
 					 $cadena_sql = $this->miSql->getCadenaSql("consultaPerfil", $parametro);
 					 $resultadoPerfil= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
 					 //var_dump($resultadoPerfil);
-
+					 $cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial", $_REQUEST['consecutivo_perfil']);
+					 $perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+					 
 					 $parametro=array(
 						 'consecutivo_concurso'=>$_REQUEST['consecutivo_concurso'],
 						 'consecutivo_perfil'=>$_REQUEST['consecutivo_perfil'],
 						  'grupo' =>$_REQUEST['grupo'],
-							'inscrito'=>$_REQUEST['consecutivo_inscrito']
+							'inscrito'=>$_REQUEST['consecutivo_inscrito'],
+							'tipoEvaluacion' => ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar'
 					 );
 
 

@@ -196,7 +196,7 @@ class Sql extends \Sql {
 					$cadenaSql = " SELECT reclamacion.id id_reclamacion, reclamacion.observacion, reclamacion.fecha_registro, reclamacion.consecutivo_calendario, reclamacion.id_inscrito,";
 					$cadenaSql .= " evaluacion.id_evaluar, evaluacion.puntaje_parcial, evaluacion.observacion observacion_evaluacion, evaluacion.id evaluacion_id, grupo.id id_grupo,";
 					$cadenaSql .= " evaluacion.fecha_registro evaluacion_fecha, criterio.nombre nombre_criterio, grupo.id_evaluador, concat(us.nombre, ' ', us.apellido) AS evaluador";
-					$cadenaSql .= " FROM concurso.evaluacion_reclamacion reclamacion, concurso.evaluacion_parcial evaluacion, concurso.concurso_evaluar ce, concurso.criterio_evaluacion criterio, concurso.evaluacion_grupo grupo, jano_usuario us";
+					$cadenaSql .= " FROM concurso.evaluacion_reclamacion reclamacion, concurso.evaluacion_parcial evaluacion, concurso.".$variable['tipoEvaluacion']." ce, concurso.criterio_evaluacion criterio, concurso.evaluacion_grupo grupo, jano_usuario us";
 					$cadenaSql .= " WHERE";
 					$cadenaSql .= " reclamacion.id=evaluacion.id_reclamacion";
 					$cadenaSql .= " and evaluacion.id_evaluar=ce.consecutivo_evaluar";
@@ -227,7 +227,7 @@ class Sql extends \Sql {
 				$cadenaSql = " SELECT reclamacion.id id_reclamacion, reclamacion.observacion observacion_reclamacion, reclamacion.fecha_registro, reclamacion.consecutivo_calendario,";
 				$cadenaSql .= " evaluacion.id_inscrito, evaluacion.id_evaluar, evaluacion.puntaje_parcial, evaluacion.observacion, ce.maximo_puntos,";
 				$cadenaSql .= " evaluacion.fecha_registro evaluacion_fecha, criterio.nombre nombre_criterio, grupo.id_evaluador, concat(us.nombre, ' ', us.apellido) AS evaluador";
-				$cadenaSql .= " FROM concurso.evaluacion_reclamacion reclamacion, concurso.evaluacion_parcial evaluacion, concurso.concurso_evaluar ce, concurso.criterio_evaluacion criterio, concurso.evaluacion_grupo grupo, jano_usuario us";
+				$cadenaSql .= " FROM concurso.evaluacion_reclamacion reclamacion, concurso.evaluacion_parcial evaluacion, concurso.".$variable['tipoEvaluacion']." ce, concurso.criterio_evaluacion criterio, concurso.evaluacion_grupo grupo, jano_usuario us";
 				$cadenaSql .= " WHERE";
 				$cadenaSql .= " reclamacion.id=evaluacion.id_reclamacion";
 				$cadenaSql .= " and evaluacion.id_evaluar=ce.consecutivo_evaluar";
@@ -240,6 +240,26 @@ class Sql extends \Sql {
                                 $cadenaSql .= " ORDER BY criterio.nombre";
 				//echo $cadenaSql;
 				break;
+
+				case "validarPerfilEspecial":
+					$cadenaSql=" SELECT ";
+					$cadenaSql.=" epe.consecutivo_evaluar , epe.consecutivo_concurso , epe.consecutivo_criterio , epe.maximo_puntos , epe.estado , epe.puntos_aprueba , epe.consecutivo_calendario , epe.consecutivo_perfil ";
+					$cadenaSql.=" FROM concurso.evaluacion_perfil_especial epe  ";
+					$cadenaSql.=" WHERE ";
+					$cadenaSql.=" epe.consecutivo_perfil=".$variable.";";                             
+					//echo $cadenaSql;
+				break;
+		
+				case "validarPerfilEspecial2":
+					$cadenaSql=" SELECT ";
+					$cadenaSql.=" epe.consecutivo_evaluar , epe.consecutivo_concurso , epe.consecutivo_criterio , epe.maximo_puntos , epe.estado , epe.puntos_aprueba , epe.consecutivo_calendario , epe.consecutivo_perfil ";
+					$cadenaSql.=" FROM concurso.evaluacion_perfil_especial epe  ";
+					$cadenaSql.=" inner join concurso.concurso_inscrito ci on epe.consecutivo_perfil = ci.consecutivo_perfil ";
+					$cadenaSql.=" WHERE ";
+					$cadenaSql.=" ci.consecutivo_inscrito =".$variable.";";                             
+		
+				break;
+
 
 			case "fechaFinResolver" :
 				$cadenaSql = " SELECT";
@@ -646,7 +666,7 @@ class Sql extends \Sql {
 				$cadenaSql .= " ce.consecutivo_criterio, ";
 				$cadenaSql .= " ceval.consecutivo_criterio AS id_criterio, ";
 				$cadenaSql .= " ceval.nombre AS criterio";
-				$cadenaSql .= " FROM concurso.evaluacion_parcial ep, concurso.concurso_evaluar ce, concurso.criterio_evaluacion ceval, concurso.evaluacion_grupo eg ";
+				$cadenaSql .= " FROM concurso.evaluacion_parcial ep, concurso.".$variable['tipoEvaluacion']." ce, concurso.criterio_evaluacion ceval, concurso.evaluacion_grupo eg ";
 				$cadenaSql .= " WHERE ";
 				$cadenaSql .= " ep.id_inscrito=" . $variable ['inscrito'];
 				$cadenaSql .= " AND ep.id_evaluar = ce.consecutivo_evaluar ";
@@ -659,7 +679,7 @@ class Sql extends \Sql {
 			case "consultaCriteriosRol" :
 				$cadenaSql = " SELECT jc.id, jc.id_jurado_rol, jc.id_criterio, f.nombre, ";
 				$cadenaSql .= " ce.consecutivo_criterio, ce.consecutivo_factor, ev.consecutivo_evaluar AS id_evaluar, ce.nombre AS criterio, ev.maximo_puntos";
-				$cadenaSql .= " FROM concurso.jurado_criterio jc, concurso.criterio_evaluacion ce, concurso.concurso_evaluar ev, concurso.factor_evaluacion f";
+				$cadenaSql .= " FROM concurso.jurado_criterio jc, concurso.criterio_evaluacion ce, concurso.".$variable['tipoEvaluacion']." ev, concurso.factor_evaluacion f";
 				$cadenaSql .= " WHERE ";
 				$cadenaSql .= " id_jurado_rol=" . $variable ['rol'];
 				$cadenaSql .= " AND jc.id_criterio=ce.consecutivo_criterio ";

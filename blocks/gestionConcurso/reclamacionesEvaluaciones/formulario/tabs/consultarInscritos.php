@@ -213,10 +213,17 @@ class evaluarReclamacion {
 					echo "</tbody>";
 					echo "</table></div>";
 
+					$cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial", $resultadoReclamacion [$key]['perfil']);
+					$perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+
+
 					$parametro = array (
 						'reclamacion' => $resultadoReclamacion [0] ['id'],
-						'usuario' => $this->miSesion->getSesionUsuarioId ()
+						'usuario' => $this->miSesion->getSesionUsuarioId (),
+						'tipoEvaluacion'=> ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar'
 					);
+
+
 					$cadena_sql = $this->miSql->getCadenaSql ( "consultarDetalleReclamacion", $parametro );
 					$resultadoDetalleReclamacion = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
 					//var_dump($resultadoDetalleReclamacion);

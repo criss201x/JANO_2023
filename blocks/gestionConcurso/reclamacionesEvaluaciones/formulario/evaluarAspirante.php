@@ -243,10 +243,14 @@ class registrarForm {
 
 							}
 
+							$cadena_sql = $this->miSql->getCadenaSql("validarPerfilEspecial", $_REQUEST['consecutivo_perfil']);
+							$perfilEspecial= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+											
 							$parametro=array(
 	 						 'rol'=>$rol,
 							 'consecutivo_concurso'=>$_REQUEST['consecutivo_concurso'],
-							 'factor'=> 'Competencias profesionales y comunicativas'
+							 'factor'=> 'Competencias profesionales y comunicativas',
+							 'tipoEvaluacion' => ($perfilEspecial)?'evaluacion_perfil_especial': 'concurso_evaluar'
 	 					 	);
                                                                //Consultar criterios de evaluación asociados al rol JURADO o ILUD
 								$cadena_sql = $this->miSql->getCadenaSql("consultaCriteriosRol", $parametro);
