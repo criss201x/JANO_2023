@@ -52,7 +52,7 @@ class faseEvaluado{
             $resultadoListaFase= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
             //consulta los creterios de evaluación de la fase
             
-            $parametroEtp=array('consecutivo_concurso'=>$_REQUEST['consecutivo_concurso']);   
+            $parametroEtp=array('consecutivo_concurso'=>$_REQUEST['consecutivo_concurso'], 'tipoEvaluacion' => 'concurso_evaluar');   
             $cadena_sql = $this->miSql->getCadenaSql("consultaCriterioFase", $parametroEtp);
             $criterioFase= $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
             $maximo_puntos=0;
